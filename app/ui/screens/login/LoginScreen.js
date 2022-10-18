@@ -1,9 +1,18 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import { Image,
+    StyleSheet,
+    View, 
+    Text} from 'react-native';
+
+
 
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
+       <Image
+        style={styles.tinyLogo}
+        source={require('../../../assets/images/logo.png')}
+      /> 
       <Text style={styles.text}>Bienvenido a Morfando</Text>
       <Text style={styles.text}>Inicio de sesión</Text>
     </View>
@@ -25,5 +34,6 @@ const styles = StyleSheet.create({
       lineHeight: 84,
       fontWeight: "bold",
       textAlign: "center",
+      fontFamily: "JosefinSans"
     }
   });

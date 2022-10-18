@@ -9,7 +9,7 @@ const Theme = {
     DISABLED: '#9CABC2',
   },
   fonts: {
-    FONTFAMILY: 'Montserrat',
+    FONTFAMILY: 'JosefinSans',
     SMALL: 14,
     MEDIUM: 18,
     LARGE: 22,
