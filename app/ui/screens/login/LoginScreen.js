@@ -1,39 +1,20 @@
 import React from 'react';
-import { Image,
-    StyleSheet,
-    View, 
-    Text} from 'react-native';
-
+import LoginScreenUi from './LoginScreenUI';
+import {View,Button} from 'react-native';
 
 
 export default function LoginScreen() {
+  welcomeString = 'Bienvenido a Morfando';
+
+  const loginHandler = text => {
+    console.log(text);
+  }
   return (
-    <View style={styles.container}>
-       <Image
-        style={styles.tinyLogo}
-        source={require('../../../assets/images/logo.png')}
-      /> 
-      <Text style={styles.text}>Bienvenido a Morfando</Text>
-      <Text style={styles.text}>Inicio de sesión</Text>
-    </View>
+    <LoginScreenUi
+     primText={welcomeString}
+     secText='Inicio de sesión'
+     loginHandler = {loginHandler}
+     />
   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#242424"
-    },
-    image: {
-      flex: 1,
-      justifyContent: "center"
-    },
-    text: {
-      color: "white",
-      fontSize: 42,
-      lineHeight: 84,
-      fontWeight: "bold",
-      textAlign: "center",
-      fontFamily: "JosefinSans"
-    }
-  });

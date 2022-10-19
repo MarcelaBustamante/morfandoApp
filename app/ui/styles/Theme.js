@@ -7,6 +7,7 @@ const Theme = {
     ALERT: '#BF4B5E',
     SUCCESS: '#1DC690',
     DISABLED: '#9CABC2',
+    BACKGROUND:'#242424',
   },
   fonts: {
     FONTFAMILY: 'JosefinSans',
