@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginScreenUi from './LoginScreenUI';
+import LoginScreenUI from './LoginScreenUI';
 import {View,Button} from 'react-native';
 
 
@@ -10,7 +10,7 @@ export default function LoginScreen() {
     console.log(text);
   }
   return (
-    <LoginScreenUi
+    <LoginScreenUI
      primText={welcomeString}
      secText='Inicio de sesión'
      loginHandler = {loginHandler}

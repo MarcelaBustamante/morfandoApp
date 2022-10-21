@@ -5,6 +5,7 @@ import { Image,
     TextInput,
     Button} from 'react-native';
 import Theme from '../../styles/Theme';
+import IMAGES from "../../../assets/images/index";
 
 
 const LoginScreenUI = ({
@@ -13,10 +14,8 @@ const LoginScreenUI = ({
     loginHandler
   }) => {
   return (
-    <View style={styles.container}>
-        <Image
-              style={styles.image}
-              source={require('../../../assets/images/logo.png')} />
+    <View>
+      <IMAGES.logo height={200} width={200}/>
         <View>
         <Text style={styles.text}>{primText}</Text>
           <Text style={styles.text}>{secText}</Text>
@@ -24,7 +23,7 @@ const LoginScreenUI = ({
         <View>
             <TextInput
             style={styles.text}
-            placeholder='Ingrese user'
+            placeholder='jfdskffdjss'
             onChange={console.log("name")}
             />
         <Button onPress={() => loginHandler('enviar datos')} title="Ingresar" />
