@@ -9,7 +9,7 @@ import IMAGES from "../../../assets/images/index";
 
 
 const LoginScreenUI = ({
-    primText = 'No vino ningún texto',
+    //primText = 'No vino ningún texto',
     secText,
     loginHandler
   }) => {
@@ -17,7 +17,6 @@ const LoginScreenUI = ({
     <View>
       <IMAGES.logo height={200} width={200}/>
         <View>
-        <Text style={styles.text}>{primText}</Text>
           <Text style={styles.text}>{secText}</Text>
         </View>
         <View>
