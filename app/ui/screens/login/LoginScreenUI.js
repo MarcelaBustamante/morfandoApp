@@ -2,11 +2,10 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput,
-    Button} from 'react-native';
+    TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
-
+import { Button } from "@react-native-material/core";
 
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
@@ -14,47 +13,68 @@ const LoginScreenUI = ({
     loginHandler
   }) => {
   return (
-    <View>
-      <IMAGES.logo height={200} width={200}/>
-        <View>
-        <Text style={styles.text}>{primText}</Text>
-          <Text style={styles.text}>{secText}</Text>
-        </View>
+    <View style={styles.container}>
+      <IMAGES.logo style={styles.image}/>
+      <Text style={styles.title}>Bienvenido a Morfando</Text>
+      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
         <View>
             <TextInput
-            style={styles.text}
-            placeholder='jfdskffdjss'
+            style={styles.input}
+            placeholder='Usuario'
             onChange={console.log("name")}
             />
-        <Button onPress={() => loginHandler('enviar datos')} title="Ingresar" />
+            <TextInput
+            style={styles.input}
+            placeholder='Contraseña'
+            onChange={console.log("password")}
+            />
+        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Ingresar" />
         </View>
-      </View>
+        <Button variant="text" title="Olvide mi contraseña" color="#330066"/>
+        <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066"/>
+    </View>
   );
 }
 
 export default LoginScreenUI;
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor: Theme.colors.BACKGROUND
-    },
-    image: {
-      flex: 2,
-      height: 247,
-      width: 252,
-      left: 78,
-      top: 51,
-      resizeMode: 'stretch',
-      alignContent:"center",
-    },
-    text: {
-      color: "white",
-      fontSize: 42,
-      lineHeight: 84,
-      fontWeight: "bold",
-      textAlign: "center",
-      fontFamily: Theme.fonts.FONTFAMILY,
-    }
-  });
+  container:{
+    backgroundColor:"#fff",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 30,
+    color: "#000",
+    fontWeight: "bold",
+  },
+  subTitle:{
+    fontSize: 20,
+    color: "gray",
+    marginBottom: 10,
+
+  },
+  input:{
+    borderWidth:1,
+    borderColor: "gray",
+    width: 10,
+    height: 40,
+    width: 150,
+    marginTop: 5,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 30,
+  }, 
+  image:{
+    height: 80,
+    width: 80,
+    marginBottom: 10,
+  },
+  button:{
+    margin: 20,
+  },
+  forgotPassword:{
+    borderColor: "gray",
+  }
+});

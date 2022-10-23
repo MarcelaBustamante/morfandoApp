@@ -3,7 +3,9 @@ import LoginScreenUI from './LoginScreenUI';
 
 import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import IMAGES from "../../../assets/images/index";
-import { Button } from "@react-native-material/core"
+import { Button } from "@react-native-material/core";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 export default function LoginScreen() {
   welcomeString = 'Bienvenido a Morfando';
@@ -12,26 +14,9 @@ export default function LoginScreen() {
     console.log(text);
   }
   return (
-    <View style={styles.container}>
-      <IMAGES.logo style={styles.image}/>
-      <Text style={styles.title}>Bienvenido a Morfando</Text>
-      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-        <View>
-            <TextInput
-            style={styles.input}
-            placeholder='Usuario'
-            onChange={console.log("name")}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder='Contraseña'
-            onChange={console.log("password")}
-            />
-        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Ingresar" />
-        </View>
-        <Text style={styles.forgotPassword}> Olvide mi contraseña </Text>
-    </View>
-    
+    <KeyboardAwareScrollView>
+          <LoginScreenUI/> 
+    </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({
