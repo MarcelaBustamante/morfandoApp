@@ -3,7 +3,9 @@ import LoginScreenUI from './LoginScreenUI';
 
 import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import IMAGES from "../../../assets/images/index";
-import { Button } from "@react-native-material/core"
+import { Button } from "@react-native-material/core";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 export default function LoginScreen() {
   welcomeString = 'Bienvenido a Morfando';
@@ -12,7 +14,9 @@ export default function LoginScreen() {
     console.log(text);
   }
   return (
-    <LoginScreenUI/> 
+    <KeyboardAwareScrollView>
+          <LoginScreenUI/> 
+    </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({
