@@ -12,26 +12,7 @@ export default function LoginScreen() {
     console.log(text);
   }
   return (
-    <View style={styles.container}>
-      <IMAGES.logo style={styles.image}/>
-      <Text style={styles.title}>Bienvenido a Morfando</Text>
-      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-        <View>
-            <TextInput
-            style={styles.input}
-            placeholder='Usuario'
-            onChange={console.log("name")}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder='Contraseña'
-            onChange={console.log("password")}
-            />
-        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Ingresar" />
-        </View>
-        <Text style={styles.forgotPassword}> Olvide mi contraseña </Text>
-    </View>
-    
+    <LoginScreenUI/> 
   );
 }
 const styles = StyleSheet.create({
