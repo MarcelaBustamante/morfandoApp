@@ -27,6 +27,7 @@ const LoginScreenUI = ({
             style={styles.input}
             placeholder='Contraseña'
             onChange={console.log("password")}
+            secureTextEntry= {true}
             />
         <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Ingresar" />
         </View>
@@ -74,7 +75,4 @@ const styles = StyleSheet.create({
   button:{
     margin: 20,
   },
-  forgotPassword:{
-    borderColor: "gray",
-  }
 });
