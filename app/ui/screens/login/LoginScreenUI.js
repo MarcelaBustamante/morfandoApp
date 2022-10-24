@@ -33,6 +33,7 @@ const LoginScreenUI = ({
             placeholder='Contraseña'
             placeholderTextColor={Theme.colors.PRIMARY}
             onChange={console.log("password")}
+            secureTextEntry= {true}
             />
         <Button style={styles.button} onPress={() => loginHandler()} title="Ingresar" />
         <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY}/>
