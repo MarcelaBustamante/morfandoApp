@@ -10,12 +10,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 export default function LoginScreen() {
   welcomeString = 'Bienvenido a Morfando';
 
-  const loginHandler = text => {
-    console.log(text);
+  const loginHandler = () => {
+    console.log("Hola mundo");
   }
   return (
     <KeyboardAwareScrollView>
-          <LoginScreenUI/> 
+          <LoginScreenUI
+            loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   );
 }

@@ -2,12 +2,13 @@ import {StyleSheet} from 'react-native';
 
 const Theme = {
   colors: {
-    PRIMARY: '#1C4670',
-    SECONDARY: '#278AB0',
+    PRIMARY: '#6200EE',
+    SECONDARY: '#8BCC9E',
     ALERT: '#BF4B5E',
     SUCCESS: '#1DC690',
     DISABLED: '#9CABC2',
     BACKGROUND:'#242424',
+    GREY:'#F5F6FB'
   },
   fonts: {
     FONTFAMILY: 'JosefinSans',

@@ -12,26 +12,32 @@ const LoginScreenUI = ({
     secText,
     loginHandler
   }) => {
+   
+
   return (
     <View style={styles.container}>
+      <View style={styles.container2}>
       <IMAGES.logo style={styles.image}/>
-      <Text style={styles.title}>Bienvenido a Morfando</Text>
-      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-        <View>
-            <TextInput
+      <Text style={styles.subTitle}>Bienvenido a Morfando</Text>
+      <Text style={styles.title}>Ingrese su cuenta</Text>
+      </View>
+        <View style={styles.form}>
+          <TextInput
             style={styles.input}
             placeholder='Usuario'
+            placeholderTextColor={Theme.colors.PRIMARY}
             onChange={console.log("name")}
             />
             <TextInput
             style={styles.input}
             placeholder='Contraseña'
+            placeholderTextColor={Theme.colors.PRIMARY}
             onChange={console.log("password")}
             />
-        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Ingresar" />
-        </View>
-        <Button variant="text" title="Olvide mi contraseña" color="#330066"/>
+        <Button style={styles.button} onPress={() => loginHandler()} title="Ingresar" />
+        <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY}/>
         <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066"/>
+        </View>
     </View>
   );
 }
@@ -41,30 +47,29 @@ export default LoginScreenUI;
 const styles = StyleSheet.create({
   container:{
     backgroundColor:"#fff",
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex:1
   },
+  container2:{flex:1, justifyContent:'center',alignItems:'center'},
   title: {
-    fontSize: 30,
-    color: "#000",
+    fontSize: 32,
+    color: Theme.colors.PRIMARY,
     fontWeight: "bold",
   },
   subTitle:{
-    fontSize: 20,
-    color: "gray",
+    fontSize: 24,
+    color: Theme.colors.PRIMARY,
     marginBottom: 10,
 
   },
   input:{
     borderWidth:1,
-    borderColor: "gray",
-    width: 10,
-    height: 40,
-    width: 150,
-    marginTop: 5,
+    borderColor: Theme.colors.PRIMARY,
+    width: 300,
+    height: 39,
+    margin: 10,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 30,
+    borderRadius: 10,
   }, 
   image:{
     height: 80,
@@ -72,9 +77,31 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button:{
-    margin: 20,
+    width:300,
+    height:39,
+    margin:10
   },
   forgotPassword:{
     borderColor: "gray",
-  }
+  },
+  form:{
+    flex:2,
+    alignItems:'flex-start',
+    justifyContent:'space-between',
+    paddingHorizontal: 5,
+    paddingVertical: 65,
+    marginHorizontal: 35,
+    marginVertical:35,
+    backgroundColor: Theme.colors.GREY,
+    shadowColor: "#000000",
+    shadowOffset: {
+      height: 2,
+      width: 0,
+    },
+    shadowOpacity: 0.14,
+    shadowRadius: 8,
+    elevation: 4,
+    borderRadius: 4,
+  },
+  
 });
