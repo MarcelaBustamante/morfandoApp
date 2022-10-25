@@ -18,8 +18,8 @@ const LoginScreenUI = ({
     <View style={styles.container}>
       <View style={styles.container2}>
       <IMAGES.logo style={styles.image}/>
-      <Text style={styles.subTitle}>Bienvenido a Morfando</Text>
-      <Text style={styles.title}>Ingrese su cuenta</Text>
+      <Text style={styles.title}>Bienvenido a Morfando</Text>
+      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
       </View>
         <View style={styles.form}>
           <TextInput
@@ -37,7 +37,7 @@ const LoginScreenUI = ({
             />
         <Button style={styles.button} onPress={() => loginHandler()} title="Ingresar" />
         <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY}/>
-        <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066"/>
+        <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066" />
         </View>
     </View>
   );
@@ -48,9 +48,15 @@ export default LoginScreenUI;
 const styles = StyleSheet.create({
   container:{
     backgroundColor:"#fff",
-    flex:1
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
   },
-  container2:{flex:1, justifyContent:'center',alignItems:'center'},
+  container2:{
+    flex:1, 
+    justifyContent:'center'
+    ,alignItems:'center'
+  },
   title: {
     fontSize: 32,
     color: Theme.colors.PRIMARY,
@@ -59,18 +65,16 @@ const styles = StyleSheet.create({
   subTitle:{
     fontSize: 24,
     color: Theme.colors.PRIMARY,
-    marginBottom: 10,
-
   },
   input:{
     borderWidth:1,
     borderColor: Theme.colors.PRIMARY,
-    width: 300,
+    width: 250,
     height: 39,
     margin: 10,
     borderWidth: 1,
-    padding: 10,
-    borderRadius: 10,
+    padding: 5,
+    borderRadius: 5,
   }, 
   image:{
     height: 80,
@@ -78,21 +82,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button:{
-    width:300,
+    width:150,
     height:39,
-    margin:10
+    margin: 7,
   },
   forgotPassword:{
     borderColor: "gray",
   },
   form:{
     flex:2,
-    alignItems:'flex-start',
-    justifyContent:'space-between',
+    alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: 5,
-    paddingVertical: 65,
-    marginHorizontal: 35,
-    marginVertical:35,
+    paddingVertical: 5,
+    marginHorizontal: 5,
+    marginVertical: 5,
+    marginTop: 10,
     backgroundColor: Theme.colors.GREY,
     shadowColor: "#000000",
     shadowOffset: {
@@ -104,5 +109,8 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 4,
   },
-  
+  image:{
+    width:150,
+    height:39,
+  }
 });
