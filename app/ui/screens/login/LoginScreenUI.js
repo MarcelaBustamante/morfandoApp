@@ -5,16 +5,13 @@ import { Image,
     TextInput, Pressable} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
-import { Button, IconButton  } from "@react-native-material/core";
-import { AntDesign } from '@expo/vector-icons';
+import { Button } from "@react-native-material/core";
 
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
     loginHandler
   }) => {
-   
-    
 
   return (
     <View style={styles.container}>
@@ -37,11 +34,10 @@ const LoginScreenUI = ({
             onChange={console.log("password")}
             secureTextEntry= {true}
             />
-        <Button style={styles.button} onClick={this.switchColor} onPress={() => loginHandler()} title="Ingresar" color='blue'/>
+        <Button style={styles.button} onClick={this.switchColor} onPress={() => loginHandler()} title="Ingresar"/>
         <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY}/>
         <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066" />
-        <AntDesign name="stepbackward" size={24} color="black" />
-                </View>
+        </View>
     </View>
   );
 }
