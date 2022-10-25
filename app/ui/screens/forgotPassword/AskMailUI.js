@@ -29,20 +29,19 @@ const AskMailUI = ({
               />
               <View style={{flexDirection:"row", justifyContent: "space-between"}} >
           <Button style={styles.button1} onPress={() => loginHandler()} title="Cancelar" color={Theme.colors.SECONDARY}/>
-          <Button style={styles.button2} onPress={() => loginHandler()} title="Ingresar" color={Theme.colors.PRIMARY}/>
+          <Button style={styles.button2} onPress={() => loginHandler()} title="Continuar" color={Theme.colors.PRIMARY}/>
           </View>
           </View>
       </View>
     );
   }
   
-  export default AskTokenUI;
+  export default AskMailUI;
   
   const styles = StyleSheet.create({
     container:{
       flex:1, 
       justifyContent:'center',
-      alignItems: "flex-end",
     },
     title: {
       marginBottom: 20,
@@ -80,7 +79,7 @@ const AskMailUI = ({
   
     },
     button2:{
-      width: 120,
+      width: 130,
       height: 39,
       margin: 10,
     },

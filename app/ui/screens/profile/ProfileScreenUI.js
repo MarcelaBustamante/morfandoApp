@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { Icon } from '@react-native-material/core';
 
 
-const UserSetScreenUI = ({
+const ProfileScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
     loginHandler
@@ -34,7 +34,7 @@ const UserSetScreenUI = ({
 }
 //<Button variant="text" title="¿tienes una cuenta? ¡Ingresa!" color={Theme.colors.SECONDARY}/>    
 
-export default UserSetScreenUI;
+export default ProfileScreenUI;
 
 const styles = StyleSheet.create({
   container:{
