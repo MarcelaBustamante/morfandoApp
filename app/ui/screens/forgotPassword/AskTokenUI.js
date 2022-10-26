@@ -1,10 +1,9 @@
-import { Image,
+import {
     StyleSheet,
     View,
     Text,
     TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
 
 const AskTokenUI = ({
@@ -35,7 +34,6 @@ const AskTokenUI = ({
             placeholderTextColor={Theme.colors.PRIMARY}
             onChange={console.log("token")}
             keyboardType='numeric'
-
             />
             <Button style={{alignSelf: "flex-start"}} variant="text" title="¿No recibiste el código?" color={Theme.colors.SECONDARY}/> 
             <View style={{flexDirection:"row", justifyContent: "space-between"}} >
