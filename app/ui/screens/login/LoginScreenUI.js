@@ -1,45 +1,122 @@
+import React from 'react';
 import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput, Pressable} from 'react-native';
+    TextInput,
+    Alert} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
-    secText,
-    loginHandler
+    username,
+    setUsername,
+    password,
+    setPassword,
+    error,
+    loginHandler,
+    isLoggedIn,
+    loginDispatch
+    
   }) => {
+
+    // TODO: borrar
+
+    GoogleSignin.configure({
+      webClientId: '163501080359-ecr6qqkja70nn1tjcklirq8l672gdc7c.apps.googleusercontent.com',
+      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+    });  
+    _signIn = async () => {
+      try {
+        await GoogleSignin.hasPlayServices();
+        const userInfo = await GoogleSignin.signIn();
+        Alert.alert(`Sign in ok ${userInfo.user}`);
+        console.log(JSON.stringify(userInfo));
+      } catch (error) {
+        const typedError = error;
+  
+        switch (typedError.code) {
+          case statusCodes.SIGN_IN_CANCELLED:
+            // sign in was cancelled
+            Alert.alert('cancelled');
+            break;
+          case statusCodes.IN_PROGRESS:
+            // operation (eg. sign in) already in progress
+            Alert.alert('in progress');
+            break;
+          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+            // android only
+            Alert.alert('play services not available or outdated');
+            break;
+          default:
+            Alert.alert('Something went wrong', typedError.toString());
+            this.setState({
+              error: typedError,
+            });
+        }
+      }
+    };
+    // fin borrar
 
   return (
     <View style={styles.container}>
-      <View style={styles.container2}>
-      <IMAGES.logo style={styles.image}/>
-      <Text style={styles.title}>Bienvenido a Morfando</Text>
-      <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-      </View>
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder='Usuario'
-            placeholderTextColor={Theme.colors.PRIMARY}
-            onChange={console.log("name")}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder='Contraseña'
-            placeholderTextColor={Theme.colors.PRIMARY}
-            onChange={console.log("password")}
-            secureTextEntry= {true}
-            />
-        <Button style={styles.button} onClick={this.switchColor} onPress={() => loginHandler()} title="Ingresar"/>
-        <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY}/>
-        <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color="#330066" />
-        </View>
+      {
+        isLoggedIn ? (
+          <><Text>Ingresaste al futuro</Text></>
+        ) :
+        (
+          <><View style={styles.container2}>
+              <IMAGES.logo style={styles.image} />
+              <Text style={styles.title}>Bienvenido a Morfando</Text>
+              <Text style={styles.subTitle}>Ingrese su cuenta</Text>
+            </View><View style={styles.form}>
+              {error && <Text style={styles.error}>{error}</Text>}
+                <TextInput
+                  style={styles.input}
+                  placeholder='Usuario'
+                  placeholderTextColor={Theme.colors.PRIMARY}
+                  value={username}
+                  onChangeText={(text) =>
+                    loginDispatch({
+                      type: "fieldUpdate",
+                      field: "username",
+                      value: text
+                    })} />
+                <TextInput
+                  style={styles.input}
+                  placeholder='Contraseña'
+                  placeholderTextColor={Theme.colors.PRIMARY}
+                  value={password}
+                  onChangeText={(text)=>{loginDispatch({
+                    type: "fieldUpdate",
+                    field: "password",
+                    value: text
+                  })}}
+                  secureTextEntry={true} />
+                <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
+                <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY} />
+                <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY} />
+                
+                {/* TODO:borrar */}
+                <GoogleSigninButton
+                  size={GoogleSigninButton.Size.Standard}
+                  color={GoogleSigninButton.Color.Dark}
+                  onPress={this._signIn}
+                />
+              </View></>
+        )
+      }
+      
     </View>
-  );
+    );
 }
 
 export default LoginScreenUI;
@@ -64,6 +141,11 @@ const styles = StyleSheet.create({
   subTitle:{
     fontSize: 24,
     color: Theme.colors.PRIMARY,
+  },
+  error:{
+    color: Theme.colors.ERROR,
+    fontSize:18,
+    fontWeight: "bold",
   },
   input:{
     borderWidth:1,

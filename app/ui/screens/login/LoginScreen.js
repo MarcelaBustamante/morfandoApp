@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import LoginScreenUI from './LoginScreenUI';
-import { Button } from "@react-native-material/core";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import IMAGES from "../../../assets/images/index";
+import { login } from '../../../networking/api/login';
+import { loginReducer, initialState } from "../../../redux/loginReducer";
 
 
 export default function LoginScreen() {
   welcomeString = 'Bienvenido a Morfando';
+  const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
+  const { username, password, isLoading, error, isLoggedIn } = loginState;
 
-  const loginHandler = () => {
-    console.log("Hola mundo");
+  const loginHandler = async (e)=>{
+    e.preventDefault();
+    loginDispatch({ type: "login" });
+    try {
+      await login({ username, password });
+      loginDispatch({ type: "success" });
+      console.log('success')
+    } catch (error) {
+       loginDispatch({ type: "failure" });
+      console.log('error')
+    }
   }
+  
   return (
     <KeyboardAwareScrollView>
           <LoginScreenUI
-            loginHandler={loginHandler}/> 
+          username={username}
+          password={password}
+          isLoggedIn={isLoggedIn}
+          loginHandler={loginHandler}
+          error={error}
+          loginDispatch={loginDispatch}
+          /> 
     </KeyboardAwareScrollView>
   )};
