@@ -8,7 +8,8 @@ const Theme = {
     SUCCESS: '#1DC690',
     DISABLED: '#9CABC2',
     BACKGROUND:'#242424',
-    GREY:'#F5F6FB'
+    GREY:'#F5F6FB',
+    ERROR: '#F02525'
   },
   fonts: {
     FONTFAMILY: 'JosefinSans',
