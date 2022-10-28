@@ -5,8 +5,12 @@ import { Image,
     TextInput, Pressable} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
-import { Button } from "@react-native-material/core";
-
+import { Button, IconButton } from "@react-native-material/core";
+//import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+/*trailing={props => (
+   <IconButton icon={props => <Icon name="eye" {...props} />} {...props} />
+  )}
+*/
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
