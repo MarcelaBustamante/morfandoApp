@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 
 export function login({ username, password }) {
@@ -6,21 +5,21 @@ export function login({ username, password }) {
   const [post, setPost] = React.useState(null);
 
   //TODO:Dejar solo el post
-    // return new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     if (username === "UADE" && password === "password") {
-    //       resolve();
-    //     } else {
-    //       reject();
-    //     }
-    //   }, 1000);
-    // });
-
-   return axios.post(baseURL, {
-      email: "UADE",
-      password: "password"
-    }).then((response) => {
-      setPost(response.data);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (username === "UADE" && password === "password") {
+          resolve();
+        } else {
+          reject();
+        }
+      }, 100);
     });
+
+  //  return axios.post(baseURL, {
+  //     email: "UADE",
+  //     password: "password"
+  //   }).then((response) => {
+  //     setPost(response.data);
+  //   });
 
   }

@@ -26,6 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import LoginScreen from './ui/screens/login/LoginScreen';
+import LoginUserScreen from './ui/screens/loginUser/LoginUserScreen';
 
 
 
@@ -36,8 +37,9 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <LoginScreen/>
+   return (
+  //   <LoginScreen/>
+  <LoginUserScreen/>
   );
 };
 export default App;
