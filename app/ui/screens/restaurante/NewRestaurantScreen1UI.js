@@ -31,12 +31,16 @@ const NewRestaurantScreen1UI = ({
   secText,
   loginHandler
 }) => {
-  const [value, setValue] = useState(null);
+  const [valueCoutry, setValueCoutry] = useState(null);
+  const [valueLocation, setValueLocation] = useState(null);
+  const [valueProvince, setValueProvince] = useState(null);
+  const [valueNeighborhood, setValueNeighborhood] = useState(null);
+
   const [isFocus, setIsFocus] = useState(false);
 
 
   const renderLabelCountry = () => {
-    if (value || isFocus) {
+    if (valueCoutry || isFocus) {
       return (
         <Text style={[styles.label, isFocus && { color: Theme.colors.PRIMARY }]}>
           País
@@ -46,17 +50,17 @@ const NewRestaurantScreen1UI = ({
     return null;
   };
   const renderLabelProvince = () => {
-    if (value || isFocus) {
+    if (valueProvince || isFocus) {
       return (
         <Text style={[styles.label, isFocus && { color: Theme.colors.PRIMARY }]}>
-          País
+          Provincia
         </Text>
       );
     }
     return null;
   };
   const renderLabelLocation = () => {
-    if (value || isFocus) {
+    if (valueLocation || isFocus) {
       return (
         <Text style={[styles.label, isFocus && { color: Theme.colors.PRIMARY }]}>
           Localidad
@@ -66,7 +70,7 @@ const NewRestaurantScreen1UI = ({
     return null;
   };
   const renderLabelNeighborhood = () => {
-    if (value || isFocus) {
+    if (valueNeighborhood || isFocus) {
       return (
         <Text style={[styles.label, isFocus && { color: Theme.colors.PRIMARY }]}>
           Barrio
@@ -109,11 +113,11 @@ const NewRestaurantScreen1UI = ({
         valueField="value"
         placeholder={!isFocus ? 'País' : '...'}
         searchPlaceholder="Buscar..."
-        value={value}
+        value={valueCoutry}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          setValueCoutry(item.value);
           setIsFocus(false);
         }}
       />
@@ -133,11 +137,11 @@ const NewRestaurantScreen1UI = ({
         valueField="value"
         placeholder={!isFocus ? 'Provincia' : '...'}
         searchPlaceholder="Buscar..."
-        value={value}
+        value={valueProvince}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          setValueProvince(item.value);
           setIsFocus(false);
         }}
       />
@@ -157,11 +161,11 @@ const NewRestaurantScreen1UI = ({
         valueField="value"
         placeholder={!isFocus ? 'Localidad' : '...'}
         searchPlaceholder="Buscar..."
-        value={value}
+        value={valueLocation}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          setValueLocation(item.value);
           setIsFocus(false);
         }}
       />
@@ -181,11 +185,11 @@ const NewRestaurantScreen1UI = ({
         valueField="value"
         placeholder={!isFocus ? 'Barrio' : '...'}
         searchPlaceholder="Buscar..."
-        value={value}
+        value={valueNeighborhood}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          setValueNeighborhood(item.value);
           setIsFocus(false);
         }}
       />

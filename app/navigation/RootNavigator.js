@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NavigatorConstant from './NavigatorConstant';
 import LoginPartner from '../ui/screens/loginPartner/LoginScreen';
-import homeResto from '../ui/screens/homeRestaurant/homeResto';
+import homeResto from '../ui/screens/homeRestaurant/HomeResto';
 
 
 const Stack = createNativeStackNavigator();
