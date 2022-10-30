@@ -8,11 +8,6 @@ import { Image,
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
 
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
@@ -26,45 +21,6 @@ const LoginScreenUI = ({
     loginDispatch
     
   }) => {
-
-    // TODO: borrar
-
-    GoogleSignin.configure({
-      webClientId: '163501080359-ecr6qqkja70nn1tjcklirq8l672gdc7c.apps.googleusercontent.com',
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-    });  
-    _signIn = async () => {
-      try {
-        await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        Alert.alert(`Sign in ok ${userInfo.user}`);
-        console.log(JSON.stringify(userInfo));
-      } catch (error) {
-        const typedError = error;
-  
-        switch (typedError.code) {
-          case statusCodes.SIGN_IN_CANCELLED:
-            // sign in was cancelled
-            Alert.alert('cancelled');
-            break;
-          case statusCodes.IN_PROGRESS:
-            // operation (eg. sign in) already in progress
-            Alert.alert('in progress');
-            break;
-          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-            // android only
-            Alert.alert('play services not available or outdated');
-            break;
-          default:
-            Alert.alert('Something went wrong', typedError.toString());
-            this.setState({
-              error: typedError,
-            });
-        }
-      }
-    };
-    // fin borrar
 
   return (
     <View style={styles.container}>
@@ -104,13 +60,6 @@ const LoginScreenUI = ({
                 <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
                 <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY} />
                 <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY} />
-                
-                {/* TODO:borrar */}
-                <GoogleSigninButton
-                  size={GoogleSigninButton.Size.Standard}
-                  color={GoogleSigninButton.Color.Dark}
-                  onPress={this._signIn}
-                />
               </View></>
         )
       }
