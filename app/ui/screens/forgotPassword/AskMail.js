@@ -3,9 +3,9 @@ import AskMailUI from './AskMailUI';
 import { Button } from "@react-native-material/core";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import IMAGES from "../../../assets/images/index";
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-
-export default function AskMail() {
+export default function AskMail({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -14,6 +14,9 @@ export default function AskMail() {
   return (
     <KeyboardAwareScrollView>
           <AskMailUI
-            loginHandler={loginHandler}/> 
+            loginHandler={loginHandler}
+            navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN) }
+            navigateToAskToken = {()=> navigation.navigate(NavigatorConstant.PASSWORD_STACK.ASKTOKEN)}  
+          /> 
     </KeyboardAwareScrollView>
   )};

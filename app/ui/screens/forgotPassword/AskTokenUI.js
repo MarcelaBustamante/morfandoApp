@@ -9,7 +9,9 @@ import { Button } from "@react-native-material/core";
 const AskTokenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToChangePassword,
+    navigateToRecovery
   }) => {
    
 
@@ -37,8 +39,8 @@ const AskTokenUI = ({
             />
             <Button style={{alignSelf: "flex-start"}} variant="text" title="¿No recibiste el código?" color={Theme.colors.SECONDARY}/> 
             <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-        <Button style={styles.button1} onPress={() => loginHandler()} title="Cancelar" color={Theme.colors.SECONDARY}/>
-        <Button style={styles.button2} onPress={() => loginHandler()} title="Continuar" color={Theme.colors.PRIMARY}/>
+        <Button style={styles.button1} onPress={navigateToRecovery} title="Cancelar" color={Theme.colors.SECONDARY}/>
+        <Button style={styles.button2} onPress={navigateToChangePassword} title="Continuar" color={Theme.colors.PRIMARY}/>
         </View>
         </View>
     </View>

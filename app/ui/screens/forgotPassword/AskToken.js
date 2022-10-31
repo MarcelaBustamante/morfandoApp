@@ -3,9 +3,10 @@ import AskTokenUI from './AskTokenUI';
 import { Button } from "@react-native-material/core";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import IMAGES from "../../../assets/images/index";
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 
-export default function LoginScreen() {
+export default function AskToken({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -14,6 +15,9 @@ export default function LoginScreen() {
   return (
     <KeyboardAwareScrollView>
           <AskTokenUI
-            loginHandler={loginHandler}/> 
+            loginHandler={loginHandler}
+            navigateToChangePassword={()=> navigation.navigate(NavigatorConstant.PASSWORD_STACK.CHANGE_PASSWORD)}
+            navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
+            /> 
     </KeyboardAwareScrollView>
   )};
