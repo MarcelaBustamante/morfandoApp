@@ -14,14 +14,15 @@ import { ShapeBorderRadius } from '@react-native-material/core';
 const RegisterScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler, 
+    navigateToClient,
   }) => {
     const [checked, setChecked] = useState(true);
 
   return (
     <View>
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={() => loginHandler('enviar datos')} title="<"/>
+        <Button style={styles.circle} onPress={navigateToClient} title="<"/>
           <Text style={styles.title}>Registrate</Text>
           <Text style={styles.subTitle}>Ingrese sus datos</Text>
           <View style={{alignItems: "center"}}>
