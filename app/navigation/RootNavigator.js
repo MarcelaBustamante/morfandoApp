@@ -4,7 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NavigatorConstant from './NavigatorConstant';
 import LoginPartner from '../ui/screens/loginPartner/LoginScreen';
 import LoginUserScreen from '../ui/screens/loginUser/LoginUserScreen';
-import RegisterScreen from '../ui/screens/register/RegisterScreen'
+import RegisterScreen from '../ui/screens/register/RegisterScreen';
+import ChangePasswordScreen from '../ui/screens/changePassword/ChangePasswordScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,10 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.LOGIN_STACK.REGISTER}
           component={RegisterScreen}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY}
+          component={ChangePasswordScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

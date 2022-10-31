@@ -33,8 +33,9 @@ export default function LoginScreen({navigation}) {
           loginHandler={loginHandler}
           error={error}
           loginDispatch={loginDispatch}
-          navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER) }
+          navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN) }
           navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
+          navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
           /> 
     </KeyboardAwareScrollView>
   )};
