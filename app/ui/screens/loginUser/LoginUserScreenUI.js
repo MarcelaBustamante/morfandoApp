@@ -6,6 +6,8 @@ import {
     Alert} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
+
+import { Button } from "@react-native-material/core";
 import {
   GoogleSignin,
   GoogleSigninButton,
@@ -13,11 +15,10 @@ import {
 } from '@react-native-google-signin/google-signin';
 
 const LoginUserScreenUI = ({
-
-    
+  navigateToPartner
   }) => {
 
-    // TODO: borrar
+    // TODO: pasar a la logica y borrar de la vista
 
     GoogleSignin.configure({
       webClientId: '163501080359-ecr6qqkja70nn1tjcklirq8l672gdc7c.apps.googleusercontent.com',
@@ -63,6 +64,10 @@ const LoginUserScreenUI = ({
               <Text style={styles.title}>Bienvenido a Morfando</Text>
               <Text style={styles.subTitle}>Ingrese su cuenta</Text>
             </View>
+            <View style={styles.viewRow}>
+              <View style={styles.tabLeftButton}><Button  variant="text"  title="Cliente" /></View>
+              <View style={styles.tabRightButton}><Button color={Theme.colors.GREY} variant="text" onPress={ navigateToPartner } title="Restaurante" /></View>
+            </View>
             <View style={styles.form}>
               <View style={styles.container2}></View>
               <View style={styles.container2}>
@@ -92,6 +97,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
     ,alignItems:'center'
   },
+  viewRow:{flexDirection:'row', alignSelf:'flex-start', marginTop:10},
   title: {
     fontSize: 32,
     color: Theme.colors.PRIMARY,
@@ -142,5 +148,7 @@ const styles = StyleSheet.create({
   image:{
     width:150,
     height:39,
-  }
+  },
+  tabLeftButton:{backgroundColor:Theme.colors.GREY, borderTopLeftRadius:20, marginLeft:17, width:180, height:40 },
+  tabRightButton:{backgroundColor:Theme.colors.PRIMARY, borderTopRightRadius:20, marginRight:17, width:180, height:40 }
 });

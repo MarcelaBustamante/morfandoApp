@@ -3,9 +3,10 @@ import LoginScreenUI from './LoginScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { login } from '../../../networking/api/login';
 import { loginReducer, initialState } from "../../../redux/loginReducer";
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
   const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
   const { username, password, isLoading, error, isLoggedIn } = loginState;
@@ -22,7 +23,7 @@ export default function LoginScreen() {
       console.log('error')
     }
   }
-  
+
   return (
     <KeyboardAwareScrollView>
           <LoginScreenUI
@@ -32,6 +33,8 @@ export default function LoginScreen() {
           loginHandler={loginHandler}
           error={error}
           loginDispatch={loginDispatch}
+          navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER) }
+          navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
           /> 
     </KeyboardAwareScrollView>
   )};

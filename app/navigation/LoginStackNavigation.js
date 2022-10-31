@@ -12,6 +12,11 @@ export default LoginNavigator = () => {
         component={LoginPartner}
        // options={{title: I18n.t(TextKey.login)}}
       />
+      <Stack.Screen
+        name={NavigatorConstant.LOGIN_STACK.LOGIN}
+        component={LoginPartner}
+       // options={{title: I18n.t(TextKey.login)}}
+      />
 {/* 
       <Stack.Screen
         name={NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY}

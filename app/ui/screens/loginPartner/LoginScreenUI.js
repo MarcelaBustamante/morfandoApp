@@ -12,13 +12,13 @@ import { Button } from "@react-native-material/core";
 const LoginScreenUI = ({
     primText = 'No vino ningún texto',
     username,
-    setUsername,
+    navigateToClient,
     password,
-    setPassword,
     error,
     loginHandler,
     isLoggedIn,
-    loginDispatch
+    loginDispatch,
+    navigateToRegister
     
   }) => {
 
@@ -33,7 +33,12 @@ const LoginScreenUI = ({
               <IMAGES.logo style={styles.image} />
               <Text style={styles.title}>Bienvenido a Morfando</Text>
               <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-            </View><View style={styles.form}>
+            </View>
+            <View style={styles.viewRow}>
+              <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text" onPress={ navigateToClient } title="Cliente" /></View>
+              <View style={styles.tabRightButton}><Button  variant="text" title="Restaurante" /></View>
+            </View>
+            <View style={styles.form}>
               {error && <Text style={styles.error}>{error}</Text>}
                 <TextInput
                   style={styles.input}
@@ -59,7 +64,8 @@ const LoginScreenUI = ({
                   secureTextEntry={true} />
                 <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
                 <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY} />
-                <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY} />
+                <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY} 
+                 onPress={navigateToRegister}/>
               </View></>
         )
       }
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
     ,alignItems:'center'
   },
+  viewRow:{flexDirection:'row', alignSelf:'flex-start', marginTop:10},
   title: {
     fontSize: 32,
     color: Theme.colors.PRIMARY,
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginHorizontal: 5,
     marginVertical: 5,
-    marginTop: 10,
+    marginTop: 0,
     backgroundColor: Theme.colors.GREY,
     shadowColor: "#000000",
     shadowOffset: {
@@ -142,5 +149,7 @@ const styles = StyleSheet.create({
   image:{
     width:150,
     height:39,
-  }
+  },
+  tabLeftButton:{backgroundColor:Theme.colors.PRIMARY, borderTopLeftRadius:20, marginLeft:17, width:180, height:40 },
+  tabRightButton:{backgroundColor:Theme.colors.GREY, borderTopRightRadius:20, marginRight:17, width:180, height:40 }
 });
