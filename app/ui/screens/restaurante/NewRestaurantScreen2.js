@@ -1,11 +1,12 @@
 import React from 'react';
-import NewRestaurantScreen2 from './NewRestaurantScreen2';
+import NewRestaurantScreen2UI from './NewRestaurantScreen2UI';
 import { Button } from "@react-native-material/core";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import IMAGES from "../../../assets/images/index";
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 
-export default function LoginScreen() {
+export default function NewRestaurantScreen2() {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -13,7 +14,7 @@ export default function LoginScreen() {
   }
   return (
     <KeyboardAwareScrollView>
-          <NewRestaurantScreen2
+          <NewRestaurantScreen2UI
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};

@@ -29,7 +29,8 @@ const dataNeighborhood = [
 const NewRestaurantScreen1UI = ({
   primText = 'No vino ningún texto',
   secText,
-  loginHandler
+  loginHandler,
+  navigateToNextScreen
 }) => {
   const [valueCoutry, setValueCoutry] = useState(null);
   const [valueLocation, setValueLocation] = useState(null);
@@ -202,7 +203,7 @@ const NewRestaurantScreen1UI = ({
             keyboardType='numeric'
             />
             <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
-             <Button style={styles.button2} onPress={() => loginHandler()} title="Continuar >" color={Theme.colors.PRIMARY}/>
+             <Button style={styles.button2} onPress={navigateToNextScreen} title="Continuar >" color={Theme.colors.PRIMARY}/>
           </View> 
        </View>
   );
