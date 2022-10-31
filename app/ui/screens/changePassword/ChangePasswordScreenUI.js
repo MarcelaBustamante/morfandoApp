@@ -14,14 +14,15 @@ import { ShapeBorderRadius } from '@react-native-material/core';
 const ChangePasswordScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToClient,
   }) => {
     const [checked, setChecked] = useState(true);
 
   return (
     <View>
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={() => loginHandler('enviar datos')} title="<"/>
+        <Button style={styles.circle} onPress={navigateToClient} title="<"/>
           <Text style={styles.title}>Cambiar contraseña</Text>
           <View style={{alignItems: "center"}}>
           <TextInput
