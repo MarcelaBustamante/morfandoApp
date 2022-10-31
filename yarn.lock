@@ -1672,7 +1672,7 @@
     "prompts" "^2.4.0"
     "semver" "^6.3.0"
 
-"@react-native-community/datetimepicker@>=3.0.0":
+"@react-native-community/datetimepicker@^6.5.3", "@react-native-community/datetimepicker@>=3.0.0":
   "integrity" "sha512-RhzUSXBq6SG2Z7JIyzfgVHI47ZZrU8ly85U7dhT0r/N4xoyI597lQzv8tb6oboU51PfWxOunzPhwYUj2GynDYQ=="
   "resolved" "https://registry.npmjs.org/@react-native-community/datetimepicker/-/datetimepicker-6.5.3.tgz"
   "version" "6.5.3"

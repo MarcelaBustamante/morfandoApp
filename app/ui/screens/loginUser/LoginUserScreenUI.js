@@ -97,7 +97,11 @@ const styles = StyleSheet.create({
     justifyContent:'center'
     ,alignItems:'center'
   },
-  viewRow:{flexDirection:'row', alignSelf:'flex-start', marginTop:10},
+  viewRow:{
+    flexDirection:'row', 
+    alignSelf:"center", 
+    marginTop:10,
+},
   title: {
     fontSize: 32,
     color: Theme.colors.PRIMARY,
@@ -143,12 +147,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.14,
     shadowRadius: 8,
     elevation: 4,
-    borderRadius: 4,
+    borderBottomEndRadius:4,
   },
   image:{
     width:150,
     height:39,
   },
-  tabLeftButton:{backgroundColor:Theme.colors.GREY, borderTopLeftRadius:20, marginLeft:17, width:180, height:40 },
-  tabRightButton:{backgroundColor:Theme.colors.PRIMARY, borderTopRightRadius:20, marginRight:17, width:180, height:40 }
+  tabLeftButton:{backgroundColor:Theme.colors.GREY, borderTopLeftRadius:20, marginLeft:17, width:178, height:40 },
+  tabRightButton:{backgroundColor:Theme.colors.PRIMARY, borderTopRightRadius:20, marginRight:17, width:178, height:40 }
 });
