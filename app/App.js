@@ -25,7 +25,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import LoginScreen from './ui/screens/login/LoginScreen';
+import LoginScreen from './ui/screens/loginPartner/LoginScreen';
+import LoginUserScreen from './ui/screens/loginUser/LoginUserScreen';
+import RootNavigator from './navigation/RootNavigator';
 
 
 
@@ -36,8 +38,10 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <LoginScreen/>
+   return (
+    //  <LoginScreen/>
+  //<LoginUserScreen/>
+  <RootNavigator />
   );
 };
 export default App;
