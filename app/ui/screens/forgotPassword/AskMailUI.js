@@ -4,7 +4,6 @@ import { Image,
     Text,
     TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
 
 const AskMailUI = ({

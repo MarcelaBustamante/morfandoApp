@@ -2,13 +2,11 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput, ImageBackground, Dimensions} from 'react-native';
+    TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
 import { Button  } from "@react-native-material/core";
-import { Stack, Switch, ListItem } from "@react-native-material/core";
+import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
-import { ShapeBorderRadius } from '@react-native-material/core';
 
 
 const RegisterScreenUI = ({
