@@ -13,7 +13,6 @@ const LoginScreenUI = ({
   navigateToClient,
   error,
   loginHandler,
-  isLoggedIn,
   navigateToRegister,
   username,
   onChangeUsername,
@@ -25,45 +24,37 @@ const LoginScreenUI = ({
 
   return (
     <View style={styles.container}>
-      {
-        isLoggedIn ? (
-          <><Text>Ingresaste al futuro</Text></>
-        ) :
-          (
-            <><View style={styles.container2}>
-              <IMAGES.logo style={styles.image} />
-              <Text style={styles.title}>Bienvenido a Morfando</Text>
-              <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-            </View>
-              <View style={styles.viewRow}>
-                <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text" onPress={navigateToClient} title="Cliente" /></View>
-                <View style={styles.tabRightButton}><Button variant="text" title="Restaurante" /></View>
-              </View>
-              <View style={styles.form}>
-                {error && <Text style={styles.error}>{error}</Text>}
-                <TextInput
-                  style={styles.input}
-                  placeholder='Usuario'
-                  placeholderTextColor={Theme.colors.PRIMARY}
-                  value={username}
-                  onChangeText={onChangeUsername}
-                />
-                <TextInput
-                  style={styles.input}
-                  placeholder='Contraseña'
-                  placeholderTextColor={Theme.colors.PRIMARY}
-                  value={password}
-                  onChangeText={onChangePassword}
-                  secureTextEntry={true}
-                />
-                <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
-                <Button variant="text" title="Recuperar contraseña" onPress={navigateToRecovery} color={Theme.colors.SECONDARY} />
-                <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY}
-                  onPress={navigateToRegister} />
-              </View></>
-          )
-      }
-
+      <View style={styles.container2}>
+        <IMAGES.logo style={styles.image} />
+        <Text style={styles.title}>Bienvenido a Morfando</Text>
+        <Text style={styles.subTitle}>Ingrese su cuenta</Text>
+      </View>
+      <View style={styles.viewRow}>
+        <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text" onPress={navigateToClient} title="Cliente" /></View>
+        <View style={styles.tabRightButton}><Button variant="text" title="Restaurante" /></View>
+      </View>
+      <View style={styles.form}>
+        {error && <Text style={styles.error}>{error}</Text>}
+        <TextInput
+          style={styles.input}
+          placeholder='Usuario'
+          placeholderTextColor={Theme.colors.PRIMARY}
+          value={username}
+          onChangeText={onChangeUsername}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Contraseña'
+          placeholderTextColor={Theme.colors.PRIMARY}
+          value={password}
+          onChangeText={onChangePassword}
+          secureTextEntry={true}
+        />
+        <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
+        <Button variant="text" title="Recuperar contraseña" onPress={navigateToRecovery} color={Theme.colors.SECONDARY} />
+        <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY}
+          onPress={navigateToRegister} />
+      </View>
     </View>
   );
 }
