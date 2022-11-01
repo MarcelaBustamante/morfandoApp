@@ -1,25 +1,24 @@
 import React from 'react';
-import { Image,
+import {
     StyleSheet,
     View,
     Text,
     TextInput,
-    Alert} from 'react-native';
+} from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
 
 const LoginScreenUI = ({
-    primText = 'No vino ningún texto',
-    username,
     navigateToClient,
-    password,
     error,
     loginHandler,
     isLoggedIn,
-    loginDispatch,
-    navigateToRegister
-    
+    navigateToRegister,
+    username,
+    onChangeUsername,
+    password,
+    onChangePassword
   }) => {
 
   return (
@@ -45,23 +44,16 @@ const LoginScreenUI = ({
                   placeholder='Usuario'
                   placeholderTextColor={Theme.colors.PRIMARY}
                   value={username}
-                  onChangeText={(text) =>
-                    loginDispatch({
-                      type: "fieldUpdate",
-                      field: "username",
-                      value: text
-                    })} />
+                  onChangeText={onChangeUsername} 
+                />
                 <TextInput
                   style={styles.input}
                   placeholder='Contraseña'
                   placeholderTextColor={Theme.colors.PRIMARY}
                   value={password}
-                  onChangeText={(text)=>{loginDispatch({
-                    type: "fieldUpdate",
-                    field: "password",
-                    value: text
-                  })}}
-                  secureTextEntry={true} />
+                  onChangeText={onChangePassword}
+                  secureTextEntry={true}
+                />
                 <Button style={styles.button} onPress={loginHandler} title="Ingresar" />
                 <Button variant="text" title="Recuperar contraseña" color={Theme.colors.SECONDARY} />
                 <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY} 

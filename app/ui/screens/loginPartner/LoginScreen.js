@@ -1,40 +1,28 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import LoginScreenUI from './LoginScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { login } from '../../../networking/api/login';
-import { loginReducer, initialState } from "../../../redux/loginReducer";
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { loginPartner } from '../../../redux/slices/partnerSlice';
 
 export default function LoginScreen({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
-  const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
-  const { username, password, isLoading, error, isLoggedIn } = loginState;
-
-  const loginHandler = async (e)=>{
-    e.preventDefault();
-    loginDispatch({ type: "login" });
-    try {
-      await login({ username, password });
-      loginDispatch({ type: "success" });
-      console.log('success')
-    } catch (error) {
-       loginDispatch({ type: "failure" });
-      console.log('error')
-    }
-  }
-
+  const [username, onChangeUsername] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+  const { isLoading, error, isLoggedIn } = useSelector(state => state.partner);
+  const dispatch = useDispatch();
   return (
     <KeyboardAwareScrollView>
-          <LoginScreenUI
-          username={username}
-          password={password}
-          isLoggedIn={isLoggedIn}
-          loginHandler={loginHandler}
-          error={error}
-          loginDispatch={loginDispatch}
-          navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER) }
-          navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
-          /> 
+      <LoginScreenUI
+        isLoggedIn={isLoggedIn}
+        error={error}
+        loginHandler={() => dispatch(loginPartner({email: username, password}))}
+        navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER) }
+        navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
+        username={username}
+        onChangeUsername={onChangeUsername}
+        password={password}
+        onChangePassword={onChangePassword}
+      /> 
     </KeyboardAwareScrollView>
   )};
