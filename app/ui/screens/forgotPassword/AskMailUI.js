@@ -4,13 +4,14 @@ import { Image,
     Text,
     TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
 
 const AskMailUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToAskToken,
+    navigateToClient,
   }) => {
    
 
@@ -28,8 +29,8 @@ const AskMailUI = ({
               onChange={console.log("name")}
               />
               <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-          <Button style={styles.button1} onPress={() => loginHandler()} title="Cancelar" color={Theme.colors.SECONDARY}/>
-          <Button style={styles.button2} onPress={() => loginHandler()} title="Continuar" color={Theme.colors.PRIMARY}/>
+          <Button style={styles.button1} onPress={navigateToClient} title="Cancelar" color={Theme.colors.SECONDARY}/>
+          <Button style={styles.button2} onPress={navigateToAskToken} title="Continuar" color={Theme.colors.PRIMARY}/>
           </View>
           </View>
       </View>

@@ -2,26 +2,25 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput, ImageBackground, Dimensions} from 'react-native';
+    TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
 import { Button  } from "@react-native-material/core";
-import { Stack, Switch, ListItem } from "@react-native-material/core";
+import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
-import { ShapeBorderRadius } from '@react-native-material/core';
 
 
 const RegisterScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler, 
+    navigateToClient,
   }) => {
     const [checked, setChecked] = useState(true);
 
   return (
     <View>
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={() => loginHandler('enviar datos')} title="<"/>
+        <Button style={styles.circle} onPress={navigateToClient} title="<"/>
           <Text style={styles.title}>Registrate</Text>
           <Text style={styles.subTitle}>Ingrese sus datos</Text>
           <View style={{alignItems: "center"}}>

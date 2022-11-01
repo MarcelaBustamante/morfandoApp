@@ -19,6 +19,7 @@ export default function LoginScreen({navigation}) {
         loginHandler={() => dispatch(loginPartner({email: username, password}))}
         navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER) }
         navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
+        navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
         username={username}
         onChangeUsername={onChangeUsername}
         password={password}
