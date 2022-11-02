@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { setClientToken } from '../../networking/api/Api';
 import { login } from '../../networking/api/endpoints/AuthWS'
 
 const initialState = {
@@ -28,6 +29,7 @@ export const partnerLoginSlice = createSlice({
       state.isLoggedIn = true;
       state.token = action.payload.token;
       state.user = action.payload.subject;
+      setClientToken(state.token);
     }) 
     .addCase(loginPartner.rejected, (state, action) => {
       state.isLoading = false;
