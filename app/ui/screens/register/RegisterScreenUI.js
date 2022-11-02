@@ -16,7 +16,8 @@ const RegisterScreenUI = ({
     navigateToClient,
     formState,
     setFormState,
-    registerHandler
+    registerHandler,
+    error
   }) => {
     const [checked, setChecked] = useState(true);
     const handleChange = (field, text) => {

@@ -1,15 +1,14 @@
 import React, { useReducer } from 'react';
-import homeRestoUI from './HomeRestoUI';
+import HomeRestoUI from './HomeRestoUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
-export default function LoginScreen() {
+export default function HomeResto() {
   welcomeString = 'Bienvenido a Morfando';
   
   
   return (
     <KeyboardAwareScrollView>
-          <homeRestoUI
-          /> 
+          <HomeRestoUI/> 
     </KeyboardAwareScrollView>
   )};
