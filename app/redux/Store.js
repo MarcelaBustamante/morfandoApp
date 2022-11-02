@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import partnerReducer from './slices/partnerSlice'
+import partnerLoginReducer from './slices/partnerLoginSlice'
+import partnerRegisterReducer from './slices/partnerRegisterSlice'
 export const store = configureStore({
   reducer: {
-    partner: partnerReducer,
+    partnerLogin: partnerLoginReducer,
+    partnerRegister: partnerRegisterReducer,
   },
 })
