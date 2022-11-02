@@ -15,10 +15,9 @@ export const loginPartner = createAsyncThunk(
     return await login(email, password);
   }
 )
-// ejemplo dispatch(loginPartner(username, password));
 
-export const partnerSlice = createSlice({
-  name: 'partner',
+export const partnerLoginSlice = createSlice({
+  name: 'partnerLogin',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(loginPartner.pending, (state, action) => {
@@ -37,4 +36,4 @@ export const partnerSlice = createSlice({
   }
 })
 
-export default partnerSlice.reducer
+export default partnerLoginSlice.reducer

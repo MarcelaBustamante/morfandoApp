@@ -4,7 +4,7 @@ import { Image,
     Text,
     TextInput} from 'react-native';
 import Theme from '../../styles/Theme';
-import { Button  } from "@react-native-material/core";
+import { Button, even  } from "@react-native-material/core";
 import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
 
@@ -14,8 +14,15 @@ const RegisterScreenUI = ({
     secText,
     loginHandler, 
     navigateToClient,
+    formState,
+    setFormState,
+    registerHandler
   }) => {
     const [checked, setChecked] = useState(true);
+    const handleChange = (field, text) => {
+      setFormState({...formState, [field]: text});
+    };
+
 
   return (
     <View>
@@ -23,36 +30,42 @@ const RegisterScreenUI = ({
         <Button style={styles.circle} onPress={navigateToClient} title="<"/>
           <Text style={styles.title}>Registrate</Text>
           <Text style={styles.subTitle}>Ingrese sus datos</Text>
+          {error && <Text style={styles.error}>{error}</Text>}
           <View style={{alignItems: "center"}}>
             <TextInput
-            style={styles.input}
-            placeholder='Nombre'
-            onChange={console.log("name")}
-            placeholderTextColor={Theme.colors.PRIMARY}
+              style={styles.input}
+              placeholder='Nombre'
+              value={formState.name}
+              onChangeText={(text) => handleChange("name", text)}
+              placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
-            style={styles.input}
-            placeholder='Apellido'
-            onChange={console.log("lastName")}
-            placeholderTextColor={Theme.colors.PRIMARY}
+              style={styles.input}
+              placeholder='Apellido'
+              value={formState.lastName}
+              onChangeText={(text) => handleChange("lastName", text)}
+              placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
-            style={styles.input}
-            placeholder='Email'
-            onChange={console.log("email")}
-            placeholderTextColor={Theme.colors.PRIMARY}
+              style={styles.input}
+              placeholder='Email'
+              value={formState.email}
+              onChangeText={(text) => handleChange("email", text)}
+              placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
-            style={styles.input}
-            placeholder='Contraseña'
-            onChange={console.log("password")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            secureTextEntry= {true}
+              style={styles.input}
+              placeholder='Contraseña'
+              value={formState.password}
+              onChangeText={(text) => handleChange("password", text)}
+              placeholderTextColor={Theme.colors.PRIMARY}
+              secureTextEntry= {true}
             />
             <TextInput
             style={styles.input}
             placeholder='Repetir Contraseña'
-            onChange={console.log("repeatPassword")}
+            value={formState.password2}
+            onChangeText={(text) => handleChange("password2", text)}
             placeholderTextColor={Theme.colors.PRIMARY}
             secureTextEntry={true}
             />
@@ -64,7 +77,7 @@ const RegisterScreenUI = ({
         }
         onPress={() => setChecked(!checked)}
       />
-        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Registrame" />
+        <Button style={styles.button} onPress={registerHandler} title="Registrame" />
         </View> 
        </View>
 );
@@ -134,5 +147,9 @@ const styles = StyleSheet.create({
   containerSVG: { 
     justifyContent: "flex-start",
     alignItems: "center",
-  }
+  }, error: {
+    color: Theme.colors.ERROR,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
 });
