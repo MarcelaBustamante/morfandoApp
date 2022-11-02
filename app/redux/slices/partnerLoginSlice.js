@@ -17,6 +17,12 @@ export const loginPartner = createAsyncThunk(
   }
 )
 
+export const getListResto = createAsyncThunk(
+  'user/restaurants',
+   async () => {
+    
+   })
+
 export const partnerLoginSlice = createSlice({
   name: 'partnerLogin',
   initialState,

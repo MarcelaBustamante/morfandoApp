@@ -8,7 +8,7 @@ Accept: 'application/json' , // el formato que espero que la info vuelva
 };
 export function setClientToken(token) {
     console.log('token:' + token);
-    axios.defaults.headers.common = {Authorization: 'bearer ' + {token}};
+    axios.defaults.headers.common = {Authorization: 'Bearer ' + {token}};
 }
 /*
 axios.interceptors.response.use(function (resp) {

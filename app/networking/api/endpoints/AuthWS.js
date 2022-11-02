@@ -30,3 +30,7 @@ export const registerPartnerAPI = async function (email, name, lastName, passwor
 
     }
 }
+
+export const getListRestoAPI = async function(){
+    
+}
