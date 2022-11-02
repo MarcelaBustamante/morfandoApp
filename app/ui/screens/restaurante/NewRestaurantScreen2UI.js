@@ -874,12 +874,6 @@ en modo inactivo</Text>
         elevation: 4,
         borderRadius: 4,
       },
-      circle:{
-        width:39,
-        height:39,
-        borderBottomEndRadius: 20,
-        borderTopEndRadius: 20,
-      },
       title: {
         fontSize: 30,
         color: "#000",
@@ -889,7 +883,6 @@ en modo inactivo</Text>
       },
       subTitle:{
         fontSize: 20,
-        color: "gray",
         marginLeft: 10,
         marginBottom:10,
         color: Theme.colors.SECONDARY,
