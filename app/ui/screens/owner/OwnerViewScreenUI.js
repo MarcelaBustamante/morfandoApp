@@ -5,17 +5,28 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function LoginScreen() {
+export default function OwnerViewScreenUI() {
   welcomeString = 'Bienvenido a Morfando';
   //const DATA = [{owner: "Pedro Rodrigez"}]
+
+  const  getNombreOwner = () => {
+    return "Pedro Rodriguez"
+  }
+
+  const  getInicialOwner = () => {
+    return getNombreOwner().substring(0,1)
+  }
   const loginHandler = () => {
     console.log("Hola mundo");
   }
   return (
     <KeyboardAwareScrollView>
         <View style={styles.container}> 
-        <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title="P" />
-            <Text style={styles.welcomeOwner}>Hola, *inserte nombre*</Text> 
+        <View style={styles.containerCirculo}>
+          <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
+        </View>
+        
+            <Text style={styles.welcomeOwner}>Hola, {getNombreOwner()}</Text> 
             <View style={styles.container1}>
                 <Button style={styles.button} onClick={this.switchColor} onPress={() => loginHandler()} title="Nuevo Restaurante" />
                 <Text style={styles.title}> Mis restaurantes </Text>
@@ -63,9 +74,17 @@ export default function LoginScreen() {
         alignSelf: 'center',
       },
       circle:{ //no puedo hacerlo pero bueno tecnicamente es el icon del cliente
-        width:40,
-        height:40,
+        width:50,
+        height:50,
+        borderTopEndRadius: 25,
+        borderTopStartRadius: 25,
+        borderBottomEndRadius: 25,
+        borderBottomStartRadius: 25,
         margin: 10,
-        alignSelf: 'flex-end',
+        justifyContent:'center',
+        alignItems: 'center',
     },
+    containerCirculo: {
+      alignSelf: 'flex-end',
+    }
   });
