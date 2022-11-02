@@ -8,6 +8,7 @@ import RegisterScreen from '../ui/screens/register/RegisterScreen';
 import ChangePasswordScreen from '../ui/screens/changePassword/ChangePasswordScreen';
 import AskMail from '../ui/screens/forgotPassword/AskMail';
 import AskToken from '../ui/screens/forgotPassword/AskToken';
+import HomeResto from '../ui/screens/homeRestaurant/HomeResto';
 
 
 const Stack = createNativeStackNavigator();
@@ -44,6 +45,10 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.PASSWORD_STACK.CHANGE_PASSWORD}
           component={ChangePasswordScreen}
+        />
+         <Stack.Screen
+          name={NavigatorConstant.LANDING_STACK.RESTAURANT}
+          component={HomeResto}
         />
       </Stack.Navigator>
     </NavigationContainer>

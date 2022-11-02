@@ -6,7 +6,7 @@ import {
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 
-const homeRestoUI = ({
+const HomeRestoUI = ({
    
   }) => {
 
@@ -15,13 +15,13 @@ const homeRestoUI = ({
           <View style={styles.container2}>
               <IMAGES.logo style={styles.image} />
               <Text style={styles.title}>Bienvenido a Morfando</Text>
-              <Text style={styles.subTitle}>Ingrese su cuenta</Text>
+              <Text style={styles.subTitle}>Pedro perez</Text>
             </View>
     </View>
     );
 }
 
-export default homeRestoUI;
+export default HomeRestoUI;
 
 const styles = StyleSheet.create({
   container:{
