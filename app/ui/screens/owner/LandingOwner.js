@@ -82,7 +82,7 @@ const renderItem = ({ item }) => {
 );*/
 
 
-function App() {
+function LandingOwnerScreenUI() {
 
   return (
     <View style={styles.contenedor}>
@@ -170,4 +170,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default LandingOwnerScreenUI;
