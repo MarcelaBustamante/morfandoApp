@@ -1,99 +1,97 @@
 import React from 'react';
-import { 
-    StyleSheet,
-    View,
-    Text,} from 'react-native';
+import RestaurantList from '../owner/RestaurantList';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
+import { View, Text, StyleSheet } from 'react-native';
 
 const HomeRestoUI = ({
-   
-  }) => {
+  navigateToNewResto
+}) => {
+  welcomeString = 'Bienvenido a Morfando';
+  //const DATA = [{owner: "Pedro Rodrigez"}]
 
+  const getNombreOwner = () => {
+    return "Pedro Rodriguez"
+  }
+
+  const getInicialOwner = () => {
+    return getNombreOwner().substring(0, 1)
+  }
+
+  const loginHandler = ()=>{
+
+  }
+ 
   return (
-    <View style={styles.container}>
-          <View style={styles.container2}>
-              <IMAGES.logo style={styles.image} />
-              <Text style={styles.title}>Bienvenido a Morfando</Text>
-              <Text style={styles.subTitle}>Pedro perez</Text>
-            </View>
-    </View>
-    );
+    <KeyboardAwareScrollView>
+      <View style={styles.container}>
+        <View style={styles.containerCirculo}>
+          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToNewResto} title={getInicialOwner()} />
+        </View>
+
+        <Text style={styles.welcomeOwner}>Hola, {getNombreOwner()}</Text>
+        <View style={styles.container1}>
+          <Button style={styles.button} onClick={this.switchColor} onPress={navigateToNewResto} title="Nuevo Restaurante" />
+          <Text style={styles.title}> Mis restaurantes </Text>
+          <RestaurantList
+             />
+        </View>
+      </View>
+    </KeyboardAwareScrollView>
+  );
 }
 
 export default HomeRestoUI;
 
 const styles = StyleSheet.create({
-  container:{
-    backgroundColor:"#fff",
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
+  icon: {
+    marginTop: 2,
+    marginRight: 2,
+    alignSelf: 'flex-end',
+    borderRadius: 100,
   },
-  container2:{
-    flex:1, 
-    justifyContent:'center'
-    ,alignItems:'center'
+  welcomeOwner: {
+      fontSize: 35,
+      marginTop: 5,
+      color: Theme.colors.SECONDARY,
+      fontWeight: "bold",
+      marginLeft: 15,
   },
   title: {
-    fontSize: 32,
-    color: Theme.colors.PRIMARY,
-    fontWeight: "bold",
+      fontSize: 30,
+      marginTop: 20,
+      fontWeight: "bold",
+      color: Theme.colors.PRIMARY,
   },
-  subTitle:{
-    fontSize: 24,
-    color: Theme.colors.PRIMARY,
-  },
-  error:{
-    color: Theme.colors.ERROR,
-    fontSize:18,
-    fontWeight: "bold",
-  },
-  input:{
-    borderWidth:1,
-    borderColor: Theme.colors.PRIMARY,
-    width: 250,
-    height: 39,
-    margin: 10,
-    borderWidth: 1,
-    padding: 5,
-    borderRadius: 5,
-  }, 
-  image:{
-    height: 80,
-    width: 80,
-    marginBottom: 10,
-  },
-  button:{
-    width:150,
-    height:39,
-    margin: 7,
-  },
-  forgotPassword:{
-    borderColor: "gray",
-  },
-  form:{
-    flex:2,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    marginHorizontal: 5,
-    marginVertical: 5,
-    marginTop: 10,
-    backgroundColor: Theme.colors.GREY,
-    shadowColor: "#000000",
-    shadowOffset: {
-      height: 2,
-      width: 0,
+  container:{
+      backgroundColor: "#fff",
+      flex: 1,
     },
-    shadowOpacity: 0.14,
-    shadowRadius: 8,
-    elevation: 4,
-    borderRadius: 4,
+    container1:{
+      backgroundColor: "#fff",
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    button:{
+      width:350,
+      marginTop: 25,
+      alignContent: 'center',
+      alignSelf: 'center',
+    },
+    circle:{ //no puedo hacerlo pero bueno tecnicamente es el icon del cliente
+      width:50,
+      height:50,
+      borderTopEndRadius: 25,
+      borderTopStartRadius: 25,
+      borderBottomEndRadius: 25,
+      borderBottomStartRadius: 25,
+      margin: 10,
+      justifyContent:'center',
+      alignItems: 'center',
   },
-  image:{
-    width:150,
-    height:39,
+  containerCirculo: {
+    alignSelf: 'flex-end',
   }
 });
