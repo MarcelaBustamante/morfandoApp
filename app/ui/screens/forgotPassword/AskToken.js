@@ -14,7 +14,7 @@ export default function AskToken({navigation}) {
     <KeyboardAwareScrollView>
           <AskTokenUI
             loginHandler={loginHandler}
-            navigateToChangePassword={()=> navigation.navigate(NavigatorConstant.PASSWORD_STACK.CHANGE_PASSWORD)}
+            navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
             navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
             /> 
     </KeyboardAwareScrollView>
