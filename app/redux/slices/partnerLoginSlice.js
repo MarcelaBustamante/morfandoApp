@@ -17,11 +17,6 @@ export const loginPartner = createAsyncThunk(
   }
 )
 
-export const getListResto = createAsyncThunk(
-  'user/restaurants',
-   async () => {
-    
-   })
 
 export const partnerLoginSlice = createSlice({
   name: 'partnerLogin',
@@ -29,6 +24,8 @@ export const partnerLoginSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginPartner.pending, (state, action) => {
       state.isLoading = true;
+      isLoggedIn=false;
+      error='';
     })
     .addCase(loginPartner.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -39,6 +36,7 @@ export const partnerLoginSlice = createSlice({
     }) 
     .addCase(loginPartner.rejected, (state, action) => {
       state.isLoading = false;
+      isLoggedIn = false;
       state.error = 'Credenciales inválidas';
     })
   }
