@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import Theme from "../../styles/Theme";
 
 const DATA = [
@@ -12,7 +12,7 @@ const DATA = [
     distanceRestaurant: '0.5 km',
     travelRestaurant: '2 min',
     stateRestaurant: "Abierto",
-    image: "",
+    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
   },
   {
     id: "2",
@@ -23,7 +23,7 @@ const DATA = [
     distanceRestaurant: '2 km',
     travelRestaurant: '10 min',
     stateRestaurant: "Abierto",
-    image: "",
+    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
   },
   {
     id: '3',
@@ -34,16 +34,26 @@ const DATA = [
     distanceRestaurant: '5 km', //esto si es mio no iria
     travelRestaurant: '5 min', // lo de arriba
     stateRestaurant: "Cerrado Temporalmete",
-    image: "",
+    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
   },
 ];
 
 const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) => (
   <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
+    <View style={styles.contenedorLista}>
+    <View>
+        <Image
+          style={styles.imagenLista}
+          source={{ uri: item.image }}
+        />
+        </View>
+    <View  style={{paddingEnd: 25, paddingStart: 5}}>
     <Text style={[styles.general, textColor]}>{item.timeRestaurant}</Text>
     <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
     <Text style={[styles.state, textColor]}>{item.stateRestaurant}</Text>
+    </View>
+    </View>
   </TouchableOpacity>
 );
  
@@ -108,6 +118,14 @@ const styles = StyleSheet.create({
   },
   general:{
     color: Theme.colors.PRIMARY,
+  },
+  contenedorLista: {
+    flexDirection: "row",
+  },
+  imagenLista: {
+    height: 50,
+    width: 50,
+    borderRadius: 10,
   }
 });
 

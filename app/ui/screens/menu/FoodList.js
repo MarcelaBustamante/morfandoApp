@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 
 const DATA = [
@@ -60,10 +60,20 @@ const DATA = [
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-        <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
+    <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
-    <Text style={[styles.general, textColor]}>{item.description}</Text>
-    <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>  
+    <View style={styles.contenedorLista}>
+      <View>
+        <Image
+          style={styles.imagenLista}
+          source={{ uri: item.image }}
+        />
+      </View> 
+    <View  style={{paddingEnd: 25, paddingStart: 5}}>
+      <Text style={[styles.general, textColor]}>{item.description}</Text>
+      <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
+    </View>
+    </View>  
     </TouchableOpacity>
 );
  
@@ -136,7 +146,15 @@ const styles = StyleSheet.create({
   price:{
     fontSize: 20,
     fontWeight: 'bold',
-    alignSelf: "flex-end"
+    //alignSelf: "flex-end"
+  },
+  contenedorLista: {
+    flexDirection: "row",
+  },
+  imagenLista: {
+    height: 70,
+    width: 70,
+    borderRadius: 10,
   }
 });
 
