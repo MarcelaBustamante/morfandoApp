@@ -11,7 +11,10 @@ import React, { useState } from "react";
 const UserSetScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler, 
+    navigateToProfile,
+    navigateToChangePassword,
+    navigateToLoginPartner,
   }) => {
     const [checked, setChecked] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
@@ -19,7 +22,7 @@ const UserSetScreenUI = ({
   return (
     <View>
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={() => loginHandler('enviar datos')} title="<"/>
+        <Button style={styles.circle} onPress={navigateToProfile} title="<"/>
           <Text style={styles.title}>Información Personal</Text>
           <View style={{alignItems: "center"}}>
             <TextInput
@@ -41,7 +44,7 @@ const UserSetScreenUI = ({
             placeholderTextColor={Theme.colors.PRIMARY}
             />
          </View>
-        <Button style={styles.buttonText} variant="text" title="Cambiar contraseña" color={Theme.colors.SECONDARY}/> 
+        <Button style={styles.buttonText} onPress={navigateToChangePassword} variant="text" title="Cambiar contraseña" color={Theme.colors.SECONDARY}/> 
         <View>
         <Modal
         animationType="slide"
@@ -50,6 +53,7 @@ const UserSetScreenUI = ({
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
+          
         }}
       >
         <View style={styles.centeredView}>
@@ -64,8 +68,10 @@ const UserSetScreenUI = ({
             />
             <Pressable
               style={[styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)} //de aca se deberia mandar a la pantalla de login
-            >
+              onPress={() => {
+                navigateToLoginPartner;
+                setModalVisible(!modalVisible);
+                }}             >
               <Text style={styles.textStyle1}>Aceptar</Text>
             </Pressable>
           </View>
