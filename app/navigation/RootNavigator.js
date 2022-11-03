@@ -10,7 +10,7 @@ import AskMail from '../ui/screens/forgotPassword/AskMail';
 import AskToken from '../ui/screens/forgotPassword/AskToken';
 import HomeResto from '../ui/screens/homeRestaurant/HomeResto';
 import NewResto from '../ui/screens/restaurante/NewRestaurantScreen1';
-
+import Profile from '../ui/screens/profile/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +29,11 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.NAVIGATOR.LOGINUSER}
           component={LoginUserScreen}
+          options={{headerShown: false}}
+        />
+          <Stack.Screen
+          name={NavigatorConstant.DRAWER_SCREEN.PROFILE}
+          component={Profile}
           options={{headerShown: false}}
         />
         <Stack.Screen
