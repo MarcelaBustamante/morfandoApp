@@ -12,14 +12,14 @@ const ChangePasswordScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
     loginHandler,
-    navigateToAskToken,
+    navigateToPersonalInfo,
   }) => {
     const [checked, setChecked] = useState(true);
 
   return (
     <View>
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={navigateToAskToken} title="<"/>
+        <Button style={styles.circle} onPress={navigateToPersonalInfo} title="<"/>
           <Text style={styles.title}>Cambiar contraseña</Text>
           <View style={{alignItems: "center"}}>
           <TextInput

@@ -10,20 +10,23 @@ import React, { useState } from "react";
 const ProfileScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToHomeResto,
+    navigateToPersonalInfo,
+    navigateToLoginPartner,
   }) => {
     const [checked, setChecked] = useState(true);
 
   return (
         <View style={styles.container}>
-        <Button style={styles.circle} onPress={() => loginHandler('enviar datos')} title="<"/>
+        <Button style={styles.circle} onPress={navigateToHomeResto} title="<"/>
           <Text style={styles.title}>Mi Perfil</Text>
           <Text style={styles.subTitle}>Datos Personales</Text>
-          <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Información personal" />
+          <Button style={styles.button} onPress={navigateToPersonalInfo} title="Información personal" />
         <Text style={styles.subTitle}>Información legal</Text>
         <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Términos y condiciones" />
           <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Politicas de privacidad"/>
-          <Button style={styles.button2} onPress={() => loginHandler('enviar datos')} title="Cerrar sesión" color= {Theme.colors.ALERT}/>
+          <Button style={styles.button2} onPress={ navigateToLoginPartner} title="Cerrar sesión" color= {Theme.colors.ALERT}/>
 
         </View> 
 );

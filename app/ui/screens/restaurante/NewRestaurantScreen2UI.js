@@ -27,7 +27,9 @@ import React, { useState } from 'react';
   const NewRestaurantScreen2UI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToNewResto,
+    navigateToNewMeal,
   }) => {
     const [selected, setSelected] = useState([]); //dropdown menu tags
     const [value, setValue] = useState(null); //dropdown menu
@@ -842,10 +844,10 @@ function onTimeSelectedOpenD(event, value) {
       />
       <Text style={styles.closeSubTitle}>Si activas esta opción tu restaurante comenzará
 en modo inactivo</Text>
-      <Button style={styles.food} onPress={() => loginHandler()} title="+ Agregar Nuevo Plato" color={Theme.colors.SECONDARY}/>
+      <Button style={styles.food} onPress={navigateToNewMeal} title="+ Agregar Nuevo Plato" color={Theme.colors.SECONDARY}/>
       <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-        <Button style={styles.button1} onPress={() => loginHandler()} title="Volver" color={Theme.colors.SECONDARY}/>
-        <Button style={styles.button2} onPress={() => loginHandler()} title="Continuar" color={Theme.colors.PRIMARY}/>
+        <Button style={styles.button1} onPress={navigateToNewResto} title="Volver" color={Theme.colors.SECONDARY}/>
+        <Button style={styles.button2} onPress={navigateToNewMeal} title="Continuar" color={Theme.colors.PRIMARY}/>
         </View>      
         </View>
 

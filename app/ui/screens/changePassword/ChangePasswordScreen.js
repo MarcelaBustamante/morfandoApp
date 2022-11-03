@@ -13,8 +13,7 @@ export default function ChangePasswordScreen({navigation}) {
   return (
     <KeyboardAwareScrollView>
           <ChangePasswordScreenUI
-            navigateToAskToken = {()=> navigation.navigate(NavigatorConstant.PASSWORD_STACK.ASKTOKEN)}  
-            //navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)} //esto tiene que llevar al pantalla principal de logueo
+            navigateToPersonalInfo={() => navigation.navigate(NavigatorConstant.PROFILE_STACK.INFORMATION)}
           /> 
     </KeyboardAwareScrollView>
   )};
