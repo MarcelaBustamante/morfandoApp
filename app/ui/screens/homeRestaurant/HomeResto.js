@@ -17,6 +17,7 @@ export default function HomeResto({navigation}) {
     <KeyboardAwareScrollView>
           <HomeRestoUI
           navigateToProfile={() => navigation.navigate(NavigatorConstant.PROFILE_STACK.PROFILE)}
-          navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}/> 
+          navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}
+          navigateMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS)}/>
     </KeyboardAwareScrollView>
   )};

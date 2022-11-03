@@ -7,7 +7,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const HomeRestoUI = ({
   navigateToNewResto,
-  navigateToProfile
+  navigateToProfile,
+  navigateMenuOwner
 }) => {
   welcomeString = 'Bienvenido a Morfando';
   //const DATA = [{owner: "Pedro Rodrigez"}]
@@ -36,6 +37,7 @@ const HomeRestoUI = ({
           <Button style={styles.button} onClick={this.switchColor} onPress={navigateToNewResto} title="Nuevo Restaurante" />
           <Text style={styles.title}> Mis restaurantes </Text>
           <RestaurantList
+            navigateMenuOwner = {navigateMenuOwner}
              />
         </View>
       </View>

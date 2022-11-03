@@ -15,7 +15,7 @@ export default function LoginScreen({ navigation }) {
   const loginHandler = () => {
     dispatch(loginPartner({ email: username, password }))
     if(isLoggedIn){
-      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+        navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
     }
   }
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
-import MenuViewOwnerUI from './MenuViewOwnerUI';
+import MenuViewScreen from './MenuViewScreen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function LoginScreen() {
+export default function MenuViewOwner() {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -10,7 +10,7 @@ export default function LoginScreen() {
   }
   return (
     <KeyboardAwareScrollView>
-          <MenuViewOwnerUI
+          <MenuViewScreen
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};
