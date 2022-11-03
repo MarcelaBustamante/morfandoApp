@@ -1,8 +1,6 @@
 import React from 'react';
 import AskTokenUI from './AskTokenUI';
-import { Button } from "@react-native-material/core";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import IMAGES from "../../../assets/images/index";
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 

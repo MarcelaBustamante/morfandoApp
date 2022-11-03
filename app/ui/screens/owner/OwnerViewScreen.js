@@ -1,8 +1,8 @@
 import React from 'react';
-import NewRestaurantScreen1UI from './NewRestaurantScreen1UI';
+import OwnerViewScreenUI from './OwnerViewScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function NewRestaurantScreen1() {
+export default function LoginScreen() {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -10,7 +10,7 @@ export default function NewRestaurantScreen1() {
   }
   return (
     <KeyboardAwareScrollView>
-          <NewRestaurantScreen1UI
+          <OwnerViewScreenUI
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};

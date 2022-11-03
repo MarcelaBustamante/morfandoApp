@@ -7,31 +7,17 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
   useColorScheme,
-  View,
 } from 'react-native';
-
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
-import LoginScreen from './ui/screens/loginPartner/LoginScreen';
-import LoginUserScreen from './ui/screens/loginUser/LoginUserScreen';
 import RootNavigator from './navigation/RootNavigator';
+import { store } from './redux/Store'
+import { Provider } from 'react-redux'
 
-
-
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -39,9 +25,9 @@ const App: () => Node = () => {
   };
 
    return (
-    //  <LoginScreen/>
-  //<LoginUserScreen/>
-  <RootNavigator />
+    <Provider store={store}>
+      <RootNavigator />
+    </Provider>
   );
 };
 export default App;

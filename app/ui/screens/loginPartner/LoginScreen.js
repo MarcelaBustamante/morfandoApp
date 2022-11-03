@@ -1,41 +1,36 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import LoginScreenUI from './LoginScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { login } from '../../../networking/api/login';
-import { loginReducer, initialState } from "../../../redux/loginReducer";
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginPartner } from '../../../redux/slices/partnerLoginSlice';
 
-
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
-  const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
-  const { username, password, isLoading, error, isLoggedIn } = loginState;
+  const [username, onChangeUsername] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+  const {  token, error, isLoggedIn } = useSelector(state => state.partnerLogin);
+  const dispatch = useDispatch();
 
-  const loginHandler = async (e)=>{
-    e.preventDefault();
-    loginDispatch({ type: "login" });
-    try {
-      await login({ username, password });
-      loginDispatch({ type: "success" });
-      console.log('success')
-    } catch (error) {
-       loginDispatch({ type: "failure" });
-      console.log('error')
+  const loginHandler = () => {
+    dispatch(loginPartner({ email: username, password }))
+    if(isLoggedIn){
+      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
     }
   }
-
   return (
     <KeyboardAwareScrollView>
-          <LoginScreenUI
-          username={username}
-          password={password}
-          isLoggedIn={isLoggedIn}
-          loginHandler={loginHandler}
-          error={error}
-          loginDispatch={loginDispatch}
-          navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN) }
-          navigateToRegister={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
-          navigateToRecovery={()=> navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
-          /> 
+      <LoginScreenUI
+        error={error}
+        loginHandler={loginHandler}
+        navigateToClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER)}
+        navigateToRegister={() => navigation.navigate(NavigatorConstant.LOGIN_STACK.REGISTER)}
+        navigateToRecovery={() => navigation.navigate(NavigatorConstant.LOGIN_STACK.PASSWORD_RECOVERY)}
+        username={username}
+        onChangeUsername={onChangeUsername}
+        password={password}
+        onChangePassword={onChangePassword}
+      />
     </KeyboardAwareScrollView>
-  )};
+  )
+};

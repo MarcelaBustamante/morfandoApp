@@ -1,15 +1,14 @@
 import React, { useReducer } from 'react';
-import homeRestoUI from './HomeRestoUI';
+import HomeRestoUI from './HomeRestoUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 
-export default function LoginScreen() {
+export default function HomeResto({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
-  
-  
   return (
     <KeyboardAwareScrollView>
-          <homeRestoUI
-          /> 
+          <HomeRestoUI
+          navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}/> 
     </KeyboardAwareScrollView>
   )};

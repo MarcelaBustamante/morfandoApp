@@ -1,14 +1,10 @@
 import { Image,
     StyleSheet,
     View,
-    Text,
-    TextInput, ImageBackground, Dimensions} from 'react-native';
+    Text} from 'react-native';
 import Theme from '../../styles/Theme';
-import IMAGES from "../../../assets/images/index";
-import { Button, IconButton, IconComponentProvider  } from "@react-native-material/core";
-import { Stack, Switch, ListItem } from "@react-native-material/core";
+import { Button } from "@react-native-material/core";
 import React, { useState } from "react";
-import { Icon } from '@react-native-material/core';
 
 
 const ProfileScreenUI = ({
