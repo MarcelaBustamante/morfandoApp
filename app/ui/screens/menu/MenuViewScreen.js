@@ -5,7 +5,9 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
 
-export default function MenuViewScreen() {
+export default function MenuViewScreen({
+  navigateToHome,
+}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const [modalVisibleL, setModalVisibleL] = useState(false);
@@ -27,7 +29,7 @@ export default function MenuViewScreen() {
   return (
     <KeyboardAwareScrollView>
         <View style={styles.container}> 
-        <Button style={styles.circle} title="<"/>
+        <Button style={styles.circle} onPress={navigateToHome} title="<"/>
             <Text style={styles.name}>   {getNameRestaurant()}</Text> 
             <View style={{flexDirection:"row", justifyContent: "space-between"}} >
                <View style={styles.centeredView}>

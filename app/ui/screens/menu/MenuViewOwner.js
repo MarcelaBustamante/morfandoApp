@@ -2,7 +2,7 @@ import React from 'react';
 import MenuViewScreen from './MenuViewScreen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function MenuViewOwner() {
+export default function MenuViewOwner({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -11,6 +11,7 @@ export default function MenuViewOwner() {
   return (
     <KeyboardAwareScrollView>
           <MenuViewScreen
+            navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};
