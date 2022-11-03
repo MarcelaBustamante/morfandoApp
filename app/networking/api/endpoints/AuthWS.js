@@ -30,3 +30,10 @@ export const registerPartnerAPI = async function (email, name, lastName, passwor
 
     }
 }
+
+export const getListRestoAPI = async function(){
+    const results = await axios.get('/restaurants/me').catch(err => {
+        console.log('Error obteniendo la lista de restos')
+        return Promise.reject(err);
+    })
+}

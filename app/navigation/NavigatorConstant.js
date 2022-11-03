@@ -17,6 +17,7 @@ const NAVIGATOR = {
   };
   const LANDING_STACK = {
     RESTAURANT: 'RESTAURANT',
+    NEW_RESTAURANT:'NEW_RESTAURANT',
     FAVORITES: 'FAVORITES',
   };
   const TAB_STACK = {
