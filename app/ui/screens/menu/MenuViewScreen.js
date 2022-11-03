@@ -5,7 +5,7 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function OwnerViewScreenUI() {
+export default function MenuViewScreen() {
   welcomeString = 'Bienvenido a Morfando';
 
   const  getNameRestaurant = () => {

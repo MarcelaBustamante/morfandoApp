@@ -14,7 +14,7 @@ import ProfileScreen from '../ui/screens/profile/ProfileScreen';
 import UserSetScreen from '../ui/screens/userSetting/UserSetScreen';
 import NewResto2 from '../ui/screens/restaurante/NewRestaurantScreen2';
 import NewMealScreen from '../ui/screens/restaurante/NewMealScreen';
-
+import MenuViewOwner from '../ui/screens/menu/MenuViewOwner';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,6 +74,10 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL}
           component={NewMealScreen}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS}
+          component={MenuViewOwner}
         />
       </Stack.Navigator>
     </NavigationContainer>
