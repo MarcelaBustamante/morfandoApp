@@ -6,7 +6,8 @@ import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 
 const HomeRestoUI = ({
-  navigateToNewResto
+  navigateToNewResto,
+  navigateToProfile
 }) => {
   welcomeString = 'Bienvenido a Morfando';
   //const DATA = [{owner: "Pedro Rodrigez"}]
@@ -27,7 +28,7 @@ const HomeRestoUI = ({
     <KeyboardAwareScrollView>
       <View style={styles.container}>
         <View style={styles.containerCirculo}>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToNewResto} title={getInicialOwner()} />
+          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfile} title={getInicialOwner()} />
         </View>
 
         <Text style={styles.welcomeOwner}>Hola, {getNombreOwner()}</Text>

@@ -16,7 +16,8 @@ const dataCategory = [
 const NewMealScreenUI = ({
     primText = 'No vino ningún texto',
     secText,
-    loginHandler
+    loginHandler,
+    navigateToHomeResto,
   }) => {
     const [valueCategory, setValueCategory] = useState(null);
 
@@ -99,7 +100,7 @@ const NewMealScreenUI = ({
         onPress={() => setCheckedCeliac(!checkedCeliac)}
       />
       <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
-             <Button style={styles.button2} onPress={() => loginHandler()} title="Guardar" color={Theme.colors.PRIMARY}/>
+             <Button style={styles.button2} onPress={navigateToHomeResto} title="Guardar" color={Theme.colors.PRIMARY}/>
        </View>
   );
 };

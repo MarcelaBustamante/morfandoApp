@@ -10,6 +10,10 @@ import AskMail from '../ui/screens/forgotPassword/AskMail';
 import AskToken from '../ui/screens/forgotPassword/AskToken';
 import HomeResto from '../ui/screens/homeRestaurant/HomeResto';
 import NewResto from '../ui/screens/restaurante/NewRestaurantScreen1';
+import ProfileScreen from '../ui/screens/profile/ProfileScreen';
+import UserSetScreen from '../ui/screens/userSetting/UserSetScreen';
+import NewResto2 from '../ui/screens/restaurante/NewRestaurantScreen2';
+import NewMealScreen from '../ui/screens/restaurante/NewMealScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +58,22 @@ export default RootNavigator = () => {
          <Stack.Screen
           name={NavigatorConstant.LANDING_STACK.NEW_RESTAURANT}
           component={NewResto}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.PROFILE_STACK.PROFILE}
+          component={ProfileScreen}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.PROFILE_STACK.INFORMATION}
+          component={UserSetScreen}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2}
+          component={NewResto2}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL}
+          component={NewMealScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
