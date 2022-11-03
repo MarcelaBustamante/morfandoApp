@@ -1,5 +1,5 @@
 import React from 'react';
-import RestaurantList from './RestaurantList';
+import TipeFoodList from './TipeFoodList';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
@@ -7,30 +7,20 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default function OwnerViewScreenUI() {
   welcomeString = 'Bienvenido a Morfando';
-  //const DATA = [{owner: "Pedro Rodrigez"}]
 
-  const  getNameOwner = () => {
-    return "Pedro Rodriguez"
+  const  getNameRestaurant = () => {
+    return "El almacén"
   }
 
-  const  getInicialOwner = () => {
-    return getNameOwner().substring(0,1)
-  }
   const loginHandler = () => {
     console.log("Hola mundo");
   }
   return (
     <KeyboardAwareScrollView>
         <View style={styles.container}> 
-        <View style={styles.containerCirculo}>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
-        </View>
-        
-            <Text style={styles.welcomeOwner}>Hola, {getNameOwner()}</Text> 
+            <Text style={styles.name}>{getNameRestaurant()}</Text> 
             <View style={styles.container1}>
-                <Button style={styles.button} onClick={this.switchColor} onPress={() => loginHandler()} title="Nuevo Restaurante" />
-                <Text style={styles.title}> Mis restaurantes </Text>
-                <RestaurantList
+                <TipeFoodList
                     loginHandler={loginHandler}/> 
             </View>
         </View>
@@ -44,12 +34,13 @@ export default function OwnerViewScreenUI() {
       alignSelf: 'flex-end',
       borderRadius: 100,
     },
-    welcomeOwner: {
+    name: {
         fontSize: 35,
         marginTop: 5,
         color: Theme.colors.SECONDARY,
         fontWeight: "bold",
-        marginLeft: 15,
+        backgroundColor: Theme.colors.GREY,
+        //opacity: 0.7,
     },
     title: {
         fontSize: 30,
