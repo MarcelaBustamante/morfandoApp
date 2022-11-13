@@ -9,53 +9,13 @@ import IMAGES from "../../../assets/images/index";
 
 import { Button } from "@react-native-material/core";
 import {
-  GoogleSignin,
   GoogleSigninButton,
-  statusCodes,
 } from '@react-native-google-signin/google-signin';
 
 const LoginUserScreenUI = ({
-  navigateToPartner
+  navigateToPartner,
+  _signIn
   }) => {
-
-    // TODO: pasar a la logica y borrar de la vista
-
-    GoogleSignin.configure({
-      webClientId: '163501080359-ecr6qqkja70nn1tjcklirq8l672gdc7c.apps.googleusercontent.com',
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-    });  
-    _signIn = async () => {
-      try {
-        await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        Alert.alert(`Sign in ok ${userInfo.user}`);
-        console.log(JSON.stringify(userInfo));
-      } catch (error) {
-        const typedError = error;
-  
-        switch (typedError.code) {
-          case statusCodes.SIGN_IN_CANCELLED:
-            // sign in was cancelled
-            Alert.alert('cancelled');
-            break;
-          case statusCodes.IN_PROGRESS:
-            // operation (eg. sign in) already in progress
-            Alert.alert('in progress');
-            break;
-          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-            // android only
-            Alert.alert('play services not available or outdated');
-            break;
-          default:
-            Alert.alert('Something went wrong', typedError.toString());
-            this.setState({
-              error: typedError,
-            });
-        }
-      }
-    };
-    // fin borrar
 
   return (
     <View style={styles.container}>
@@ -65,8 +25,8 @@ const LoginUserScreenUI = ({
               <Text style={styles.subTitle}>Ingrese su cuenta</Text>
             </View>
             <View style={styles.viewRow}>
-              <View style={styles.tabLeftButton}><Button  variant="text"  title="Cliente" /></View>
-              <View style={styles.tabRightButton}><Button color={Theme.colors.GREY} variant="text" onPress={ navigateToPartner } title="Restaurante" /></View>
+              <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text"  title="Cliente" /></View>
+              <View style={styles.tabRightButton}><Button  variant="text" onPress={ navigateToPartner } title="Restaurante" /></View>
             </View>
             <View style={styles.form}>
               <View style={styles.container2}></View>
@@ -74,7 +34,7 @@ const LoginUserScreenUI = ({
                 <GoogleSigninButton
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
-                  onPress={this._signIn}
+                  onPress={_signIn}
                 />
               </View>
               <View style={styles.container}></View>
@@ -153,6 +113,6 @@ const styles = StyleSheet.create({
     width:150,
     height:39,
   },
-  tabLeftButton:{backgroundColor:Theme.colors.GREY, borderTopLeftRadius:20, marginLeft:17, width:178, height:40 },
-  tabRightButton:{backgroundColor:Theme.colors.PRIMARY, borderTopRightRadius:20, marginRight:17, width:178, height:40 }
+  tabLeftButton:{backgroundColor:Theme.colors.PRIMARY, borderTopLeftRadius:20, marginLeft:17, width:178, height:40 },
+  tabRightButton:{backgroundColor:Theme.colors.GREY, borderTopRightRadius:20, marginRight:17, width:178, height:40 }
 });

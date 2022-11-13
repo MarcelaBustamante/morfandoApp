@@ -6,20 +6,14 @@ axios.defaults.headers.common = {
 Accept: 'application/json' , // el formato que espero que la info vuelva
 'Content-Type' : 'application/json' ,// el formato en que le mando la info
 };
-export function setClientToken(token) {
-    console.log('token:' + token);
-    axios.defaults.headers.common = {Authorization: 'Bearer ' + {token}};
-}
-/*
+
 axios.interceptors.response.use(function (resp) {
-    console.log(response.request);
-    console.log(response.status); 
-    console.log(response.data);
-    return response;
+    console.log(resp.status); 
+    console.log(resp.data);
+    return resp;
 }, function(error) {
-    console.log(response.request);
-    console.log(response.status); 
-    console.log(response.data);
+    console.log(error)
     return Promise.reject(error);
-});*/
+});
+
 export default axios;

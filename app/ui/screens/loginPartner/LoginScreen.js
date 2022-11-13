@@ -9,14 +9,14 @@ export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const {  token, error, isLoggedIn } = useSelector(state => state.partnerLogin);
+  const { token, error, isLoggedIn, isLoading } = useSelector(state => state.partnerLogin);
   const dispatch = useDispatch();
 
   const loginHandler = () => {
-    dispatch(loginPartner({ email: username, password }))
-    if(isLoggedIn){
-        navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
-    }
+    dispatch(loginPartner({ email: username, password }));
+  }
+  if(!isLoading && isLoggedIn){
+      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
   }
   return (
     <KeyboardAwareScrollView>
