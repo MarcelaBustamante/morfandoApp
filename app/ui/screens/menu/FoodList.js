@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 
 const DATA = [
@@ -9,8 +9,8 @@ const DATA = [
         description: "Carne de peceto rebozada y acompañada con papas fritas",
         ingridents: "carne vacuna, pan ese cortadito, huevo",
         price: '1050',
-        vengan: false,
-        celiac: false,
+        vegan: "no",
+        celiac: "no",
         image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
   },
   {
@@ -19,8 +19,8 @@ const DATA = [
     description: "qsy es de soja",
     ingridents: "soja",
     price: '1000',
-    vegan: true,
-    celiac: false,
+    vegan: "si",
+    celiac: "no",
     image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",  },
 ];
 
@@ -60,9 +60,20 @@ const DATA = [
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+    <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
-    <Text style={[styles.general, textColor]}>{item.description}</Text>
-    <Text style={[styles.general, textColor]}>{item.price}</Text>  
+    <View style={styles.contenedorLista}>
+      <View>
+        <Image
+          style={styles.imagenLista}
+          source={{ uri: item.image }}
+        />
+      </View> 
+    <View  style={{paddingEnd: 25, paddingStart: 5}}>
+      <Text style={[styles.general, textColor]}>{item.description}</Text>
+      <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
+    </View>
+    </View>  
     </TouchableOpacity>
 );
  
@@ -128,6 +139,22 @@ const styles = StyleSheet.create({
   },
   general:{
     color: Theme.colors.PRIMARY,
+  },
+  extra:{
+    color: "#008f39"
+  },
+  price:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    //alignSelf: "flex-end"
+  },
+  contenedorLista: {
+    flexDirection: "row",
+  },
+  imagenLista: {
+    height: 70,
+    width: 70,
+    borderRadius: 10,
   }
 });
 
