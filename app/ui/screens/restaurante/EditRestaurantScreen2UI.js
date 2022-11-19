@@ -24,7 +24,7 @@ import React, { useState } from 'react';
     { label: '$$$', value: '11' },
     { label: '$$$$', value: '12' },
   ];
-  const NewRestaurantScreen2UI = ({
+  const EditRestaurantScreen2UI = ({
     primText = 'No vino ningún texto',
     secText,
     loginHandler,
@@ -230,7 +230,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
      
     return (
         <View style={styles.container1}>
-          <Text style={styles.title}>Nuevo Restaurante</Text>
+          <Text style={styles.title}>Editar Restaurante</Text>
           <Text style={styles.subTitle}>Días de apertura</Text>
           <View style={{flexDirection:"row", justifyContent: "center", marginBottom: 10}} >
           <Text style={styles.days}>L</Text>
@@ -647,7 +647,7 @@ en modo inactivo</Text>
     );
   };
 
-  export default NewRestaurantScreen2UI;
+  export default EditRestaurantScreen2UI;
 
   const styles = StyleSheet.create({
     container1:{

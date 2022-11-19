@@ -5,7 +5,7 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
 
-export default function MenuViewScreen({
+export default function MenuViewClientScreenUI({
   navigateToHome,
 }) {
   welcomeString = 'Bienvenido a Morfando';

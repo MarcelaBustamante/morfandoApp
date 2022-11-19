@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View , Image, SearchBar, TouchableHighlightBase} from "react-native";
-import Theme from "../../../styles/Theme";
+import Theme from '../../styles/Theme';
 
 const DATA = [
   {
@@ -40,16 +40,16 @@ const DATA = [
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <View style={styles.contenedorLista}>
+    <View>
       <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
-      <View style={styles.contenedorInfo}>
+      <View style={styles.containerInfo}>
         <View>
           <Image
-            style={styles.imagenLista}
+            style={styles.imageList}
             source={{ uri: item.image }}
           />
         </View>
-        <View style={styles.textoLista}>
+        <View style={styles.listText}>
           <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
           <Text style={[styles.general, textColor]}>{item.distanceRestaurant}</Text>
           <Text style={[styles.general, textColor]}>{item.travelRestaurant}</Text>
@@ -95,13 +95,13 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   
-  contenedorInfo: {
+  containerInfo: {
     flexDirection: 'row',
     alignItems: "center",
     justifyContent: "space-between",
-  
+    color: Theme.colors.GREY,
   },
-  imagenLista: {
+  imageList: {
     width:84,
     height:84,
     borderRadius: 10,
