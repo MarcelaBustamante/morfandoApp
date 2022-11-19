@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import Theme from "../../styles/Theme";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View , Image, SearchBar, TouchableHighlightBase} from "react-native";
+import Theme from "../../../styles/Theme";
 
 const DATA = [
   {
@@ -12,7 +12,7 @@ const DATA = [
     distanceRestaurant: '0.5 km',
     travelRestaurant: '2 min',
     stateRestaurant: "Abierto",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Bar_Viejo_Almac%C3%A9n_-Buenos_Aires.JPG/1024px-Bar_Viejo_Almac%C3%A9n_-Buenos_Aires.JPG",
   },
   {
     id: "2",
@@ -23,7 +23,7 @@ const DATA = [
     distanceRestaurant: '2 km',
     travelRestaurant: '10 min',
     stateRestaurant: "Abierto",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
+    image: "https://www.infobae.com/new-resizer/LeKef6TgPOv3475l7p48rE_ZVIM=/992x661/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/12/19081125/Restaurante-Manolo-de-Mar-del-Plata-Juan-Manuel-Santurian-14.jpg",
   },
   {
     id: '3',
@@ -38,26 +38,28 @@ const DATA = [
   },
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) => (
-  <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
+const Item = ({ item, onPress, backgroundColor, textColor }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <View style={styles.contenedorLista}>
-    <View>
-        <Image
-          style={styles.imagenLista}
-          source={{ uri: item.image }}
-        />
+      <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
+      <View style={styles.contenedorInfo}>
+        <View>
+          <Image
+            style={styles.imagenLista}
+            source={{ uri: item.image }}
+          />
         </View>
-    <View  style={{paddingEnd: 25, paddingStart: 5}}>
-    <Text style={[styles.general, textColor]}>{item.timeRestaurant}</Text>
-    <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
-    <Text style={[styles.state, textColor]}>{item.stateRestaurant}</Text>
-    </View>
+        <View style={styles.textoLista}>
+          <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
+          <Text style={[styles.general, textColor]}>{item.distanceRestaurant}</Text>
+          <Text style={[styles.general, textColor]}>{item.travelRestaurant}</Text>
+        </View>
+      </View>
     </View>
   </TouchableOpacity>
 );
  
-const RestaurantList = ({navigateMenuOwner}) => {
+const RestaurantListNearby = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -69,7 +71,6 @@ const RestaurantList = ({navigateMenuOwner}) => {
         <Item
         item={item}
         onPress={() => setSelectedId(item.id)}
-        navigateMenuOwner = {navigateMenuOwner}
         //backgroundColor={{ backgroundColor }}
         //textColor={{ color }}
       />
@@ -93,10 +94,24 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
+  
+  contenedorInfo: {
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "space-between",
+  
+  },
+  imagenLista: {
+    width:84,
+    height:84,
+    borderRadius: 10,
+    margin: 5,
+    marginLeft: 25,
+  },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    height: 150,
+    width: 400,
+    margin: 5,
     borderRadius: 20,
     backgroundColor: Theme.colors.GREY,
     shadowColor: Theme.colors.PRIMARY,
@@ -110,23 +125,22 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
+    alignSelf: "center",
   },
   state: {
     color: Theme.colors.ERROR,
   },
   general:{
     color: Theme.colors.PRIMARY,
+    textAlign: "right",
   },
-  contenedorLista: {
-    flexDirection: "row",
+  listText: {
+    textAlign: 'right',
+    paddingEnd: 25,
+    paddingStart: 5,
   },
-  imagenLista: {
-    height: 50,
-    width: 50,
-    borderRadius: 10,
-  }
 });
 
-export default RestaurantList;
+export default RestaurantListNearby;
