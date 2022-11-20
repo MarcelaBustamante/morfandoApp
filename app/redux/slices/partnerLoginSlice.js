@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { login } from '../../networking/api/endpoints/AuthWS'
+import { createAction } from '@reduxjs/toolkit'
 
 const initialState = {
   isLoggedIn: false,
@@ -16,10 +17,20 @@ export const loginPartner = createAsyncThunk(
   }
 );
 
+export const logoutPartner = createAction('partner/logout');
 
 export const partnerLoginSlice = createSlice({
   name: 'partnerLogin',
   initialState,
+  reducers: (builder) => {
+    builder.addCase(logoutPartner,(state, action) =>{
+      state.isLoggedIn = false,
+      state.isLoading = false,
+      state.token = null,
+      state.user = null,
+      state.error = null
+    } )
+  },
   extraReducers: (builder) => {
     builder.addCase(loginPartner.pending, (state, action) => {
       state.isLoading = true;

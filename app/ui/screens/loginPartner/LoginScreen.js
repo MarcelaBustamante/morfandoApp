@@ -20,6 +20,11 @@ export default function LoginScreen({ navigation }) {
     }
   }, [isLoggedIn, navigation]);
 
+  useEffect(() => {
+    onChangePassword("");
+    onChangeUsername("");
+  },[isLoggedIn]);
+
   const loginHandler = () => {
     dispatch(loginPartner({ email: username, password }));
   }

@@ -38,9 +38,8 @@ const DATA = [
   },
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner, restaurants }) => (
+const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner}) => (
   <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
-    <Text>Restaurants para mapear: {restaurants.length}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
     <View style={styles.contenedorLista}>
     <View>

@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import HomeRestoUI from './HomeRestoUI';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListRestaurants } from '../../../redux/slices/restaurantsSlice';
