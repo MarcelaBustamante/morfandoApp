@@ -1,35 +1,37 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { restaurants } from '../../networking/api/endpoints/AuthWS'
+import { getListRestoAPI } from '../../networking/api/endpoints/AuthWS'
 
 const initialState = {
-  isLoading: false,
   restaurants:[],
-  error: null
+  error: null,
+  status: 'idle'
 }
 
 export const getListRestaurants = createAsyncThunk(
   'restaurants',
   async () => {
-    return await restaurants.getListRestoAPI();
+    return await getListRestoAPI();
   }
 )
-
 
 export const restaurantsSlice = createSlice({
   name: 'restaurants',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getListRestaurants.pending, (state, action) => {
-      state.isLoading = true;
-      error='';
+      state.status = 'loading';
+      state.error = null;
     })
     .addCase(getListRestaurants.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.restaurants = action.payload.subject;
+      state.status = 'succeeded';
+      state.restaurants = action.payload;
+      console.log(action.type);
+      console.log("Restaurants in state", state.restaurants);
     }) 
     .addCase(getListRestaurants.rejected, (state, action) => {
-      state.isLoading = false;
+      state.status = 'failed';
       state.error = 'Hubo un error en la carga de restaurants';
+      console.log(action.type);
     })
   }
 })
