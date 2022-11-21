@@ -35,21 +35,6 @@ import React, { useState } from 'react';
     const [value, setValue] = useState(null); //dropdown menu
     const [isFocus, setIsFocus] = useState(false); //dropdown menu
     const [checked, setChecked] = useState(true); //cerrar temporalmente
-    const [checkedL, setCheckedL] = useState(true); //abrir x dia
-    const [checkedM, setCheckedM] = useState(true); 
-    const [checkedMi, setCheckedMi] = useState(true);
-    const [checkedJ, setCheckedJ] = useState(true); 
-    const [checkedV, setCheckedV] = useState(true); 
-    const [checkedS, setCheckedS] = useState(true); 
-    const [checkedD, setCheckedD] = useState(true); 
-
-    const [modalVisibleL, setModalVisibleL] = useState(false); //pop-ups
-    const [modalVisibleM, setModalVisibleM] = useState(false);
-    const [modalVisibleMi, setModalVisibleMi] = useState(false);
-    const [modalVisibleJ, setModalVisibleJ] = useState(false);
-    const [modalVisibleV, setModalVisibleV] = useState(false);
-    const [modalVisibleS, setModalVisibleS] = useState(false);
-    const [modalVisibleD, setModalVisibleD] = useState(false);
 
     const [timePickerOpenL, setTimePickerOpenL] = useState(false);
     const [timePickerCloseL, setTimePickerCloseL] = useState(false);

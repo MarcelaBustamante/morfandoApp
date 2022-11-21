@@ -76,7 +76,15 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </View>  
     </TouchableOpacity>
 );
- 
+
+const BottomList = ()=>{
+  return(
+    <View>
+      
+    </View>
+  )
+} 
+
 const TipeFoodList = () => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -113,7 +121,7 @@ const TipeFoodList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: StatusBar.currentHeight || 0,
+    //marginBottom: StatusBar.currentHeight || 0,
   },
   item: {
     padding: 20,

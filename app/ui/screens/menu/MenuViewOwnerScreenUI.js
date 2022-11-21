@@ -4,7 +4,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
-
+import TagsList from "./TagsList";
+import CarouselImages from "./CarouselImages";
 export default function MenuViewOwnerScreenUI({
   navigateToHome,
 }) {
@@ -26,12 +27,23 @@ export default function MenuViewOwnerScreenUI({
   const loginHandler = () => {
     console.log("Hola mundo");
   }
+
   return (
-    <KeyboardAwareScrollView>
+    //<KeyboardAwareScrollView>
         <View style={styles.container}> 
+        <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}, styles.name ]} >
         <Button style={styles.circle} onPress={navigateToHome} title="<"/>
-            <Text style={styles.name}>   {getNameRestaurant()}</Text> 
-            <View style={{flexDirection:"row", justifyContent: "space-between"}} >
+        <Text style={styles.name}>   {getNameRestaurant()}</Text> 
+        </View>
+        <View style={styles.container1}>
+          <CarouselImages
+             loginHandler={loginHandler}/> 
+         </View>
+         <View style={styles.container1}>
+          <TagsList
+             loginHandler={loginHandler}/> 
+         </View>
+            <View style={{flexDirection:"row", justifyContent: "space-between", marginBottom: 10}} >
                <View style={styles.centeredView}>
                     <Modal
                       animationType="slide"
@@ -255,7 +267,7 @@ export default function MenuViewOwnerScreenUI({
                         loginHandler={loginHandler}/> 
                </View>
         </View>
-    </KeyboardAwareScrollView>
+    //</KeyboardAwareScrollView>
   )};
 
   const styles = StyleSheet.create({
@@ -266,12 +278,10 @@ export default function MenuViewOwnerScreenUI({
       borderRadius: 100,
     },
     name: {
-        fontSize: 35,
-        marginTop: 15,
-        color: "#fff",
-        fontWeight: "bold",
-        backgroundColor: 'rgba(52, 52, 52, 0.6)'
-        //opacity: 0.7,
+      flex: 1,
+      fontSize: 35,
+      color: "#fff",
+      fontWeight: "bold",
     },
     title: {
         fontSize: 30,

@@ -1,9 +1,8 @@
 import React from 'react';
-import MenuViewOwnerScreenUI from './MenuViewOwnerScreenUI';
+import MealDescriptionScreenUI from './MealDescriptionScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function MenuViewOwnerScreen({navigation}) {
+export default function MealDescriptionScreen({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -11,8 +10,7 @@ export default function MenuViewOwnerScreen({navigation}) {
   }
   return (
     <KeyboardAwareScrollView>
-          <MenuViewOwnerScreenUI
-            navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
+          <MealDescriptionScreenUI
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
 
