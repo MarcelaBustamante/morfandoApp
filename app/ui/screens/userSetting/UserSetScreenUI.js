@@ -84,7 +84,7 @@ const UserSetScreenUI = ({
         <Text style={styles.textStyle}>  Eliminar cuenta  </Text>
       </Pressable>
         </View>
-        <Button style={styles.button1} onPress={() => loginHandler('enviar datos')} title="Guardar" />
+        <Button style={styles.button1} onPress={navigateToProfile} title="Guardar" />
         </View> 
         </View> 
 

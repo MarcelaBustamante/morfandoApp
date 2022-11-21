@@ -14,39 +14,6 @@ const DATA = [
   },
 ];
 
-/*{
-    tipeFood: 'Minutas',
-    data: {
-        id: "1",
-        titleMenu: 'Milanesa con papas fritas',
-        description: "Carne de peceto rebozada y acompañada con papas fritas",
-        ingridents: "carne vacuna, pan ese cortadito, huevo",
-        price: '1050',
-        image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-        },
-        "" :
-        {    
-        id: "2",
-        titleMenu: 'Milanesa de soja',
-        description: "qsy es de soja",
-        ingridents: "soja",
-        price: '1000',
-        vegan: true,
-        image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-        },
-  },
-  {
-    tipeFood: 'Pastas',
-    data: {
-      id: "3",
-      titleMenu: 'Ñoquis de papa',
-      description: "Con salsa a eleccion",
-      ingridents: "papa, harina, huevo",
-      price: '750',
-      vegan: true,
-      image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-    }
-*/
 const loginHandler = () => {
     console.log("Hola mundo");
   }
@@ -99,7 +66,7 @@ export default TipeFoodList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    //marginTop: StatusBar.currentHeight || 0,
   },
   title: {
     fontSize: 32,

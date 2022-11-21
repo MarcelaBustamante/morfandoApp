@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button, ListItem, Switch  } from "@react-native-material/core";
-
+import CheckBox from '@react-native-community/checkbox';
 
 const dataCategory = [
   { label: 'Minutas', value: '1' },
@@ -20,6 +20,8 @@ const NewMealScreenUI = ({
     navigateToHomeResto,
   }) => {
     const [valueCategory, setValueCategory] = useState(null);
+    const [toggleCheckBoxC, setToggleCheckBoxC] = useState(false)
+    const [toggleCheckBoxV, setToggleCheckBoxV] = useState(false)
 
     const renderLabelCategory = () => {
         if (valueCategory || isFocus) {
@@ -99,6 +101,25 @@ const NewMealScreenUI = ({
         }
         onPress={() => setCheckedCeliac(!checkedCeliac)}
       />
+
+<View style={{flexDirection:"row", margin:10}}> 
+<Text style={{color:Theme.colors.PRIMARY, fontSize: 20}}> Apto vegano </Text>
+<CheckBox
+  disabled={false}
+  value={toggleCheckBoxV}
+  onValueChange={(newValue) => setToggleCheckBoxV(newValue)}
+/> 
+</View>
+
+<View style={{flexDirection:"row", margin:10}}> 
+<Text style={{color:Theme.colors.PRIMARY, fontSize: 20}}> Apto celíaco </Text>
+<CheckBox
+  disabled={false}
+  value={toggleCheckBoxC}
+  onValueChange={(newValue) => setToggleCheckBoxC(newValue)}
+/> 
+</View>
+
       <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
              <Button style={styles.button2} onPress={navigateToHomeResto} title="Guardar" color={Theme.colors.PRIMARY}/>
        </View>

@@ -4,7 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button  } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
-
+import { useFormik } from 'formik';
 
 const dataCountry = [
   { label: 'Argetina', value: '1' },
@@ -33,6 +33,9 @@ const NewRestaurantScreen1UI = ({
   navigateToHomeResto,
   navigateToScreen2,
 }) => {
+  const formik = useFormik({
+    
+  })
   const [valueCoutry, setValueCoutry] = useState(null);
   const [valueLocation, setValueLocation] = useState(null);
   const [valueProvince, setValueProvince] = useState(null);

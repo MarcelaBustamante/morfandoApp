@@ -1,23 +1,18 @@
-import { SearchBar } from 'react-native-elements';
+import * as React from 'react';
+import { Searchbar } from 'react-native-paper';
 
-export default class Buscador extends React.Component {
-  state = {
-    search: '',
-  };
+const SearchRestaurants = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
 
-  updateSearch = (search) => {
-    this.setState({ search });
-  };
+  const onChangeSearch = query => setSearchQuery(query);
 
-  render() {
-    const { search } = this.state;
+  return (
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
+  );
+};
 
-    return (
-      <SearchBar
-        placeholder="Escribe aqui..."
-        onChangeText={this.updateSearch}
-        value={search}
-      />
-    );
-  }
-}
+export default SearchRestaurants;

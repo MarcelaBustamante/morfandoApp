@@ -44,7 +44,7 @@ const ChangePasswordScreenUI = ({
             secureTextEntry={true}
             />
          </View>
-        <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Guardar" />
+        <Button style={styles.button} onPress={navigateToPersonalInfo} title="Guardar" />
         </View> 
        </View>
 );

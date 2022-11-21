@@ -41,10 +41,10 @@ const DATA = [
 const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner}) => (
   <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
-    <View style={styles.contenedorLista}>
+    <View style={styles.containerList}>
     <View>
         <Image
-          style={styles.imagenLista}
+          style={styles.imageList}
           source={{ uri: item.image }}
         />
         </View>
@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
   general:{
     color: Theme.colors.PRIMARY,
   },
-  contenedorLista: {
+  containerList: {
     flexDirection: "row",
   },
-  imagenLista: {
+  imageList: {
     height: 50,
     width: 50,
     borderRadius: 10,

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import RestaurantListNearby from './RestaurantListNearby';
+import SearchRestaurants from './SearchRestaurants';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button } from '@react-native-material/core';
-import Theme from '../../../styles/Theme';
+import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
-
 
 
 
@@ -29,18 +29,27 @@ export default function ClientViewNearbyUI() {
       <View style={styles.container}> 
 
         <View style={styles.containerCircle}>
-          <Button style={styles.circleGreen} onPress={() => loginHandler('enviar datos')} title="<"/>
+          <Button style={styles.circleGreen} onPress={() => loginHandler('enviar datos')} title="◀"/>
           <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
         </View>
-
-        <Text style={styles.title}> Restaurantes Cercanos </Text>
-        <View>
-
+        <View style={styles.container}>
+            <SearchRestaurants
+            loginHandler={loginHandler}/>
         </View>
+        <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
+        <View>
+        </View>
+        <View style={styles.container}>
+            <RestaurantListNearby
+            loginHandler={loginHandler}/>
+        </View>
+        <Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
+        <Text style={styles.title}> Mis Favoritos ♥</Text>
         <View style={styles.container}>
             <RestaurantListNearby
             loginHandler={loginHandler}/> 
         </View>
+        <Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
       </View>
     </KeyboardAwareScrollView>
   )};
@@ -64,7 +73,6 @@ export default function ClientViewNearbyUI() {
         marginTop: 20,
         fontWeight: "bold",
         color: Theme.colors.PRIMARY,
-        alignSelf: 'center',
     },
     searchBar: {
       width: 250,
@@ -114,5 +122,10 @@ export default function ClientViewNearbyUI() {
     containerCircle: {
       flexDirection: 'row',
       justifyContent: 'space-between'
+    },
+    seeMore:{
+      margin: 10,
+      justifyContent:"flex-end",
+      alignItems: "flex-end",
     }
   });
