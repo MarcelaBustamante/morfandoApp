@@ -5,6 +5,7 @@ import Theme from '../../styles/Theme';
 import { Button } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
 import { Input } from '@rneui/themed';
+import { MapForm } from '../../components/MapsForm/MapsForm';
 
 const NewRestaurantScreen1UI = ({
   navigateToHomeResto,
@@ -21,6 +22,7 @@ const NewRestaurantScreen1UI = ({
   const [valueNeighborhood, setValueNeighborhood] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [pictures, setPictures] = useState([]);
+  const [showMap, setShowMap] = useState(false);
 
   const renderLabelCountry = () => {
     if (valueCoutry || isFocus) {
@@ -68,7 +70,10 @@ const NewRestaurantScreen1UI = ({
     setPictures([...pictures, fileKey]);
   };
 
+  const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
+
   return (
+    <>
     <View style={styles.container1}>
       <Button style={styles.circle} onPress={navigateToHomeResto} title="<" />
       <Text style={styles.title}>Nuevo Restaurante</Text>
@@ -83,8 +88,9 @@ const NewRestaurantScreen1UI = ({
         <Input
           rightIcon={{
             type: "material-community",
-            name: "map-marker-radius",
-            color: Theme.colors.PRIMARY
+            name: "map-marker-radius-outline",
+            color: Theme.colors.PRIMARY,
+            onPress: onOpenCloseMap
           }}
           placeholder='Calle'
           onChangeText={(text) => { formik.setFieldValue('street', text) }}
@@ -196,6 +202,8 @@ const NewRestaurantScreen1UI = ({
         <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar y Continuar >" color={Theme.colors.PRIMARY} />
       </View>
     </View>
+    <MapForm show={showMap} close={onOpenCloseMap}/>
+    </>
   );
 };
 
