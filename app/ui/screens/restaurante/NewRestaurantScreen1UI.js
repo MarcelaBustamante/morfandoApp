@@ -4,7 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
-
+import { Input } from '@rneui/themed';
 
 const NewRestaurantScreen1UI = ({
   navigateToHomeResto,
@@ -74,20 +74,22 @@ const NewRestaurantScreen1UI = ({
       <Text style={styles.title}>Nuevo Restaurante</Text>
       <Text style={styles.subTitle}>Datos principales</Text>
       <View style={{ alignItems: "center" }}>
-        <TextInput
-          style={styles.input}
+       
+         <Input
           placeholder='Nombre'
           onChangeText={(text) => { formik.setFieldValue('name', text) }}
-          placeholderTextColor={Theme.colors.PRIMARY}
-        />
-        <Text style={styles.error}>{formik.errors.name}</Text>
-        <TextInput
-          style={styles.input}
+          errorMessage={formik.errors.name}
+          />
+        <Input
+          rightIcon={{
+            type: "material-community",
+            name: "map-marker-radius",
+            color: Theme.colors.PRIMARY
+          }}
           placeholder='Calle'
           onChangeText={(text) => { formik.setFieldValue('street', text) }}
-          placeholderTextColor={Theme.colors.PRIMARY}
-        />
-        <Text style={styles.error}>{formik.errors.street}</Text>
+          errorMessage={formik.errors.street}
+          />
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -186,13 +188,6 @@ const NewRestaurantScreen1UI = ({
             }}
           />
         </View>
-        <TextInput
-          style={styles.input}
-          placeholder='Número'
-          onChangeText={(text) => { formik.setFieldValue('number', text) }}
-          placeholderTextColor={Theme.colors.PRIMARY}
-          keyboardType='numeric'
-        />
          <Text style={styles.error}>{formik.errors.number}</Text>
         <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
         <Text>
