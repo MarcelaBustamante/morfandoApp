@@ -6,6 +6,7 @@ import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 
 const HomeRestoUI = ({
+  restaurants,
   navigateToNewResto,
   navigateToProfile,
   navigateMenuOwner
@@ -26,22 +27,22 @@ const HomeRestoUI = ({
   }
  
   return (
-    <KeyboardAwareScrollView>
+    // <KeyboardAwareScrollView>
       <View style={styles.container}>
         <View style={styles.containerCirculo}>
           <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfile} title={getInicialOwner()} />
         </View>
-
         <Text style={styles.welcomeOwner}>Hola, {getNombreOwner()}</Text>
         <View style={styles.container1}>
           <Button style={styles.button} onClick={this.switchColor} onPress={navigateToNewResto} title="Nuevo Restaurante" />
           <Text style={styles.title}> Mis restaurantes </Text>
           <RestaurantList
             navigateMenuOwner = {navigateMenuOwner}
+            restaurants={restaurants}
              />
         </View>
       </View>
-    </KeyboardAwareScrollView>
+    //</KeyboardAwareScrollView>
   );
 }
 

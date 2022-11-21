@@ -30,8 +30,8 @@ const LoginScreenUI = ({
         <Text style={styles.subTitle}>Ingrese su cuenta</Text>
       </View>
       <View style={styles.viewRow}>
-        <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text" onPress={navigateToClient} title="Cliente" /></View>
-        <View style={styles.tabRightButton}><Button variant="text" title="Restaurante" /></View>
+        <View style={styles.tabLeftButton}><Button  variant="text" onPress={navigateToClient} title="Cliente" /></View>
+        <View style={styles.tabRightButton}><Button color={Theme.colors.GREY} variant="text" title="Restaurante" /></View>
       </View>
       <View style={styles.form}>
         {error && <Text style={styles.error}>{error}</Text>}
@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
     width: 150,
     height: 39,
   },
-  tabLeftButton: { backgroundColor: Theme.colors.PRIMARY, borderTopLeftRadius: 20, marginLeft: 17, width: 178, height: 40 },
-  tabRightButton: { backgroundColor: Theme.colors.GREY, borderTopRightRadius: 20, marginRight: 17, width: 178, height: 40 }
+  tabLeftButton: { backgroundColor: Theme.colors.GREY, borderTopLeftRadius: 20, marginLeft: 17, width: 178, height: 40 },
+  tabRightButton: { backgroundColor: Theme.colors.PRIMARY, borderTopRightRadius: 20, marginRight: 17, width: 178, height: 40 }
 });

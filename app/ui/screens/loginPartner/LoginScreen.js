@@ -4,19 +4,29 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginPartner } from '../../../redux/slices/partnerLoginSlice';
+import { getListRestaurants } from '../../../redux/slices/restaurantsSlice'
+import { useEffect } from 'react';
 
 export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const {  token, error, isLoggedIn } = useSelector(state => state.partnerLogin);
+  const { error, isLoggedIn } = useSelector(state => state.partnerLogin);
   const dispatch = useDispatch();
 
-  const loginHandler = () => {
-    dispatch(loginPartner({ email: username, password }))
-    if(isLoggedIn){
-        navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
     }
+  }, [isLoggedIn, navigation]);
+
+  useEffect(() => {
+    onChangePassword("");
+    onChangeUsername("");
+  },[isLoggedIn]);
+
+  const loginHandler = () => {
+    dispatch(loginPartner({ email: username, password }));
   }
   return (
     <KeyboardAwareScrollView>

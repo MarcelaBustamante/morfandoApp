@@ -38,7 +38,7 @@ const DATA = [
   },
 ];
 
-const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) => (
+const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner}) => (
   <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
     <View style={styles.containerList}>
@@ -57,7 +57,7 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) 
   </TouchableOpacity>
 );
  
-const RestaurantList = ({navigateMenuOwner}) => {
+const RestaurantList = ({navigateMenuOwner, restaurants}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -70,6 +70,7 @@ const RestaurantList = ({navigateMenuOwner}) => {
         item={item}
         onPress={() => setSelectedId(item.id)}
         navigateMenuOwner = {navigateMenuOwner}
+        restaurants = {restaurants}
         //backgroundColor={{ backgroundColor }}
         //textColor={{ color }}
       />
