@@ -1,41 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
-import { Button  } from "@react-native-material/core";
+import { Button } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
-import { useFormik } from 'formik';
 
-const dataCountry = [
-  { label: 'Argetina', value: '1' },
-];
-const dataProvince = [
-  { label: 'Buenos Aires', value: '2' },
-  { label: 'Mendoza', value: '3' },
-  { label: 'Santa Fé', value: '4' },
-  { label: 'San Juan', value: '5' },
-  { label: 'Santiago del Estero', value: '6' },
-];
-const dataLocation = [
-  { label: 'Quilmes', value: '7' },
-  { label: 'Florencio Varela', value: '8' },
-  { label: 'San Isidro', value: '9' },
-  { label: 'Capital Federal', value: '10' },
-  { label: 'Lanús', value: '11' },
-];
-const dataNeighborhood = [
-  { label: 'Barrio de la localidad seleccionada', value: '12' },
-];
 
 const NewRestaurantScreen1UI = ({
-  primText = 'No vino ningún texto',
-  secText,
   navigateToHomeResto,
-  navigateToScreen2,
+  formik,
+  dataCountry,
+  dataProvince,
+  dataLocation,
+  dataNeighborhood,
+
 }) => {
-  const formik = useFormik({
-    
-  })
   const [valueCoutry, setValueCoutry] = useState(null);
   const [valueLocation, setValueLocation] = useState(null);
   const [valueProvince, setValueProvince] = useState(null);
@@ -91,22 +70,24 @@ const NewRestaurantScreen1UI = ({
 
   return (
     <View style={styles.container1}>
-      <Button style={styles.circle} onPress={navigateToHomeResto} title="<"/>
+      <Button style={styles.circle} onPress={navigateToHomeResto} title="<" />
       <Text style={styles.title}>Nuevo Restaurante</Text>
       <Text style={styles.subTitle}>Datos principales</Text>
-      <View style={{alignItems: "center"}}>
+      <View style={{ alignItems: "center" }}>
         <TextInput
           style={styles.input}
           placeholder='Nombre'
-          onChange={console.log("name")}
+          onChangeText={(text) => { formik.setFieldValue('name', text) }}
           placeholderTextColor={Theme.colors.PRIMARY}
         />
+        <Text style={styles.error}>{formik.errors.name}</Text>
         <TextInput
           style={styles.input}
           placeholder='Calle'
-          onChange={console.log("street")}
+          onChangeText={(text) => { formik.setFieldValue('street', text) }}
           placeholderTextColor={Theme.colors.PRIMARY}
         />
+        <Text style={styles.error}>{formik.errors.street}</Text>
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -128,94 +109,97 @@ const NewRestaurantScreen1UI = ({
             onChange={item => {
               setValueCoutry(item.value);
               setIsFocus(false);
+              formik.setFieldValue("country",item.label);
             }}
           />
         </View>
-      <View style={styles.container2}>
-        {renderLabelProvince()}
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={dataProvince}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Provincia' : '...'}
-          searchPlaceholder="Buscar..."
-          value={valueProvince}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValueProvince(item.value);
-            setIsFocus(false);
-          }}
+        <View style={styles.container2}>
+          {renderLabelProvince()}
+          <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={dataProvince}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? 'Provincia' : '...'}
+            searchPlaceholder="Buscar..."
+            value={valueProvince}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={item => {
+              setValueProvince(item.value);
+              setIsFocus(false);
+              formik.setFieldValue("province",item.label);
+            }}
+          />
+        </View>
+        <View style={styles.container2}>
+          {renderLabelLocation()}
+          <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={dataLocation}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? 'Localidad' : '...'}
+            searchPlaceholder="Buscar..."
+            value={valueLocation}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={item => {
+              setValueLocation(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+        <View style={styles.container2}>
+          {renderLabelNeighborhood()}
+          <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={dataNeighborhood}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? 'Barrio' : '...'}
+            searchPlaceholder="Buscar..."
+            value={valueNeighborhood}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={item => {
+              setValueNeighborhood(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder='Número'
+          onChangeText={(text) => { formik.setFieldValue('number', text) }}
+          placeholderTextColor={Theme.colors.PRIMARY}
+          keyboardType='numeric'
         />
+         <Text style={styles.error}>{formik.errors.number}</Text>
+        <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
+        <Text>
+          {pictures.map(p => `${p}\n`)}
+        </Text>
+        <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar y Continuar >" color={Theme.colors.PRIMARY} />
       </View>
-      <View style={styles.container2}>
-        {renderLabelLocation()}
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={dataLocation}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Localidad' : '...'}
-          searchPlaceholder="Buscar..."
-          value={valueLocation}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValueLocation(item.value);
-            setIsFocus(false);
-          }}
-        />
-      </View>
-      <View style={styles.container2}>
-        {renderLabelNeighborhood()}
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={dataNeighborhood}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Barrio' : '...'}
-          searchPlaceholder="Buscar..."
-          value={valueNeighborhood}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValueNeighborhood(item.value);
-            setIsFocus(false);
-          }}
-        />
-      </View>
-      <TextInput
-        style={styles.input}
-        placeholder='Número'
-        onChange={console.log("number")}
-        placeholderTextColor={Theme.colors.PRIMARY}
-        keyboardType='numeric'
-      />
-      <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
-      <Text>
-        {pictures.map(p => `${p}\n`)}
-      </Text>
-      <Button style={styles.button2} onPress={navigateToScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
-    </View> 
     </View>
   );
 };
@@ -223,8 +207,8 @@ const NewRestaurantScreen1UI = ({
 export default NewRestaurantScreen1UI;
 
 const styles = StyleSheet.create({
-  container1:{
-    flex:2,
+  container1: {
+    flex: 2,
     justifyContent: "center",
     paddingHorizontal: 10,
     paddingVertical: 10,
@@ -242,9 +226,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 4,
   },
-  circle:{
-    width:39,
-    height:39,
+  circle: {
+    width: 39,
+    height: 39,
     borderBottomEndRadius: 20,
     borderTopEndRadius: 20,
   },
@@ -255,15 +239,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: Theme.colors.PRIMARY,
   },
-  subTitle:{
+  subTitle: {
     fontSize: 20,
     color: "gray",
     marginLeft: 10,
-    marginBottom:10,
+    marginBottom: 10,
     color: Theme.colors.SECONDARY,
   },
-  input:{
-    borderWidth:1,
+  input: {
+    borderWidth: 1,
     borderColor: "gray",
     width: 10,
     height: 40,
@@ -274,8 +258,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: Theme.colors.PRIMARY,
-    }, 
-  button:{
+  },
+  button: {
     margin: 13,
   },
   container2: {
@@ -284,7 +268,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 40,
-    width:300,
+    width: 300,
     borderColor: Theme.colors.PRIMARY,
     borderWidth: 1,
     borderRadius: 5,
@@ -317,14 +301,18 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
   },
-  button1:{
+  button1: {
     width: 200,
     margin: 13,
     alignSelf: "center",
   },
-  button2:{
+  button2: {
     width: 150,
     margin: 13,
     alignSelf: "flex-end",
+  }, error: {
+    color: Theme.colors.ERROR,
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });

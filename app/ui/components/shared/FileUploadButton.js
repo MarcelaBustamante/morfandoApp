@@ -16,30 +16,6 @@ const handleUpload = async function (onSuccess) {
     onSuccess(fileKey);
 };
 
-export default function FileUploadButton({
-    title,
-    onSuccess
-}) {
-    return (
-        <Button 
-            style={styles.uploadButton} 
-            onPress={() => handleUpload(onSuccess)} 
-            title={title}
-            color={Theme.colors.SECONDARY}/>
-    );
-}
-
-const styles = StyleSheet.create({
-    button:{
-      margin: 13,
-    },
-    uploadButton:{
-      width: 200,
-      margin: 13,
-      alignSelf: "center",
-    }
-});
-
 const getUploadURL = async (fileName, fileSize) => {
   const url = `/files/upload/link?fileName=${fileName}&fileSize=${fileSize}`;
   const response = await axios.get(url);
@@ -62,3 +38,27 @@ const uploadImage = async (uploadURL, fileURI) => {
     body: imageBody,
   });
 };
+
+export default function FileUploadButton({
+  title,
+  onSuccess
+}) {
+  return (
+      <Button 
+          style={styles.uploadButton} 
+          onPress={() => handleUpload(onSuccess)} 
+          title={title}
+          color={Theme.colors.SECONDARY}/>
+  );
+}
+
+const styles = StyleSheet.create({
+  button:{
+    margin: 13,
+  },
+  uploadButton:{
+    width: 200,
+    margin: 13,
+    alignSelf: "center",
+  }
+});
