@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login } from '../../networking/api/endpoints/AuthWS'
+import { login } from '../../networking/api/endpoints/AuthPartnerWS'
 import { createAction } from '@reduxjs/toolkit'
 
 const initialState = {

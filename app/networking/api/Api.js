@@ -15,8 +15,8 @@ axios.interceptors.response.use(function (resp) {
     return resp;
 }, function(error) {
     console.log(error);
-    console.log(resp.request);
-    console.log(resp.data);
+    console.log(error.request);
+    console.log(error.data);
     return Promise.reject(error);
 });
 

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button  } from "@react-native-material/core";
+import FileUploadButton from '../../components/shared/FileUploadButton';
 
 
 const dataCountry = [
@@ -29,7 +30,6 @@ const dataNeighborhood = [
 const NewRestaurantScreen1UI = ({
   primText = 'No vino ningún texto',
   secText,
-  loginHandler,
   navigateToHomeResto,
   navigateToScreen2,
 }) => {
@@ -37,9 +37,8 @@ const NewRestaurantScreen1UI = ({
   const [valueLocation, setValueLocation] = useState(null);
   const [valueProvince, setValueProvince] = useState(null);
   const [valueNeighborhood, setValueNeighborhood] = useState(null);
-
   const [isFocus, setIsFocus] = useState(false);
-
+  const [pictures, setPictures] = useState([]);
 
   const renderLabelCountry = () => {
     if (valueCoutry || isFocus) {
@@ -82,131 +81,139 @@ const NewRestaurantScreen1UI = ({
     return null;
   };
 
+  const onPhotoUploaded = (fileKey) => {
+    console.log("File Key subida", fileKey);
+    setPictures([...pictures, fileKey]);
+  };
+
   return (
     <View style={styles.container1}>
-        <Button style={styles.circle} onPress={navigateToHomeResto} title="<"/>
-          <Text style={styles.title}>Nuevo Restaurante</Text>
-          <Text style={styles.subTitle}>Datos principales</Text>
-          <View style={{alignItems: "center"}}>
-            <TextInput
-            style={styles.input}
-            placeholder='Nombre'
-            onChange={console.log("name")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder='Calle'
-            onChange={console.log("street")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            />
-    <View style={styles.container2}>
-      {renderLabelCountry()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataCountry}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'País' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueCoutry}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueCoutry(item.value);
-          setIsFocus(false);
-        }}
+      <Button style={styles.circle} onPress={navigateToHomeResto} title="<"/>
+      <Text style={styles.title}>Nuevo Restaurante</Text>
+      <Text style={styles.subTitle}>Datos principales</Text>
+      <View style={{alignItems: "center"}}>
+        <TextInput
+          style={styles.input}
+          placeholder='Nombre'
+          onChange={console.log("name")}
+          placeholderTextColor={Theme.colors.PRIMARY}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Calle'
+          onChange={console.log("street")}
+          placeholderTextColor={Theme.colors.PRIMARY}
+        />
+        <View style={styles.container2}>
+          {renderLabelCountry()}
+          <Dropdown
+            style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={dataCountry}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? 'País' : '...'}
+            searchPlaceholder="Buscar..."
+            value={valueCoutry}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={item => {
+              setValueCoutry(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+      <View style={styles.container2}>
+        {renderLabelProvince()}
+        <Dropdown
+          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={styles.iconStyle}
+          data={dataProvince}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={!isFocus ? 'Provincia' : '...'}
+          searchPlaceholder="Buscar..."
+          value={valueProvince}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={item => {
+            setValueProvince(item.value);
+            setIsFocus(false);
+          }}
+        />
+      </View>
+      <View style={styles.container2}>
+        {renderLabelLocation()}
+        <Dropdown
+          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={styles.iconStyle}
+          data={dataLocation}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={!isFocus ? 'Localidad' : '...'}
+          searchPlaceholder="Buscar..."
+          value={valueLocation}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={item => {
+            setValueLocation(item.value);
+            setIsFocus(false);
+          }}
+        />
+      </View>
+      <View style={styles.container2}>
+        {renderLabelNeighborhood()}
+        <Dropdown
+          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={styles.iconStyle}
+          data={dataNeighborhood}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={!isFocus ? 'Barrio' : '...'}
+          searchPlaceholder="Buscar..."
+          value={valueNeighborhood}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={item => {
+            setValueNeighborhood(item.value);
+            setIsFocus(false);
+          }}
+        />
+      </View>
+      <TextInput
+        style={styles.input}
+        placeholder='Número'
+        onChange={console.log("number")}
+        placeholderTextColor={Theme.colors.PRIMARY}
+        keyboardType='numeric'
       />
+      <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
+      <Text>
+        {pictures.map(p => `${p}\n`)}
+      </Text>
+      <Button style={styles.button2} onPress={navigateToScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
+    </View> 
     </View>
-    <View style={styles.container2}>
-      {renderLabelProvince()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataProvince}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Provincia' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueProvince}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueProvince(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <View style={styles.container2}>
-      {renderLabelLocation()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataLocation}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Localidad' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueLocation}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueLocation(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <View style={styles.container2}>
-      {renderLabelNeighborhood()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataNeighborhood}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Barrio' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueNeighborhood}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueNeighborhood(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <TextInput
-            style={styles.input}
-            placeholder='Número'
-            onChange={console.log("number")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            keyboardType='numeric'
-            />
-            <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
-             <Button style={styles.button2} onPress={navigateToScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
-          </View> 
-       </View>
   );
 };
 

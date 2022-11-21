@@ -35,3 +35,35 @@ export const getListRestoAPI = async function() {
     const results = await axios.get('/restaurants/me');
     return results.data;
 }
+
+export const newRestaurantAPI = async function(){
+    // {
+    //     "address": {
+    //       "street": "Lima",
+    //       "number": "775",
+    //       "neighborhood": "Montserrat",
+    //       "city": "CABA",
+    //       "province": "CABA",
+    //       "zipCode": "C1073AAO"
+    //     },
+    //     "businessHours": [
+    //         {
+    //           "dayOfWeek": "MONDAY",
+    //           "fromTime": "09:00:00",
+    //           "toTime": "18:30:00"
+    //         },
+    //         {
+    //           "dayOfWeek": "TUESDAY",
+    //           "fromTime": "09:00:00",
+    //           "toTime": "18:30:00"
+    //         }
+    //     ],
+    //     "name": "San Paolo",
+    //     "type": 1,
+    //     "priceRange": 2,
+    //     "photos": [
+    //       "20112022165443.prueba123.png"
+    //     ]
+    //   }
+
+}

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getListRestoAPI } from '../../networking/api/endpoints/AuthWS'
+import { getListRestoAPI } from '../../networking/api/endpoints/AuthPartnerWS'
 
 const initialState = {
   restaurants:[],
