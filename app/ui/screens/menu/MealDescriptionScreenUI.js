@@ -3,7 +3,7 @@ import React, { useState }  from 'react';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
-import CarouselImages from "./CarouselImages";
+import CarouselImagesMeals from "./CarouselImagesMeals";
 
 export default function MealDescriptionScreenUI({
   navigateToHome,
@@ -32,7 +32,7 @@ export default function MealDescriptionScreenUI({
               <Text style={styles.name}>{getNameMeal()}</Text> 
               </View>
               <View style={styles.container}>
-                  <CarouselImages
+                  <CarouselImagesMeals
                       loginHandler={loginHandler}/> 
                </View>
                <View style={styles.container1}>

@@ -39,10 +39,8 @@ export default function MenuViewOwnerScreenUI({
           <CarouselImages
              loginHandler={loginHandler}/> 
          </View>
-         <View style={styles.container1}>
           <TagsList
              loginHandler={loginHandler}/> 
-         </View>
             <View style={{flexDirection:"row", justifyContent: "space-between", marginBottom: 10}} >
                <View style={styles.centeredView}>
                     <Modal

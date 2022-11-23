@@ -15,16 +15,7 @@ const TagsList = () => {
          tipoComida: "Italiana"}, 
          {key: '3',
           tipoComida: "Francesa"}, 
-          {key: '4',
-        tipoComida: "Venezolana"}, 
-        {key: '5',
-          tipoComida: "Mexicana"}, 
-          {key: '6',
-         tipoComida: "Italiana"}, 
-         {key: '7',
-          tipoComida: "Francesa"}, 
-          {key: '8',
-        tipoComida: "Venezolana"}, 
+         
         ]}
         renderItem={({item}) => <Text style={styles.item}>{item.tipoComida}</Text>}
       />
@@ -37,7 +28,8 @@ export default TagsList;
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   justifyContent: "space-between"
+   justifyContent: "space-between",
+   backgroundColor: 'rgba(52, 52, 52, 0.0)'
   },
   item: {
     margin: 5,

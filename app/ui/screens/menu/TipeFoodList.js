@@ -23,6 +23,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <View>
      <Text style={[styles.title, styles.general, textColor]}>{item.tipeFood}</Text>
     <FoodList
+        scrollEnabled = {true}
         loginHandler={loginHandler}/> 
   </View>
  // </TouchableOpacity>
@@ -66,7 +67,7 @@ export default TipeFoodList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //marginTop: StatusBar.currentHeight || 0,
+    marginTop: StatusBar.currentHeight || 0,
   },
   title: {
     fontSize: 32,

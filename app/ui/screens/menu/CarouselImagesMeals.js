@@ -66,12 +66,20 @@ function Backdrop({ scrollX }) {
           />
         );
       })}
-      
+      <LinearGradient
+        colors={["transparent", "white"]}
+        style={{
+          width,
+          height: ALTURA_BACKDROP,
+          position: "absolute",
+          bottom: 0,
+        }}
+      />
     </View>
   );
 }
 
-export default function CarouselImages() {
+export default function CarouselImagesMeals() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
     <SafeAreaView style={styles.container}>
@@ -95,8 +103,30 @@ export default function CarouselImages() {
         data={imagenes}
         keyExtractor={(item) => item}
         renderItem={({ item, index }) => {
+          const inputRange = [
+            (index - 1) * ANCHO_CONTENEDOR,
+            index * ANCHO_CONTENEDOR,
+            (index + 1) * ANCHO_CONTENEDOR,
+          ];
+
+          const scrollY = scrollX.interpolate({
+            inputRange,
+            outputRange: [0, -50, 0],
+          });
           return (
             <View style={{ width: ANCHO_CONTENEDOR }}>
+              <Animated.View
+                style={{
+                  marginHorizontal: ESPACIO,
+                  padding: ESPACIO,
+                  borderRadius: 34,
+                  backgroundColor: "#fff",
+                  alignItems: "center",
+                  transform: [{ translateY: scrollY }],
+                }}
+              >
+                <Image source={{ uri: item }} style={styles.posterImage} />
+              </Animated.View>
             </View>
           );
         }}
@@ -104,11 +134,19 @@ export default function CarouselImages() {
     </SafeAreaView>
   );
 }
-//<Image source={{ uri: item }} style={styles.posterImage} />
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
+  },
+  posterImage: {
+    width: "100%",
+    height: ANCHO_CONTENEDOR * 1.2,
+    resizeMode: "cover",
+    borderRadius: 24,
+    margin: 0,
+    marginBottom: 10,
   },
 });

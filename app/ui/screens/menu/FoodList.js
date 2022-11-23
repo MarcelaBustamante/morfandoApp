@@ -77,31 +77,15 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
 );
 
-const BottomList = ()=>{
-  return(
-    <View>
-      
-    </View>
-  )
-} 
 
 const TipeFoodList = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    //const backgroundColor = item.id === selectedId ? Theme.colors.GREY : Theme.colors.GREY ;
-    //const color = item.id === selectedId ?  Theme.colors.PRIMARY : Theme.colors.PRIMARY;
-
-    /* <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
-    <Text style={[styles.general, textColor]}>{item.description}</Text>
-    <Text style={[styles.general, textColor]}>{item.price}</Text>
-    */
     return (
         <Item
         item={item}
         onPress={() => setSelectedId(item.tipeFood)}
-        //backgroundColor={{ backgroundColor }}
-        //textColor={{ color }}
       />
     );
   };
@@ -121,7 +105,7 @@ const TipeFoodList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //marginBottom: StatusBar.currentHeight || 0,
+    marginBottom: StatusBar.currentHeight || 0,
   },
   item: {
     padding: 20,
