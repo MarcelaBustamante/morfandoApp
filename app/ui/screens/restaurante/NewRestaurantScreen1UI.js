@@ -96,6 +96,7 @@ const NewRestaurantScreen1UI = ({
           onChangeText={(text) => { formik.setFieldValue('street', text) }}
           errorMessage={formik.errors.street}
           />
+          <Text>{formik.errors.location}</Text>
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -202,7 +203,7 @@ const NewRestaurantScreen1UI = ({
         <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar y Continuar >" color={Theme.colors.PRIMARY} />
       </View>
     </View>
-    <MapForm show={showMap} close={onOpenCloseMap}/>
+    <MapForm show={showMap} close={onOpenCloseMap} formik={formik}/>
     </>
   );
 };
