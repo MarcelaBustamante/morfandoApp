@@ -1,5 +1,5 @@
 
-import React, { Children } from 'react';
+import React from 'react';
 import { Overlay } from '@rneui/themed';
 import { StyleSheet,View } from 'react-native';
 

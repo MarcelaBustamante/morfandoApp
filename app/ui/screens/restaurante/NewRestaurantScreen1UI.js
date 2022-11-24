@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
 import { Input } from '@rneui/themed';
 import { MapForm } from '../../components/MapsForm/MapsForm';
+import { Avatar } from '@rneui/themed';
+import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
 
 const NewRestaurantScreen1UI = ({
   navigateToHomeResto,
@@ -23,6 +25,7 @@ const NewRestaurantScreen1UI = ({
   const [isFocus, setIsFocus] = useState(false);
   const [pictures, setPictures] = useState([]);
   const [showMap, setShowMap] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
 
   const renderLabelCountry = () => {
     if (valueCoutry || isFocus) {
@@ -68,6 +71,8 @@ const NewRestaurantScreen1UI = ({
   const onPhotoUploaded = (fileKey) => {
     console.log("File Key subida", fileKey);
     setPictures([...pictures, fileKey]);
+    console.log(pictures)
+    formik.setFieldValue("imageRest",pictures)
   };
 
   const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
@@ -79,7 +84,6 @@ const NewRestaurantScreen1UI = ({
       <Text style={styles.title}>Nuevo Restaurante</Text>
       <Text style={styles.subTitle}>Datos principales</Text>
       <View style={{ alignItems: "center" }}>
-       
          <Input
           placeholder='Nombre'
           onChangeText={(text) => { formik.setFieldValue('name', text) }}
@@ -95,6 +99,10 @@ const NewRestaurantScreen1UI = ({
           placeholder='Calle'
           onChangeText={(text) => { formik.setFieldValue('street', text) }}
           errorMessage={formik.errors.street}
+          />
+          <Input
+          placeholder='Número'
+          onChangeText={(text) => { formik.setFieldValue('number', text) }}
           />
         <View style={styles.container2}>
           {renderLabelCountry()}
@@ -196,10 +204,14 @@ const NewRestaurantScreen1UI = ({
         </View>
          <Text style={styles.error}>{formik.errors.number}</Text>
         <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
+        <LoadingModal/>
         <Text>
           {pictures.map(p => `${p}\n`)}
         </Text>
-        <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar y Continuar >" color={Theme.colors.PRIMARY} />
+        <Text style={styles.error}>
+          {formik.errors.imageRest}
+        </Text>
+        <Button style={styles.button2} onPress={formik.handleSubmit} title="Continuar >" color={Theme.colors.PRIMARY} />
       </View>
     </View>
     <MapForm show={showMap} close={onOpenCloseMap} formik={formik}/>
