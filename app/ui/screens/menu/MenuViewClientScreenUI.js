@@ -5,6 +5,7 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
 import TagsList from "./TagsList";
+
 import CarouselImages from "./CarouselImages";
 export default function MenuViewClientScreenUI({
   navigateToHome,
@@ -43,7 +44,7 @@ export default function MenuViewClientScreenUI({
           <TagsList
              loginHandler={loginHandler}/> 
          </View>
-            <View style={{flexDirection:"row", justifyContent: "space-between", marginBottom: 10}} >
+            <View style={{flexDirection:"row", justifyContent: "space-between"}} >
                <View style={styles.centeredView}>
                     <Modal
                       animationType="slide"

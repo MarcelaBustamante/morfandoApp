@@ -37,6 +37,7 @@ const LoginUserScreenUI = ({
                   onPress={_signIn}
                 />
               </View>
+              <Button style={styles.button} title="Atajo temporal" color={Theme.colors.PRIMARY} />
               <View style={styles.container}></View>
               </View>
     </View>

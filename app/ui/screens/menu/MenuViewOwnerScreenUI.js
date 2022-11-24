@@ -6,6 +6,8 @@ import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
 import TagsList from "./TagsList";
 import CarouselImages from "./CarouselImages";
+///import IntentoNuevo from "./IntentoNuevo";
+
 export default function MenuViewOwnerScreenUI({
   navigateToHome,
 }) {
@@ -31,19 +33,19 @@ export default function MenuViewOwnerScreenUI({
   return (
     //<KeyboardAwareScrollView>
         <View style={styles.container}> 
-        <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}, styles.name ]} >
+        <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} onPress={navigateToHome} title="<"/>
-        <Text style={styles.name}>   {getNameRestaurant()}</Text> 
+        <Text style={styles.name}>  {getNameRestaurant()}</Text> 
         </View>
         <View style={styles.container1}>
           <CarouselImages
              loginHandler={loginHandler}/> 
          </View>
-         <View style={styles.container1}>
+         <View>
           <TagsList
              loginHandler={loginHandler}/> 
-         </View>
-            <View style={{flexDirection:"row", justifyContent: "space-between", marginBottom: 10}} >
+             </View>
+            <View style={{flexDirection:"row", justifyContent: "space-between"}} >
                <View style={styles.centeredView}>
                     <Modal
                       animationType="slide"
@@ -262,10 +264,12 @@ export default function MenuViewOwnerScreenUI({
                   </Pressable>
                 </View>
                 </View>
-                <View style={styles.container1}>
-                    <TipeFoodList
-                        loginHandler={loginHandler}/> 
-               </View>
+                <View>
+         </View>
+            <View style={styles.container}>
+              <TipeFoodList
+                    loginHandler={loginHandler}/> 
+            </View>
         </View>
     //</KeyboardAwareScrollView>
   )};
@@ -291,11 +295,10 @@ export default function MenuViewOwnerScreenUI({
     },
     container:{
         backgroundColor: "#fff",
-        flex: 1,
+        flex: 1
       },
       container1:{
         backgroundColor: "#fff",
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -323,7 +326,7 @@ export default function MenuViewOwnerScreenUI({
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 22
+      marginTop: 22,
     },
     modalView: {
       margin: 20,

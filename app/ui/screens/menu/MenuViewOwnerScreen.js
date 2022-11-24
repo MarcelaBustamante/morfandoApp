@@ -10,10 +10,8 @@ export default function MenuViewOwnerScreen({navigation}) {
     console.log("Hola mundo");
   }
   return (
-    <KeyboardAwareScrollView>
           <MenuViewOwnerScreenUI
             navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
             loginHandler={loginHandler}/> 
-    </KeyboardAwareScrollView>
 
   )};

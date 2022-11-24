@@ -10,23 +10,14 @@ const TagsList = () => {
           horizontal={true}
         data={[
           {key: '1',
-          tipoComida: "Mexicana"}, 
+          specialty: "Mexicana"}, 
           {key: '2',
-         tipoComida: "Italiana"}, 
+          specialty: "Italiana"}, 
          {key: '3',
-          tipoComida: "Francesa"}, 
-          {key: '4',
-        tipoComida: "Venezolana"}, 
-        {key: '5',
-          tipoComida: "Mexicana"}, 
-          {key: '6',
-         tipoComida: "Italiana"}, 
-         {key: '7',
-          tipoComida: "Francesa"}, 
-          {key: '8',
-        tipoComida: "Venezolana"}, 
+         specialty: "Francesa"}, 
+         
         ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.tipoComida}</Text>}
+        renderItem={({item}) => <Text style={styles.item}>{item.specialty}</Text>}
       />
     </ScrollView>
   );
@@ -36,8 +27,8 @@ export default TagsList;
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   justifyContent: "space-between"
+   justifyContent: "space-between",
+   backgroundColor: 'rgba(52, 52, 52, 0.0)'
   },
   item: {
     margin: 5,
@@ -52,8 +43,7 @@ const styles = StyleSheet.create({
       },
       shadowOpacity: 0.25,
       shadowRadius: 4,
-      elevation: 5,
       backgroundColor: Theme.colors.SECONDARY,
-      
+      height: 40,
   },
 });

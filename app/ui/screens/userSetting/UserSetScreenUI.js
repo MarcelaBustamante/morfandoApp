@@ -58,6 +58,11 @@ const UserSetScreenUI = ({
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Pressable
+               onPress={ () => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.modalText}>X</Text>
+            </Pressable>
             <Text style={styles.modalText}>¿Está seguro de eliminar esta cuenta?</Text>
             <TextInput
               style={styles.input2}
@@ -68,10 +73,8 @@ const UserSetScreenUI = ({
             />
             <Pressable
               style={[styles.buttonClose]}
-              onPress={() => {
-                navigateToLoginPartner;
-                setModalVisible(!modalVisible);
-                }}             >
+              onPress={navigateToLoginPartner} 
+            >
               <Text style={styles.textStyle1}>Aceptar</Text>
             </Pressable>
           </View>
