@@ -6,7 +6,7 @@ import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
 import TagsList from "./TagsList";
 import CarouselImages from "./CarouselImages";
-import IntentoNuevo from "./IntentoNuevo";
+///import IntentoNuevo from "./IntentoNuevo";
 
 export default function MenuViewOwnerScreenUI({
   navigateToHome,
