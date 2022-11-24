@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Modal } from "../shared/Modal";
 import Geolocation from '@react-native-community/geolocation';
 import {
@@ -10,6 +10,9 @@ import {
     RESULTS,
 } from 'react-native-permissions';
 import Toast from 'react-native-toast-message';
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
+    
 
 export function MapForm(props) {
     const { show, close } = props;
@@ -65,7 +68,18 @@ export function MapForm(props) {
     }, []);
     return (
         <Modal show={show} close={close}>
-            <Text>MapForm</Text>
+            <View>
+                <MapView initialRegion={location} showsUserLocation={true} style={styles.mapStyle}>
+                    <Marker draggable coordinate={{ latitude : location.latitude , longitude : location.longitude }}/>
+                </MapView>
+            </View>
         </Modal>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    mapStyle:{
+        with:"100%",
+        height:550
+    }
+});
