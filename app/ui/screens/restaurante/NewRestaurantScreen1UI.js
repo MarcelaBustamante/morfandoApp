@@ -89,14 +89,13 @@ const NewRestaurantScreen1UI = ({
           rightIcon={{
             type: "material-community",
             name: "map-marker-radius-outline",
-            color: Theme.colors.PRIMARY,
+            color: getColorIconMap(formik),
             onPress: onOpenCloseMap
           }}
           placeholder='Calle'
           onChangeText={(text) => { formik.setFieldValue('street', text) }}
           errorMessage={formik.errors.street}
           />
-          <Text>{formik.errors.location}</Text>
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -208,6 +207,11 @@ const NewRestaurantScreen1UI = ({
   );
 };
 
+const getColorIconMap = (formik) =>{
+  if(formik.errors.location) return Theme.colors.ERROR;
+  if(formik.values.location) return Theme.colors.PRIMARY;
+  return 'c2c2c2';
+}
 export default NewRestaurantScreen1UI;
 
 const styles = StyleSheet.create({
