@@ -1,9 +1,5 @@
-import React, { useState }  from 'react';
-import TipeFoodList from './TipeFoodList';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Button } from '@react-native-material/core';
-import Theme from '../../styles/Theme';
-import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
+import React  from 'react';
+import { View } from 'react-native';
 import TagsList from "./TagsList";
 import CarouselImages from "./CarouselImages";
 import NavegationBarMenu from "./NavegationBarMenu";
