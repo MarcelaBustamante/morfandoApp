@@ -5,15 +5,51 @@ import { StyleSheet} from 'react-native';
 import Theme from '../../styles/Theme';
 import axios from 'axios';
 
-const handleUpload = async function (onSuccess) {
+export default function FileUploadButton({
+  title,
+  onStartUpload,
+  onError,
+  onSuccess
+}) {
+  return (
+      <Button 
+          style={styles.uploadButton} 
+          onPress={() => handleUpload(onSuccess, onStartUpload, onError)} 
+          title={title}
+          color={Theme.colors.SECONDARY}/>
+  );
+}
+
+const styles = StyleSheet.create({
+  button:{
+    margin: 13,
+  },
+  uploadButton:{
+    width: 200,
+    margin: 13,
+    alignSelf: "center",
+  }
+});
+
+const handleUpload = async function (onSuccess, onStartUpload, onError) {
     const pickResult = await DocumentPicker.pick({
       presentationStyle: 'pageSheet',
       type: types.images
     });
     const file = pickResult[0];
-    const { uploadURL, fileKey } = await getUploadURL(file.name, file.size);
-    await uploadImage(uploadURL, file.uri);
-    onSuccess(fileKey);
+    try {
+      if (onStartUpload) {
+        onStartUpload();
+      }
+      const { uploadURL, fileKey } = await getUploadURL(file.name, file.size);
+      await uploadImage(uploadURL, file.uri);
+      onSuccess(fileKey);
+    } catch(err) {
+      if (onError) {
+        onError();
+      }
+      throw err;
+    }
 };
 
 const getUploadURL = async (fileName, fileSize) => {
@@ -38,27 +74,3 @@ const uploadImage = async (uploadURL, fileURI) => {
     body: imageBody,
   });
 };
-
-export default function FileUploadButton({
-  title,
-  onSuccess
-}) {
-  return (
-      <Button 
-          style={styles.uploadButton} 
-          onPress={() => handleUpload(onSuccess)} 
-          title={title}
-          color={Theme.colors.SECONDARY}/>
-  );
-}
-
-const styles = StyleSheet.create({
-  button:{
-    margin: 13,
-  },
-  uploadButton:{
-    width: 200,
-    margin: 13,
-    alignSelf: "center",
-  }
-});

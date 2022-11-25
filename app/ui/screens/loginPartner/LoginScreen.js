@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginScreenUI from './LoginScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginPartner } from '../../../redux/slices/partnerLoginSlice'
-import { useEffect } from 'react';
+
 
 export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';

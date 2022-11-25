@@ -7,6 +7,7 @@ export const store = configureStore({
   reducer: {
     partnerLogin: partnerLoginReducer,
     partnerRegister: partnerRegisterReducer,
-    restaurants: restaurantsReducer
+    restaurants: restaurantsReducer,
+    restaurant: restaurantsReducer
   },
 })

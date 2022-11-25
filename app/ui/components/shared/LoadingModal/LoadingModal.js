@@ -10,17 +10,17 @@ export function LoadingModal(props){
         <View style={styles.view}>
             <ActivityIndicator 
                 size="large" 
-                color={Theme.colors.PRIMARY} 
+                color={Theme.colors.SECONDARY} 
                 overlayBackgroundColor="transparent"
                 />
-            {text && <Text>{text}</Text>}
+            {text && <Text style={styles.text}>{text}</Text>}
         </View>
       </Overlay>
     )
 }
 
 LoadingModal.defaultProps = {
-    show: false,
+    show: true,
 }
 
 const styles = StyleSheet.create({
@@ -28,11 +28,16 @@ const styles = StyleSheet.create({
         height:100,
         width:200,
         backgroundColor:'#fff',
-        borderColor: Theme.colors.SECONDARY
+        borderColor: Theme.colors.SECONDARY,
+        borderWidth:2,
+        borderRadius:10
     },
     view:{
         flex:1,
         alignItems:"center",
         justifyContent:"center"
+    },
+    text:{
+        color: Theme.colors.SECONDARY
     }
 });

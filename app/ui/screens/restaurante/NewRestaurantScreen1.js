@@ -11,17 +11,9 @@ const dataCountry = [
 ];
 const dataProvince = [
   { label: 'Buenos Aires', value: '2' },
-  { label: 'Mendoza', value: '3' },
-  { label: 'Santa Fé', value: '4' },
-  { label: 'San Juan', value: '5' },
-  { label: 'Santiago del Estero', value: '6' },
 ];
 const dataLocation = [
-  { label: 'Quilmes', value: '7' },
-  { label: 'Florencio Varela', value: '8' },
-  { label: 'San Isidro', value: '9' },
-  { label: 'Capital Federal', value: '10' },
-  { label: 'Lanús', value: '11' },
+  { label: 'Capital Federal', value: '3' },
 ];
 const dataNeighborhood = [
   { label: 'Belgrano', value: '1' },
@@ -32,14 +24,16 @@ const dataNeighborhood = [
 
 
   const formik = useFormik({
-    initialValues:initialValues(),
-    validationSchema: validationSchemma(),
+    initialValues: initialValues(),
+    //TODO:Descomentar cuando termine el alta
+    // validationSchema: validationSchemma(),
     validateOnChange: false,
     onSubmit: async (formValue) =>{
       console.log(formValue);
-      navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2);
+      navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2,{form: formValue});
     }
-  })
+  });
+
   return (
     <KeyboardAwareScrollView>
           <NewRestaurantScreen1UI
