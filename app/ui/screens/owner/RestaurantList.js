@@ -10,7 +10,7 @@ const formatTime = (time) => {
 
 const printTime = (restaurant) => {
   const now = moment().format('dddd').toUpperCase();
-  const businessHour = restaurant.businessHours.find(bh => now.localeCompare(bh.dayOfWeek));
+  const businessHour = restaurant.businessHours.find(bh => 0 == now.localeCompare(bh.dayOfWeek));
   if (businessHour) {
     const {fromTime, toTime } = businessHour;
     return `Abierto de ${formatTime(fromTime)} a ${formatTime(toTime)}`;
@@ -24,11 +24,11 @@ const printAddress = (restaurant) => {
 };
 
 const printStatus = (status) => {
-  if ("OPEN".localeCompare(status)) {
-    return "Cerrado Temporalmente";
-  }
-  if ("CLOSED".localeCompare(status)) {
+  if ("OPEN".localeCompare(status) == 0) {
     return "Abierto";
+  }
+  if ("CLOSED".localeCompare(status) == 0) {
+    return "Cerrado Temporalmente";
   }
   return status;
 };
