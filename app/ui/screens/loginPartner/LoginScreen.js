@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginScreenUI from './LoginScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginPartner } from '../../../redux/slices/partnerLoginSlice'
-import { useEffect } from 'react';
+
 
 export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const { error, isLoggedIn } = useSelector(state => state.partnerLogin);
+  const { error, isLoggedIn,isLoading } = useSelector(state => state.partnerLogin);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ export default function LoginScreen({ navigation }) {
         onChangeUsername={onChangeUsername}
         password={password}
         onChangePassword={onChangePassword}
+        isLoading={isLoading}
       />
     </KeyboardAwareScrollView>
   )

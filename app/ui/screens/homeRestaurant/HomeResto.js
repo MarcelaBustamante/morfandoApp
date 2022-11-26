@@ -25,8 +25,9 @@ export default function HomeResto({navigation}) {
   }
   return (
       <HomeRestoUI
-      restaurants={restaurants}
-      navigateToProfile={() => navigation.navigate(NavigatorConstant.PROFILE_STACK.PROFILE)}
-      navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}
-      navigateMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS)}/>
+        restaurants={restaurants}
+        navigateToProfile={() => navigation.navigate(NavigatorConstant.PROFILE_STACK.PROFILE)}
+        navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}
+        navigateMenuOwner={(restaurant) => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS, {restaurant})}
+      /> 
   )};

@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: Theme.colors.PRIMARY,
+    color: Theme.colors.PRIMARY,
     }, 
   button1:{
     width: 150,
@@ -208,5 +209,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: Theme.colors.ERROR,
+    color: Theme.colors.ERROR,
     }, 
 });
