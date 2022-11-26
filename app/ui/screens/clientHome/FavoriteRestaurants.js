@@ -25,16 +25,15 @@ export default function ClientViewNearbyUI() {
 
   return (
       <View style={styles.container}> 
-
         <View style={styles.containerCircle}>
+            <Button style={styles.back} title="<"/>
           <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
         </View>
             <SearchRestaurants
             loginHandler={loginHandler}/>
-               <View style= {{justifyContent: "flex-end", alignItems: "flex-end"}}>
-        <Button title="Mis Favoritos ♥"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
+        <Text style={styles.title}> Mis Favoritos ♥ </Text>
+        <View>
         </View>
-        <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
         <View style={styles.container}>
             <RestaurantListNearby
             loginHandler={loginHandler}/>
@@ -93,6 +92,13 @@ export default function ClientViewNearbyUI() {
         justifyContent:'center',
         alignItems: 'center',
     },
+    back:{
+        width:39,
+        height:39,
+        borderBottomEndRadius: 20,
+        borderTopEndRadius: 20,
+        margin: 5,
+      },
     circleGreen: {
       width:50,
       height:50,
@@ -111,7 +117,7 @@ export default function ClientViewNearbyUI() {
     },
     seeMore:{
       margin: 10,
-      alignItems: "center",
-      justifyContent: "flex-end"
+      justifyContent:"flex-end",
+      alignItems: "flex-end",
     }
   });
