@@ -9,7 +9,8 @@ export default function MenuViewOwnerScreen({navigation}) {
   const loginHandler = () => {
     console.log("Hola mundo");
   }
-  return (
+
+  return ( 
           <MenuViewOwnerScreenUI
             navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
             loginHandler={loginHandler}/> 
