@@ -5,6 +5,7 @@ import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { InitialDaysScreen } from './DaysScreen.data';
 import { useDispatch, useSelector } from 'react-redux';
 import { createRestaurants } from '../../../redux/slices/newRestaurantsSlice';
+import moment from 'moment';
 
 
 export default function NewRestaurantScreen2({navigation, route}) {
@@ -32,7 +33,7 @@ export default function NewRestaurantScreen2({navigation, route}) {
     const [selected, setSelected] = useState([]); //dropdown menu tags
     const [valuePriece, setValuePriece] = useState(1);
     const [checked, setChecked] = useState(true); //cerrar temporalmente
-    const { error, isLoading } = useSelector(state => state.restaurant);
+    const { error, isLoading, status } = useSelector(state => state.restaurant);
 
     const changeSingleBusinessHour = (dayOfWeek, attr, newValue) => {
       return setBusinessHours(businessHours => {
@@ -45,14 +46,38 @@ export default function NewRestaurantScreen2({navigation, route}) {
       });
     };
     const onRestaurantSubmit = () => {
-      form.businessHours = businessHours.filter((day)=>day.active === true);
-      form.isClosed = checked;
-      form.priceRange = valuePriece;
-      form.type = selected.label;
-      console.log('Fusion',form);
-      dispatch(createRestaurants(form));
-      console.log("error", isLoading);
-      console.log("error", error);
+      form.businessHours = businessHours
+        .filter(day => day.active === true)
+        .map((day)=>{
+          day.fromTime= moment(day.fromTime).format('hh:mm:ss');
+          day.toTime= moment(day.toTime).format('hh:mm:ss');
+          return day;
+        });
+      dispatch(createRestaurants({
+          "address": {
+              "latitude": form.location?.latitude,
+              "longitude": form.location?.longitude,
+              "street": form.street,
+              "number": form.number,
+              "neighborhood": form.neighborhood,
+              "city": form.province,
+              "province": form.province,
+              "latitudeDelta": form.location.latitudeDelta,
+              "longitudeDelta": form.location.longitudeDelta
+          },
+          "businessHours": form.businessHours,
+          "name": form.name,
+          "type": selected.label,
+          "priceRange": valuePriece,
+          "photos": form.imageRest,
+          "active": form.isClosed
+      }));
+      if ( status === 'succeeded') {
+        Toast.show('Register exitoso');
+        navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+      } else{
+        Toast.show('Hubo un problema al realizar la carga de restaurant');
+      }
     };
   
   return (
@@ -71,6 +96,7 @@ export default function NewRestaurantScreen2({navigation, route}) {
             setChecked={setChecked}
             changeSingleBusinessHour={changeSingleBusinessHour}
             onRestaurantSubmit={onRestaurantSubmit}
+            isLoading={isLoading}
             />
     </KeyboardAwareScrollView>
   )};

@@ -10,7 +10,7 @@ export default function LoginScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
   const [username, onChangeUsername] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-  const { error, isLoggedIn } = useSelector(state => state.partnerLogin);
+  const { error, isLoggedIn,isLoading } = useSelector(state => state.partnerLogin);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ export default function LoginScreen({ navigation }) {
         onChangeUsername={onChangeUsername}
         password={password}
         onChangePassword={onChangePassword}
+        isLoading={isLoading}
       />
     </KeyboardAwareScrollView>
   )

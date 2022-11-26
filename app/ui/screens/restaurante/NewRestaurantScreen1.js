@@ -25,8 +25,7 @@ const dataNeighborhood = [
 
   const formik = useFormik({
     initialValues: initialValues(),
-    //TODO:Descomentar cuando termine el alta
-    // validationSchema: validationSchemma(),
+    validationSchema: validationSchemma(),
     validateOnChange: false,
     onSubmit: async (formValue) =>{
       console.log(formValue);

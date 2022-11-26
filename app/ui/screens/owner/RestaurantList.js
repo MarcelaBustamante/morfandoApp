@@ -1,78 +1,70 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import Theme from "../../styles/Theme";
+import ImageCustom from "../../components/shared/ImageCustom";
+import moment from "moment";
 
-const DATA = [
-  {
-    id: '1',
-    titleRestaurant: 'El almacén',
-    timeRestaurant: "Lunes abierto de 6:00 a 22:30",
-    directionRestaurant: 'Av Belgrano 924',
-    locationRestaurant: 'CABA',
-    distanceRestaurant: '0.5 km',
-    travelRestaurant: '2 min',
-    stateRestaurant: "Abierto",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
-  },
-  {
-    id: "2",
-    titleRestaurant: 'La comida de Manolo',
-    timeRestaurant: "Lunes abierto de 11:00 a 22:30",
-    directionRestaurant: 'Av Martinez 1924',
-    locationRestaurant: 'San Isidro',
-    distanceRestaurant: '2 km',
-    travelRestaurant: '10 min',
-    stateRestaurant: "Abierto",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
-  },
-  {
-    id: '3',
-    titleRestaurant: 'Don Benito',
-    timeRestaurant: "Lunes abierto de 8:00 a 00:30",
-    directionRestaurant: '12 de Octubre 1200',
-    locationRestaurant: 'Quilmes',
-    distanceRestaurant: '5 km', //esto si es mio no iria
-    travelRestaurant: '5 min', // lo de arriba
-    stateRestaurant: "Cerrado Temporalmete",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
-  },
-];
+const formatTime = (time) => {
+  return moment(time, "hh:mm:ss").format("HH:mm");
+}
 
-const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner}) => (
-  <TouchableOpacity onPress={navigateMenuOwner} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
-    <View style={styles.containerList}>
-    <View>
-        <Image
-          style={styles.imageList}
-          source={{ uri: item.image }}
-        />
+const printTime = (restaurant) => {
+  const now = moment().format('dddd').toUpperCase();
+  const businessHour = restaurant.businessHours.find(bh => now.localeCompare(bh.dayOfWeek));
+  if (businessHour) {
+    const {fromTime, toTime } = businessHour;
+    return `Abierto de ${formatTime(fromTime)} a ${formatTime(toTime)}`;
+  }
+  return "";
+};
+
+const printAddress = (restaurant) => {
+  const { street, number, neighborhood } = restaurant.address;
+  return `${street} ${number}, ${neighborhood}`;
+};
+
+const printStatus = (status) => {
+  if ("OPEN".localeCompare(status)) {
+    return "Cerrado Temporalmente";
+  }
+  if ("CLOSED".localeCompare(status)) {
+    return "Abierto";
+  }
+  return status;
+};
+
+const RestaurantList = ({ navigateMenuOwner, restaurants }) => {
+  console.log("Lista de restaurantes", restaurants.length);
+  const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) => (
+    <TouchableOpacity onPress={() => navigateMenuOwner(item)} style={[styles.item, backgroundColor]}>
+      <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
+      <View style={styles.containerList}>
+        <View>
+          {item.photos && item.photos.length > 0 &&
+            <ImageCustom
+              styles={styles.imageList}
+              uri={item.photos[0].url}
+            />
+          }
         </View>
-    <View  style={{paddingEnd: 25, paddingStart: 5}}>
-    <Text style={[styles.general, textColor]}>{item.timeRestaurant}</Text>
-    <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
-    <Text style={[styles.state, textColor]}>{item.stateRestaurant}</Text>
-    </View>
-    </View>
-  </TouchableOpacity>
-);
- 
-const RestaurantList = ({navigateMenuOwner, restaurants}) => {
-  const [selectedId, setSelectedId] = useState(null);
+        <View style={{ paddingEnd: 25, paddingStart: 5 }}>
+          <Text style={[styles.general, textColor]}>{printTime(item)}</Text>
+          <Text style={[styles.general, textColor]}>{printAddress(item)}</Text>
+          <Text style={[styles.state, textColor]}>{printStatus(item.status)}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 
   const renderItem = ({ item }) => {
     //const backgroundColor = item.id === selectedId ? Theme.colors.GREY : Theme.colors.GREY ;
     //const color = item.id === selectedId ?  Theme.colors.PRIMARY : Theme.colors.PRIMARY;
-
-    
     return (
-        <Item
+      <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
-        navigateMenuOwner = {navigateMenuOwner}
-        restaurants = {restaurants}
-        //backgroundColor={{ backgroundColor }}
-        //textColor={{ color }}
+        navigateMenuOwner={navigateMenuOwner}
+      //backgroundColor={{ backgroundColor }}
+      //textColor={{ color }}
       />
     );
   };
@@ -80,10 +72,9 @@ const RestaurantList = ({navigateMenuOwner, restaurants}) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={restaurants}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        extraData={selectedId}
       />
     </SafeAreaView>
   );
@@ -117,15 +108,15 @@ const styles = StyleSheet.create({
   state: {
     color: Theme.colors.ERROR,
   },
-  general:{
+  general: {
     color: Theme.colors.PRIMARY,
   },
   containerList: {
     flexDirection: "row",
   },
   imageList: {
-    height: 50,
-    width: 50,
+    height: 150,
+    width: 150,
     borderRadius: 10,
   }
 });

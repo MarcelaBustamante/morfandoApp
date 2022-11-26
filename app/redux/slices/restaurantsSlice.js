@@ -26,7 +26,7 @@ export const restaurantsSlice = createSlice({
       state.status = 'succeeded';
       state.restaurants = action.payload;
       console.log(action.type);
-      console.log("Restaurants in state", state.restaurants);
+      console.log("Restaurants in state", state.restaurants?.length);
     }) 
     .addCase(getListRestaurants.rejected, (state, action) => {
       state.status = 'failed';

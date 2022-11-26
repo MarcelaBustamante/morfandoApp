@@ -5,6 +5,9 @@ export default function AvatarCustom({
     styles,
     onPress
   }) {
+    if (!uri) {
+      return <></>
+    }
     return(
         <Avatar
             key={uri}

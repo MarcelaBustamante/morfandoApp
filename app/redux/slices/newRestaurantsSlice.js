@@ -10,8 +10,9 @@ const initialState = {
 
 export const createRestaurants = createAsyncThunk(
   'partner/restaurant',
-  async () => {
-    return await newRestaurantAPI(form);
+  async (data, thunkAPI) => {
+    console.log(data)
+    return await newRestaurantAPI(data);
   }
 )
 
@@ -32,6 +33,7 @@ export const newRestaurantsSlice = createSlice({
       state.status = 'failed';
       state.error = 'Hubo un error en la creación del restaurante';
       console.log(action.type);
+      //console.log(action);
     })
   }
 })

@@ -36,11 +36,15 @@ export const getListRestoAPI = async function() {
 }
 
 export const newRestaurantAPI = async function(form){
-    console.log("llego a la creación")
-    const result = await axios.post('restaurants', form).catch(err => {
-        console.log("Alta de restaurante error", err);
-        return Promise.reject(err);
-    });
-    console.log("Alta restaurante ok", result);
-    return result.data;
+    try {
+        console.log("llego a la creación", form)
+        const result = await axios.post('restaurants', form).catch(err => {
+            console.log("Alta de restaurante error", err);
+            return Promise.reject(err);
+        });
+        console.log("Alta restaurante ok", result);
+        return result.data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
 }

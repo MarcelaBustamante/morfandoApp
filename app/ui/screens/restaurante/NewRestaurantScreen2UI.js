@@ -6,6 +6,7 @@ import Theme from '../../styles/Theme';
 import { Dropdown } from 'react-native-element-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from '@react-native-community/checkbox';
+import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal"
 
 
 const NewRestaurantScreen2UI = ({
@@ -20,7 +21,8 @@ const NewRestaurantScreen2UI = ({
   setChecked,
   businessHours,
   changeSingleBusinessHour,
-  onRestaurantSubmit
+  onRestaurantSubmit,
+  isLoading
 }) => {
 
   const [isFocus, setIsFocus] = useState(false); //dropdown menu
@@ -46,7 +48,7 @@ const NewRestaurantScreen2UI = ({
 
   const renderBusinessHour = (dayState, i) => {
     return (
-      <> 
+      <View key={dayState.label}> 
         <View  key={i} style={{ flexDirection: "row" }}>
           <Text style={styles.days}>{dayState.label}</Text>
           <CheckBox
@@ -102,7 +104,7 @@ const NewRestaurantScreen2UI = ({
             )}
           </View>
         </View>
-      </>
+      </View>
     );
   };
 
@@ -187,6 +189,10 @@ const NewRestaurantScreen2UI = ({
         <Button style={styles.button1} onPress={navigateToNewResto} title="Volver" color={Theme.colors.SECONDARY} />
         <Button style={styles.button2} onPress={onRestaurantSubmit} title="Guardar" color={Theme.colors.PRIMARY} />
       </View>
+      <LoadingModal
+        text="Guardando Restaurante"
+        show={isLoading}
+      />
     </View>
 
   );
