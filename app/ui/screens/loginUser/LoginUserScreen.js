@@ -20,7 +20,7 @@ export default function LoginScreen({navigation}) {
       const userInfo = await GoogleSignin.signIn();
       Alert.alert(`Sign in ok ${userInfo.user}`);
       console.log(JSON.stringify(userInfo));
-      //TODO: si esta ok userInfo entonces navegar a pantalla home usuario
+      navigation.navigate(NavigatorConstant.PROFILE_STACK.INFORMATION);
     } catch (error) {
       const typedError = error;
 

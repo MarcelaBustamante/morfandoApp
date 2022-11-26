@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     borderColor: Theme.colors.PRIMARY,
     borderWidth: 1,
     borderRadius: 5,
-    paddingHorizontal: 8,
+    paddingHorizontal: 8
   },
   icon: {
     marginRight: 5,

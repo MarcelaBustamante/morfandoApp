@@ -7,7 +7,7 @@ import { initialValues, validationSchemma } from './RestaurantScreen.data';
 export default function NewRestaurantScreen1({navigation}) {
   
 const dataCountry = [
-  { label: 'Argetina', value: '1' },
+  { label: 'Argentina', value: '1' },
 ];
 const dataProvince = [
   { label: 'Buenos Aires', value: '2' },
