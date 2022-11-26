@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: Theme.colors.PRIMARY,
+    color: Theme.colors.PRIMARY,
     }, 
   button:{
     margin: 13,

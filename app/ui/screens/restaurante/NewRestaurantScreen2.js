@@ -34,7 +34,7 @@ export default function NewRestaurantScreen2({ navigation, route }) {
   const [selected, setSelected] = useState([]); //dropdown menu tags
   const [valuePriece, setValuePriece] = useState(1);
   const [checked, setChecked] = useState(true); //cerrar temporalmente
-  const { error, isLoading, status } = useSelector(state => state.restaurant);
+  const { isLoading, status } = useSelector(state => state.restaurant);
 
   useEffect(() => {
     if (status === 'succeeded') {

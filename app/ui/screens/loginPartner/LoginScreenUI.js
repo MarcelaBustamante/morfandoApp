@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5,
     borderRadius: 5,
+    color: Theme.colors.PRIMARY
   },
   image: {
     height: 80,
