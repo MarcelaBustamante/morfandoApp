@@ -1,3 +1,4 @@
+import { Icon } from '@rneui/themed';
 import React, { useState } from "react";
 import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
@@ -83,7 +84,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 
-const MenuViewOwnerScreenUI = () => {
+const MenuViewOwnerScreenUI = (onCreateMenu) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -107,6 +108,15 @@ const MenuViewOwnerScreenUI = () => {
         <Text style={styles.header}>{title}</Text>
       )}
     />
+    <Icon
+      reverse
+      type='material-community'
+      name='plus'
+      color={Theme.colors.PRIMARY}
+      containerStyle={styles.btnContainer}
+      onPress={onCreateMenu}
+      size={30}
+      />
   </SafeAreaView>
   );
 };
@@ -163,6 +173,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Theme.colors.SECONDARY,
     marginStart: 10,
+  },
+  btnContainer:{
+    position:"absolute",
+    bottom:10,
+    right:10,
+    elevation:7
   },
 });
 
