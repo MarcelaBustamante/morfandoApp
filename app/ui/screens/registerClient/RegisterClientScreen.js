@@ -3,8 +3,9 @@ import RegisterClientScreenUI from './RegisterClientScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useFormik } from 'formik';
 import { initialValues, validationSchemma } from './RegisterClientScreen.data';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function RegisterClientScreen() {
+export default function RegisterClientScreen({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
   const loginHandler = () => {
     console.log("Hola mundo");
@@ -24,7 +25,10 @@ export default function RegisterClientScreen() {
     <KeyboardAwareScrollView>
       <RegisterClientScreenUI
             formik={formik}
-            loginHandler={loginHandler}/> 
+            loginHandler={loginHandler}
+            navigateToClientNearBy ={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)}
+            navigateToClient ={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER)}
+            /> 
     </KeyboardAwareScrollView>
   )
 };

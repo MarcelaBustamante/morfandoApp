@@ -21,6 +21,7 @@ const RegisterScreenUI = ({
     formik,
     setFormState,
     registerHandler,
+    navigateToClientNearBy,
     error
   }) => {
     const [checked, setChecked] = useState(true);
@@ -47,7 +48,6 @@ const RegisterScreenUI = ({
       Toast("Hubo un error cargando la imagen")
     }
 
-    const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
 
     const removeImagen = (img)=> {
       Alert.alert(
@@ -121,7 +121,7 @@ const RegisterScreenUI = ({
         }
         onPress={() => setChecked(!checked)}
       />
-        <Button style={styles.button} onPress={registerHandler} title="Registrame" />
+        <Button style={styles.button} onPress={navigateToClientNearBy} title="Registrame" />
         </View> 
        </View>
 );
