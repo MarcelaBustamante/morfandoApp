@@ -14,6 +14,7 @@ import {
 
 const LoginUserScreenUI = ({
   navigateToPartner,
+  navigateToClientRegister,
   _signIn
   }) => {
 
@@ -37,7 +38,9 @@ const LoginUserScreenUI = ({
                   onPress={_signIn}
                 />
               </View>
+              
               <View style={styles.container}></View>
+              <Button onPress={navigateToClientRegister} title='atajo para flor'/>
               </View>
     </View>
     );

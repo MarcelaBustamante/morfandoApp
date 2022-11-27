@@ -20,7 +20,7 @@ export default function LoginScreen({navigation}) {
       const userInfo = await GoogleSignin.signIn();
       Alert.alert(`Sign in ok ${userInfo.user}`);
       console.log(JSON.stringify(userInfo));
-      navigation.navigate(NavigatorConstant.PROFILE_STACK.INFORMATION);
+      navigation.navigate(NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT);
     } catch (error) {
       const typedError = error;
 
@@ -50,6 +50,7 @@ export default function LoginScreen({navigation}) {
     <KeyboardAwareScrollView>
           <LoginUserScreenUI
           navigateToPartner={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN)}
+          navigateToClientRegister={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT)}
           _signIn={_signIn}
           /> 
     </KeyboardAwareScrollView>

@@ -40,6 +40,12 @@ const NAVIGATOR = {
   const DRAWER_SCREEN = {
     PROFILE: 'PROFILE',
   };
+
+  const CLIENT_STACK = {
+    REGISTER_CLIENT: 'REGISTER_CLIENT',
+    CLIENT_NEAR_BY: 'CLIENT_NEAR_BY',
+    CLIENT_INFORMATION: 'CLIENT_INFORMATION',
+  };
   
   export default {
     NAVIGATOR,
@@ -50,6 +56,7 @@ const NAVIGATOR = {
     PASSWORD_STACK,
     PROFILE_STACK,
     NEW_RESTAURANT_STACK,
+    CLIENT_STACK
   };
 
   
