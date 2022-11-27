@@ -14,7 +14,7 @@ const RegisterScreenUI = ({
     secText,
     loginHandler, 
     navigateToClient,
-    formState,
+    formik,
     setFormState,
     registerHandler,
     error
@@ -36,22 +36,19 @@ const RegisterScreenUI = ({
             <TextInput
               style={styles.input}
               placeholder='Nombre'
-              value={formState.name}
-              onChangeText={(text) => handleChange("name", text)}
+              onChangeText={(text) => { formik.setFieldValue('name', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
               style={styles.input}
               placeholder='Apellido'
-              value={formState.lastName}
-              onChangeText={(text) => handleChange("lastName", text)}
+              onChangeText={(text) => { formik.setFieldValue('lastName', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
               style={styles.input}
               placeholder='Imagen'
-              value={formState.email}
-              onChangeText={(text) => handleChange("email", text)}
+              onChangeText={(text) =>  { formik.setFieldValue('lastName', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
          </View>
