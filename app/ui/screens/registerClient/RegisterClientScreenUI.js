@@ -2,11 +2,15 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput} from 'react-native';
+    TextInput,
+    ScrollView
+  } from 'react-native';
 import Theme from '../../styles/Theme';
 import { Button, even  } from "@react-native-material/core";
 import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
+import FileUploadButton from '../../components/shared/FileUploadButton';
+import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
 
 
 const RegisterScreenUI = ({
@@ -23,6 +27,48 @@ const RegisterScreenUI = ({
     const handleChange = (field, text) => {
       setFormState({...formState, [field]: text});
     };
+
+    const [pictures, setPictures] = useState([]);
+
+    const [isLoading,setIsLoading] = useState(false);
+
+    const onPhotoUploaded = (fileKey) => {
+      setIsLoading(false);
+      setPictures([...pictures, fileKey]);
+      formik.setFieldValue("imageRest", pictures);
+    };
+  
+    const onPhotoStartUpload = () => {
+      setIsLoading(true);
+    }
+  
+    const onPhotoError = () => {
+      setIsLoading(false);
+      Toast("Hubo un error cargando la imagen")
+    }
+
+    const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
+
+    const removeImagen = (img)=> {
+      Alert.alert(
+        "Eliminar imagen",
+        "Estas seguro de eliminar esta imagen?",
+        [
+          {
+            text: "Cancelar",
+            style: "cancel",  
+          },
+          {
+            text: "Eliminar",
+            onPress: () => {
+              const result = filter(formik.values.imageRest, (image)=> image !== img);
+              formik.setFieldValue("imageRest",result);
+              setPictures(result);
+            }
+          }
+        ]
+      );
+    }
 
 
   return (
@@ -45,12 +91,28 @@ const RegisterScreenUI = ({
               onChangeText={(text) => { formik.setFieldValue('lastName', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
-            <TextInput
-              style={styles.input}
-              placeholder='Imagen'
-              onChangeText={(text) =>  { formik.setFieldValue('lastName', text) }}
-              placeholderTextColor={Theme.colors.PRIMARY}
-            />
+            <FileUploadButton 
+          title={"+ Agregar Fotos"}
+          onSuccess={onPhotoUploaded}
+          onStartUpload={onPhotoStartUpload}
+          onError={onPhotoError} 
+        />
+        <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+        {pictures.map(p => {
+            return (
+              <Avatar
+                key={p}
+                uri={p}
+                styles={styles.imageStyle}
+                onPress={()=>removeImagen(p)}
+              />
+            )
+          })}
+        <Text style={styles.error}>
+          {formik.errors.imageRest}
+        </Text>
+        </ScrollView>
+        <LoadingModal show={isLoading} text='Subiendo imagen'/>
          </View>
          <ListItem 
         title="Acepto los términos y condiciones"
