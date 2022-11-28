@@ -3,7 +3,8 @@ import { Image,
     View,
     Text,
     TextInput,
-    ScrollView
+    ScrollView,
+    Pressable
   } from 'react-native';
 import Theme from '../../styles/Theme';
 import { Button, even  } from "@react-native-material/core";
@@ -114,6 +115,11 @@ const RegisterScreenUI = ({
         </ScrollView>
         <LoadingModal show={isLoading} text='Subiendo imagen'/>
          </View>
+         <Pressable
+          onPress={navigateToClientNearBy}
+         >
+            <Text style={styles.textStyle}>Omitir</Text>
+        </Pressable>
          <ListItem 
         title="Acepto los términos y condiciones"
         trailing={
@@ -196,4 +202,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  textStyle: {
+    color: Theme.colors.PRIMARY,
+    textAlign: "left",
+    fontSize: 16,
+ },
+ buttonOpen: {
+  backgroundColor: Theme.colors.GREY,
+  padding: 10,
+  width: 150,
+},
 });

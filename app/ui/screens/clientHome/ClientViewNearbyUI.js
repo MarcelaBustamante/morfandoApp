@@ -8,7 +8,9 @@ import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export default function ClientViewNearbyUI() {
+export default function ClientViewNearbyUI({
+  navigateToProfileClient,
+}) {
   welcomeString = 'Bienvenido a Morfando';
   //const DATA = [{owner: "Pedro Rodrigez"}]  
 
@@ -30,7 +32,7 @@ export default function ClientViewNearbyUI() {
 
         <View style={styles.containerCircle}>
           <Button style={styles.circleGreen} onPress={() => loginHandler('enviar datos')} title="◀"/>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
+          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfileClient} title={getInicialOwner()} />
         </View>
         <View style={styles.container}>
             <SearchRestaurants
