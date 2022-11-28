@@ -13,7 +13,6 @@ export function initialValues(){
         businessHours: [],
         isClosed: false,
         priceRange: 1,
-        
     }
 }
 
