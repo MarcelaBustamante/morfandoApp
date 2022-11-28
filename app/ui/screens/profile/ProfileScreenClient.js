@@ -11,14 +11,14 @@ export default function ProfileScreenClient({ navigation }) {
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(userLogout());
-    navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN);
+    navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER);
   }
   return (
     <KeyboardAwareScrollView>
       <ProfileScreenClientUI
         navigateToPersonalInfo={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_INFORMATION_SETTINGS)}
         navigateToClientNearBy ={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)}
-        navigateToLoginPartner={logout} />
+        navigateToLoginClient={logout} />
     </KeyboardAwareScrollView>
   )
 };
