@@ -1,8 +1,9 @@
 import React from 'react';
 import ClientViewNearbyUI from './ClientViewNearbyUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function ClientViewNearby() {
+export default function ClientViewNearby({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -11,7 +12,9 @@ export default function ClientViewNearby() {
   return (
     <KeyboardAwareScrollView>
           <ClientViewNearbyUI
-            loginHandler={loginHandler}/> 
+            loginHandler={loginHandler}
+            navigateToProfileClient ={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_INFORMATION)}
+            /> 
     </KeyboardAwareScrollView>
   )};
 
