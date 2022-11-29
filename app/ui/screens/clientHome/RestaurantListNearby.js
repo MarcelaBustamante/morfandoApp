@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View , Image, SearchBar, TouchableHighlightBase} from "react-native";
 import Theme from '../../styles/Theme';
+import { Button } from '@react-native-material/core';
 
 const DATA = [
   {
@@ -41,7 +42,7 @@ const DATA = [
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <View>
-      <Text style={[styles.title, styles.general, textColor]}>{item.titleRestaurant}</Text>
+      <Text style={[styles.title, textColor]}>{item.titleRestaurant}</Text>
       <View style={styles.containerInfo}>
         <View>
           <Image
@@ -72,7 +73,7 @@ const RestaurantListNearby = () => {
         item={item}
         onPress={() => setSelectedId(item.id)}
         //backgroundColor={{ backgroundColor }}
-        //textColor={{ color }}
+        textColor={{ color: Theme.colors.PRIMARY }}
       />
     );
   };
@@ -84,6 +85,7 @@ const RestaurantListNearby = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
+        //ListFooterComponent={<Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>}
       />
     </SafeAreaView>
   );
@@ -91,7 +93,7 @@ const RestaurantListNearby = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
   
@@ -102,16 +104,14 @@ const styles = StyleSheet.create({
     color: Theme.colors.GREY,
   },
   imageList: {
-    width:84,
-    height:84,
+    height: 70,
+    width: 70,
     borderRadius: 10,
-    margin: 5,
-    marginLeft: 25,
   },
   item: {
-    height: 150,
-    width: 400,
-    margin: 5,
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
     borderRadius: 20,
     backgroundColor: Theme.colors.GREY,
     shadowColor: Theme.colors.PRIMARY,
@@ -121,26 +121,27 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
-
     elevation: 2,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
-    alignSelf: "center",
   },
   state: {
     color: Theme.colors.ERROR,
   },
   general:{
     color: Theme.colors.PRIMARY,
-    textAlign: "right",
+    textAlign: 'right',
   },
   listText: {
     textAlign: 'right',
-    paddingEnd: 25,
-    paddingStart: 5,
   },
+  seeMore:{
+    margin: 10,
+    justifyContent:"flex-end",
+    alignItems: "flex-end",
+  }
 });
 
 export default RestaurantListNearby;

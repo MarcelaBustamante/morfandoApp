@@ -1,8 +1,10 @@
 import React, { useState }  from 'react';
 import { Button } from '@react-native-material/core';
 import { View, Text, StyleSheet, Alert, Modal, Pressable } from 'react-native';
-
-
+import { Icon } from '@rneui/base';
+import Theme from '../../styles/Theme';
+//delete-forever
+/* para el delete lo pongo en el footer de la lista para que no este tan al alcance de las cosas basicas*/
 const NavegationBarMenu = ({}) => {
     const  getNameRestaurant = () => {
         return "El almacén"
@@ -12,6 +14,20 @@ return(
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} title="<"/>
         <Text style={styles.name}>  {getNameRestaurant()}</Text> 
+        <Icon
+        raised
+        type= "material-community"
+        name= "door-closed-lock"
+        color= {Theme.colors.ERROR}
+        size={18}
+        onPress={() => console.log('hello')} />
+        <Icon
+        raised
+        type= "material-community"
+        name= "pencil-outline"
+        color= {Theme.colors.PRIMARY}
+        size={18}
+        onPress={() => console.log('hello')} />
     </View>
  </View>
 );

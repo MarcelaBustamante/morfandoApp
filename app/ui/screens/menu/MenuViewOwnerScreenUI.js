@@ -84,11 +84,10 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 
-const MenuViewOwnerScreenUI = (onCreateMenu) => {
+const MenuViewOwnerScreenUI = ({onCreateMenu}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    console.log(item)
     return (
         <Item
         item={item}

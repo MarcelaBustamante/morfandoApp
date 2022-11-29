@@ -9,8 +9,6 @@ export default function MenuViewOwnerScreen({navigation}) {
     console.log("Hola mundo");
   }
   return (
-    <KeyboardAwareScrollView>
-          <MenuViewClientScreenUI
-            loginHandler={loginHandler}/> 
-    </KeyboardAwareScrollView>
+      <MenuViewClientScreenUI
+      loginHandler={loginHandler}/> 
   )};

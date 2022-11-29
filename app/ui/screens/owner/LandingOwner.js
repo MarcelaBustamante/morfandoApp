@@ -41,18 +41,6 @@ const DATA = [
   },
 ];
 
-/*
-const getItem = (data, index, nombre, direccion, distancia, tiempo, cerrado) => ({
-  id: Math.random().toString(12).substring(0),
-  nombreRestaurante: ${nombre},
-  direccionRestaurante: ${direccion},
-  distancia: ${distancia},
-  tiempo: ${tiempo},
-  cerrado: false
-});
-
-*/
-
 
 const Item = ({ item }) => (
    <View style={styles.item}>
@@ -75,11 +63,6 @@ const renderItem = ({ item }) => {
     </View>
   )
 }
-  
-  
-  /*(
-  <Item title={item.title} />
-);*/
 
 
 function LandingOwnerScreenUI() {
