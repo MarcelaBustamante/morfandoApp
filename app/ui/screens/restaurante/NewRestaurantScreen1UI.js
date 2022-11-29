@@ -114,7 +114,7 @@ const NewRestaurantScreen1UI = ({
       <Button style={styles.circle} onPress={navigateToHomeResto} title="<" />
       <Text style={styles.title}>Nuevo Restaurante</Text>
       <Text style={styles.subTitle}>Datos principales</Text>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center"}}>
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -283,7 +283,7 @@ export default NewRestaurantScreen1UI;
 
 const styles = StyleSheet.create({
   container1: {
-    flex: 2,
+    flex: 1,
     justifyContent: "center",
     paddingHorizontal: 10,
     paddingVertical: 10,
@@ -321,19 +321,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: Theme.colors.SECONDARY,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: "gray",
-    width: 10,
-    height: 40,
-    width: 300,
-    marginTop: 10,
-    marginBottom: 10,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-    borderColor: Theme.colors.PRIMARY,
-  },
   button: {
     margin: 13,
   },
@@ -342,11 +329,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   dropdown: {
-    height: 40,
-    width: 300,
-    borderColor: Theme.colors.PRIMARY,
-    borderWidth: 1,
-    borderRadius: 5,
+    height: 50,
+    width: 350,
+    borderColor: "#8871a4",
+    borderWidth: 1.2,
+    borderRadius: 12,
     paddingHorizontal: 8
   },
   icon: {
@@ -385,7 +372,8 @@ const styles = StyleSheet.create({
     width: 150,
     margin: 13,
     alignSelf: "flex-end",
-  }, error: {
+  }, 
+  error: {
     color: Theme.colors.ERROR,
     fontSize: 14,
     fontWeight: "bold",
