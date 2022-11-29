@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button } from "@react-native-material/core";
 import FileUploadButton from '../../components/shared/FileUploadButton';
 import { Input } from '@rneui/themed';
 import { MapForm } from '../../components/MapsForm/MapsForm';
+import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
+import Avatar from '../../components/shared/AvatarCustom';
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import { filter } from 'lodash';
 
 const NewRestaurantScreen1UI = ({
   navigateToHomeResto,
@@ -23,6 +27,7 @@ const NewRestaurantScreen1UI = ({
   const [isFocus, setIsFocus] = useState(false);
   const [pictures, setPictures] = useState([]);
   const [showMap, setShowMap] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
 
   const renderLabelCountry = () => {
     if (valueCoutry || isFocus) {
@@ -66,11 +71,42 @@ const NewRestaurantScreen1UI = ({
   };
 
   const onPhotoUploaded = (fileKey) => {
-    console.log("File Key subida", fileKey);
+    setIsLoading(false);
     setPictures([...pictures, fileKey]);
+    formik.setFieldValue("imageRest", pictures);
   };
 
+  const onPhotoStartUpload = () => {
+    setIsLoading(true);
+  }
+
+  const onPhotoError = () => {
+    setIsLoading(false);
+    Toast("Hubo un error cargando la imagen")
+  }
+
   const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
+
+  const removeImagen = (img)=> {
+    Alert.alert(
+      "Eliminar imagen",
+      "Estas seguro de eliminar esta imagen?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",  
+        },
+        {
+          text: "Eliminar",
+          onPress: () => {
+            const result = filter(formik.values.imageRest, (image)=> image !== img);
+            formik.setFieldValue("imageRest",result);
+            setPictures(result);
+          }
+        }
+      ]
+    );
+  }
 
   return (
     <>
@@ -79,23 +115,6 @@ const NewRestaurantScreen1UI = ({
       <Text style={styles.title}>Nuevo Restaurante</Text>
       <Text style={styles.subTitle}>Datos principales</Text>
       <View style={{ alignItems: "center" }}>
-       
-         <Input
-          placeholder='Nombre'
-          onChangeText={(text) => { formik.setFieldValue('name', text) }}
-          errorMessage={formik.errors.name}
-          />
-        <Input
-          rightIcon={{
-            type: "material-community",
-            name: "map-marker-radius-outline",
-            color: getColorIconMap(formik),
-            onPress: onOpenCloseMap
-          }}
-          placeholder='Calle'
-          onChangeText={(text) => { formik.setFieldValue('street', text) }}
-          errorMessage={formik.errors.street}
-          />
         <View style={styles.container2}>
           {renderLabelCountry()}
           <Dropdown
@@ -120,6 +139,9 @@ const NewRestaurantScreen1UI = ({
               formik.setFieldValue("country",item.label);
             }}
           />
+          <Text style={styles.error}>
+          {formik.errors.country}
+        </Text>
         </View>
         <View style={styles.container2}>
           {renderLabelProvince()}
@@ -145,6 +167,9 @@ const NewRestaurantScreen1UI = ({
               formik.setFieldValue("province",item.label);
             }}
           />
+          <Text style={styles.error}>
+          {formik.errors.province}
+        </Text>
         </View>
         <View style={styles.container2}>
           {renderLabelLocation()}
@@ -165,7 +190,7 @@ const NewRestaurantScreen1UI = ({
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={item => {
-              setValueLocation(item.value);
+              setValueLocation(item.label);
               setIsFocus(false);
             }}
           />
@@ -191,15 +216,57 @@ const NewRestaurantScreen1UI = ({
             onChange={item => {
               setValueNeighborhood(item.value);
               setIsFocus(false);
+              formik.setFieldValue("neighborhood",item.label);
             }}
           />
-        </View>
-         <Text style={styles.error}>{formik.errors.number}</Text>
-        <FileUploadButton title={"+ Agregar Fotos"} onSuccess={onPhotoUploaded} />
-        <Text>
-          {pictures.map(p => `${p}\n`)}
+          <Text style={styles.error}>
+          {formik.errors.neighborhood}
         </Text>
-        <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar y Continuar >" color={Theme.colors.PRIMARY} />
+        </View>
+          <Input
+          placeholder='Nombre'
+          onChangeText={(text) => { formik.setFieldValue('name', text) }}
+          errorMessage={formik.errors.name}
+          />
+        <Input
+          rightIcon={{
+            type: "material-community",
+            name: "map-marker-radius-outline",
+            color: getColorIconMap(formik),
+            onPress: onOpenCloseMap
+          }}
+          placeholder='Calle'
+          onChangeText={(text) => { formik.setFieldValue('street', text) }}
+          errorMessage={formik.errors.street}
+          />
+          <Input
+          placeholder='Número'
+          onChangeText={(text) => { formik.setFieldValue('number', text) }}
+          errorMessage={formik.errors.number}
+          />
+        <FileUploadButton 
+          title={"+ Agregar Fotos"}
+          onSuccess={onPhotoUploaded}
+          onStartUpload={onPhotoStartUpload}
+          onError={onPhotoError} 
+        />
+        <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+        {pictures.map(p => {
+            return (
+              <Avatar
+                key={p}
+                uri={p}
+                styles={styles.imageStyle}
+                onPress={()=>removeImagen(p)}
+              />
+            )
+          })}
+        <Text style={styles.error}>
+          {formik.errors.imageRest}
+        </Text>
+        </ScrollView>
+        <LoadingModal show={isLoading} text='Subiendo imagen'/>
+        <Button style={styles.button2} onPress={formik.handleSubmit} title="Continuar >" color={Theme.colors.PRIMARY} />
       </View>
     </View>
     <MapForm show={showMap} close={onOpenCloseMap} formik={formik}/>
@@ -280,7 +347,7 @@ const styles = StyleSheet.create({
     borderColor: Theme.colors.PRIMARY,
     borderWidth: 1,
     borderRadius: 5,
-    paddingHorizontal: 8,
+    paddingHorizontal: 8
   },
   icon: {
     marginRight: 5,
@@ -323,4 +390,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
   },
+  imageStyle:{
+    width:70,
+    height:70,
+    marginRight:10
+  }
 });

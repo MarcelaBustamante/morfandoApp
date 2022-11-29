@@ -2,15 +2,15 @@ import React from 'react';
 import ProfileScreenUI from './ProfileScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
-import { logoutPartner } from '../../../redux/slices/partnerLoginSlice';
 import { useDispatch } from 'react-redux';
+import { userLogout } from '../../../redux/Store';
 
 
 export default function ProfileScreen({ navigation }) {
   welcomeString = 'Bienvenido a Morfando';
   const dispatch = useDispatch();
   const logout = () => {
-    dispatch(logoutPartner());
+    dispatch(userLogout());
     navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN);
   }
   return (

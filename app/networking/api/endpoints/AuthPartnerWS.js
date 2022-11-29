@@ -2,7 +2,6 @@ import axios, { setAuthToken } from "../Api";
 
 export const login = async function (email, password) {
     setAuthToken(null);
-    console.log("intentando login", {email, password});
     const result = await axios.post('/users/login', {
         email,
         password,
@@ -36,34 +35,16 @@ export const getListRestoAPI = async function() {
     return results.data;
 }
 
-export const newRestaurantAPI = async function(){
-    // {
-    //     "address": {
-    //       "street": "Lima",
-    //       "number": "775",
-    //       "neighborhood": "Montserrat",
-    //       "city": "CABA",
-    //       "province": "CABA",
-    //       "zipCode": "C1073AAO"
-    //     },
-    //     "businessHours": [
-    //         {
-    //           "dayOfWeek": "MONDAY",
-    //           "fromTime": "09:00:00",
-    //           "toTime": "18:30:00"
-    //         },
-    //         {
-    //           "dayOfWeek": "TUESDAY",
-    //           "fromTime": "09:00:00",
-    //           "toTime": "18:30:00"
-    //         }
-    //     ],
-    //     "name": "San Paolo",
-    //     "type": 1,
-    //     "priceRange": 2,
-    //     "photos": [
-    //       "20112022165443.prueba123.png"
-    //     ]
-    //   }
-
+export const newRestaurantAPI = async function(form){
+    try {
+        console.log("llego a la creación", form)
+        const result = await axios.post('restaurants', form).catch(err => {
+            console.log("Alta de restaurante error", err);
+            return Promise.reject(err);
+        });
+        console.log("Alta restaurante ok", result);
+        return result.data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
 }

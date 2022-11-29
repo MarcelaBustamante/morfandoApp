@@ -8,6 +8,7 @@ import {
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 import { Button } from "@react-native-material/core";
+import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal"
 
 const LoginScreenUI = ({
   navigateToClient,
@@ -19,6 +20,7 @@ const LoginScreenUI = ({
   password,
   onChangePassword,
   navigateToRecovery,
+  isLoading
 
 }) => {
 
@@ -55,6 +57,10 @@ const LoginScreenUI = ({
         <Button variant="text" title="¿No tienes una cuenta? ¡Registrate!" color={Theme.colors.PRIMARY}
           onPress={navigateToRegister} />
       </View>
+      <LoadingModal
+        text="Iniciando sesión"
+        show={isLoading}
+        />
     </View>
   );
 }
@@ -101,6 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5,
     borderRadius: 5,
+    color: Theme.colors.PRIMARY
   },
   image: {
     height: 80,

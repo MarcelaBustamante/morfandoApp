@@ -1,6 +1,5 @@
 import React from 'react';
 import RestaurantList from '../owner/RestaurantList';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
@@ -12,8 +11,6 @@ const HomeRestoUI = ({
   navigateMenuOwner
 }) => {
   welcomeString = 'Bienvenido a Morfando';
-  //const DATA = [{owner: "Pedro Rodrigez"}]
-
   const getNombreOwner = () => {
     return "Pedro Rodriguez"
   }
@@ -21,11 +18,9 @@ const HomeRestoUI = ({
   const getInicialOwner = () => {
     return getNombreOwner().substring(0, 1)
   }
-
-  const loginHandler = ()=>{
-
-  }
  
+  console.log("Restaurants en home resto ui", restaurants);
+
   return (
     // <KeyboardAwareScrollView>
       <View style={styles.container}>
@@ -39,7 +34,7 @@ const HomeRestoUI = ({
           <RestaurantList
             navigateMenuOwner = {navigateMenuOwner}
             restaurants={restaurants}
-             />
+          />
         </View>
       </View>
     //</KeyboardAwareScrollView>

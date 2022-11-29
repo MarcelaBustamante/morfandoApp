@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     alignSelf: "center",
+    color: Theme.colors.PRIMARY,
   }, 
    button1:{
     width: 120,

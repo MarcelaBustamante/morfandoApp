@@ -2,11 +2,16 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput} from 'react-native';
+    TextInput,
+    ScrollView,
+    Pressable
+  } from 'react-native';
 import Theme from '../../styles/Theme';
 import { Button, even  } from "@react-native-material/core";
 import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
+import FileUploadButton from '../../components/shared/FileUploadButton';
+import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
 
 
 const RegisterScreenUI = ({
@@ -14,15 +19,57 @@ const RegisterScreenUI = ({
     secText,
     loginHandler, 
     navigateToClient,
-    formState,
+    formik,
     setFormState,
     registerHandler,
+    navigateToClientNearBy,
     error
   }) => {
     const [checked, setChecked] = useState(true);
     const handleChange = (field, text) => {
       setFormState({...formState, [field]: text});
     };
+
+    const [pictures, setPictures] = useState([]);
+
+    const [isLoading,setIsLoading] = useState(false);
+
+    const onPhotoUploaded = (fileKey) => {
+      setIsLoading(false);
+      setPictures([...pictures, fileKey]);
+      formik.setFieldValue("imageRest", pictures);
+    };
+  
+    const onPhotoStartUpload = () => {
+      setIsLoading(true);
+    }
+  
+    const onPhotoError = () => {
+      setIsLoading(false);
+      Toast("Hubo un error cargando la imagen")
+    }
+
+
+    const removeImagen = (img)=> {
+      Alert.alert(
+        "Eliminar imagen",
+        "Estas seguro de eliminar esta imagen?",
+        [
+          {
+            text: "Cancelar",
+            style: "cancel",  
+          },
+          {
+            text: "Eliminar",
+            onPress: () => {
+              const result = filter(formik.values.imageRest, (image)=> image !== img);
+              formik.setFieldValue("imageRest",result);
+              setPictures(result);
+            }
+          }
+        ]
+      );
+    }
 
 
   return (
@@ -36,25 +83,43 @@ const RegisterScreenUI = ({
             <TextInput
               style={styles.input}
               placeholder='Nombre'
-              value={formState.name}
-              onChangeText={(text) => handleChange("name", text)}
+              onChangeText={(text) => { formik.setFieldValue('name', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
             <TextInput
               style={styles.input}
               placeholder='Apellido'
-              value={formState.lastName}
-              onChangeText={(text) => handleChange("lastName", text)}
+              onChangeText={(text) => { formik.setFieldValue('lastName', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
             />
-            <TextInput
-              style={styles.input}
-              placeholder='Imagen'
-              value={formState.email}
-              onChangeText={(text) => handleChange("email", text)}
-              placeholderTextColor={Theme.colors.PRIMARY}
-            />
+            <FileUploadButton 
+          title={"+ Agregar Fotos"}
+          onSuccess={onPhotoUploaded}
+          onStartUpload={onPhotoStartUpload}
+          onError={onPhotoError} 
+        />
+        <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+        {pictures.map(p => {
+            return (
+              <Avatar
+                key={p}
+                uri={p}
+                styles={styles.imageStyle}
+                onPress={()=>removeImagen(p)}
+              />
+            )
+          })}
+        <Text style={styles.error}>
+          {formik.errors.imageRest}
+        </Text>
+        </ScrollView>
+        <LoadingModal show={isLoading} text='Subiendo imagen'/>
          </View>
+         <Pressable
+          onPress={navigateToClientNearBy}
+         >
+            <Text style={styles.textStyle}>Omitir</Text>
+        </Pressable>
          <ListItem 
         title="Acepto los términos y condiciones"
         trailing={
@@ -62,7 +127,7 @@ const RegisterScreenUI = ({
         }
         onPress={() => setChecked(!checked)}
       />
-        <Button style={styles.button} onPress={registerHandler} title="Registrame" />
+        <Button style={styles.button} onPress={navigateToClientNearBy} title="Registrame" />
         </View> 
        </View>
 );
@@ -121,6 +186,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     borderColor: Theme.colors.PRIMARY,
+    color: Theme.colors.PRIMARY,
     }, 
   button:{
     margin: 13,
@@ -136,4 +202,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  textStyle: {
+    color: Theme.colors.PRIMARY,
+    textAlign: "left",
+    fontSize: 16,
+ },
+ buttonOpen: {
+  backgroundColor: Theme.colors.GREY,
+  padding: 10,
+  width: 150,
+},
 });

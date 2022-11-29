@@ -2,6 +2,7 @@ import React from 'react';
 import LoginUserScreenUI from './LoginUserScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
+import { Alert } from 'react-native';
 import {
   GoogleSignin,
   statusCodes,
@@ -20,9 +21,10 @@ export default function LoginScreen({navigation}) {
       const userInfo = await GoogleSignin.signIn();
       Alert.alert(`Sign in ok ${userInfo.user}`);
       console.log(JSON.stringify(userInfo));
+      navigation.navigate(NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT);
     } catch (error) {
       const typedError = error;
-
+      console.error("Oauth error", error);
       switch (typedError.code) {
         case statusCodes.SIGN_IN_CANCELLED:
           // sign in was cancelled
@@ -49,6 +51,7 @@ export default function LoginScreen({navigation}) {
     <KeyboardAwareScrollView>
           <LoginUserScreenUI
           navigateToPartner={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN)}
+          navigateToClientRegister={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT)}
           _signIn={_signIn}
           /> 
     </KeyboardAwareScrollView>

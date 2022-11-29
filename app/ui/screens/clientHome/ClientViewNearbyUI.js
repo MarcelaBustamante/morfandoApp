@@ -7,7 +7,9 @@ import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export default function ClientViewNearbyUI() {
+export default function ClientViewNearbyUI({
+  navigateToProfileClient,
+}) {
   welcomeString = 'Bienvenido a Morfando';
   //const DATA = [{owner: "Pedro Rodrigez"}]  
 

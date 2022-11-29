@@ -3,16 +3,14 @@ import MenuViewOwnerScreenUI from './MenuViewOwnerScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function MenuViewOwnerScreen({navigation}) {
+export default function MenuViewOwnerScreen({navigation, route}) {
   welcomeString = 'Bienvenido a Morfando';
-
-  const loginHandler = () => {
-    console.log("Hola mundo");
-  }
+  const { restaurant } = route.params;
+  console.log("Menu de Restaurant " + restaurant?.name);
 
   return ( 
           <MenuViewOwnerScreenUI
             navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
-            loginHandler={loginHandler}/> 
+          /> 
 
   )};
