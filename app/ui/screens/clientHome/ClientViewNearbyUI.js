@@ -4,7 +4,7 @@ import SearchRestaurants from './SearchRestaurants';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
-
+import Filter from "./Filter"
 
 
 export default function ClientViewNearbyUI({
@@ -31,9 +31,12 @@ export default function ClientViewNearbyUI({
         <View style={styles.containerCircle}>
           <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
         </View>
+        <Text style={styles.welcomeOwner}>Hola, {getNameOwner()}</Text> 
             <SearchRestaurants
             loginHandler={loginHandler}/>
-               <View style= {{justifyContent: "flex-end", alignItems: "flex-end"}}>
+        <View style={{flexDirection:"row", justifyContent: "space-between"}} >
+               <Filter
+            loginHandler={loginHandler}/>
         <Button title="Mis Favoritos ♥"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
         </View>
         <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
@@ -52,7 +55,7 @@ export default function ClientViewNearbyUI({
       borderRadius: 100,
     },
     welcomeOwner: {
-        fontSize: 35,
+        fontSize: 25,
         marginTop: 5,
         color: Theme.colors.SECONDARY,
         fontWeight: "bold",
