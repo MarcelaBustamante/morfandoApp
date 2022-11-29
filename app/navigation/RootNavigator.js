@@ -1,6 +1,6 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NavigatorConstant from './NavigatorConstant';
 import LoginPartner from '../ui/screens/loginPartner/LoginScreen';
 import LoginUserScreen from '../ui/screens/loginUser/LoginUserScreen';
@@ -28,17 +28,17 @@ export default RootNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName={NavigatorConstant.NAVIGATOR.LOGIN}
-        screenOptions={{headerShown: false}}
-       >
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen
           name={NavigatorConstant.NAVIGATOR.LOGIN}
           component={LoginPartner}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name={NavigatorConstant.NAVIGATOR.LOGINUSER}
           component={LoginUserScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name={NavigatorConstant.LOGIN_STACK.REGISTER}
@@ -56,11 +56,11 @@ export default RootNavigator = () => {
           name={NavigatorConstant.PASSWORD_STACK.CHANGE_PASSWORD}
           component={ChangePasswordScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={NavigatorConstant.LANDING_STACK.RESTAURANT}
           component={HomeResto}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={NavigatorConstant.LANDING_STACK.NEW_RESTAURANT}
           component={NewResto}
         />
@@ -76,6 +76,7 @@ export default RootNavigator = () => {
           name={NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2}
           component={NewResto2}
         />
+        
         <Stack.Screen
           name={NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL}
           component={NewMealScreen}

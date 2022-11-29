@@ -30,7 +30,7 @@ const NAVIGATOR = {
   };
   const NEW_RESTAURANT_STACK = {
     SCREEN_2: 'SCREEN_2',
-    NEW_MEAL:'NEW_MEAL',
+    NEW_MEAL:'NEW_MEAL'
   };
   const TAB_STACK = {
     RESTAURANTS: 'TAB_RESTAURANTS',
