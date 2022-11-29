@@ -5,6 +5,7 @@ export function initialValues(){
         type: "",
         category: "",
         description: "",
+        price:"",
         vegan: false,
         tac: false,
         photo: [],
@@ -16,6 +17,6 @@ export function validationSchemma(){
         name: Yup.string().required("Campo nombre es obligatorio"),
         type: Yup.string().required("Campo typo es obligatorio"),
         description: Yup.string().required("Campo descripción es obligatorio"),
-        photo: Yup.array().min(1, "Se requiere una imagen como mínimo").required("La imagen es requerida")
+        //photo: Yup.array().min(1, "Se requiere una imagen como mínimo").required("La imagen es requerida")
     })
 }
