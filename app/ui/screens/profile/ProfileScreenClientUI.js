@@ -13,7 +13,7 @@ const ProfileScreenClientUI = ({
     loginHandler,
     navigateToClientNearBy,
     navigateToPersonalInfo,
-    navigateToLoginPartner,
+    navigateToLoginClient,
   }) => {
     const [checked, setChecked] = useState(true);
 
@@ -26,7 +26,7 @@ const ProfileScreenClientUI = ({
         <Text style={styles.subTitle}>Información legal</Text>
         <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Términos y condiciones" />
           <Button style={styles.button} onPress={() => loginHandler('enviar datos')} title="Politicas de privacidad"/>
-          <Button style={styles.button2} onPress={ navigateToLoginPartner} title="Cerrar sesión" color= {Theme.colors.ALERT}/>
+          <Button style={styles.button2} onPress={ navigateToLoginClient} title="Cerrar sesión" color= {Theme.colors.ALERT}/>
 
         </View> 
 );
