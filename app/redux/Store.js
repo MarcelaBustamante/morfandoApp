@@ -3,6 +3,7 @@ import partnerLoginReducer from './slices/partnerLoginSlice';
 import partnerRegisterReducer from './slices/partnerRegisterSlice';
 import restaurantsReducer from './slices/restaurantsSlice';
 import newRestaurantsReducer from './slices/newRestaurantsSlice';
+import clientLoginReducer from './slices/clientLoginSlice';
 import { setAuthToken } from '../networking/api/Api';
 import { createAction } from '@reduxjs/toolkit'
 
@@ -14,7 +15,8 @@ const combinedReducer = combineReducers({
   partnerLogin: partnerLoginReducer,
   partnerRegister: partnerRegisterReducer,
   restaurants: restaurantsReducer,
-  restaurant: newRestaurantsReducer
+  restaurant: newRestaurantsReducer,
+  clientLogin: clientLoginReducer,
 });
 
 const rootReducer = (state, action) => {
