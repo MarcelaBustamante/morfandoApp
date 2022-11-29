@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { Searchbar } from 'react-native-paper';
 
-const SearchRestaurants = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  const onChangeSearch = query => setSearchQuery(query);
-
+const SearchRestaurants = ({filters, setFilters}) => {
+  const onChange = search => {
+    setFilters({...filters, search: search});
+  };
   return (
     <Searchbar
       placeholder="Search"
-      onChangeText={onChangeSearch}
-      value={searchQuery}
+      onChangeText={onChange}
     />
   );
 };
+
+// TODO implementar otros filtros
 
 export default SearchRestaurants;

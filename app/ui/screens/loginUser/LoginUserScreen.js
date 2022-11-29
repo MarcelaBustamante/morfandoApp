@@ -8,13 +8,13 @@ import { clientLogin } from '../../../redux/slices/clientLoginSlice';
 
 export default function LoginScreen({navigation}) {
 
-  const { error, isLoggedIn, isLoading, user } = useSelector(state => state.clientLogin);
+  const { error, isLoggedIn, isLoading, userId } = useSelector(state => state.clientLogin);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (user) {
+    if (isLoggedIn) {
       navigation.navigate(NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT);
     }
-  }, [user]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (error) {

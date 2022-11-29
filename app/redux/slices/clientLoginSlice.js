@@ -16,7 +16,7 @@ const initialState = {
     isLoggedIn: false,
     isLoading: false,
     token: null,
-    user: null,
+    userId: null,
     error: null
   }
   
@@ -43,7 +43,7 @@ const initialState = {
         state.isLoggedIn = true;
         state.error = null;
         state.token = action.payload.token;
-        state.user = action.payload.subject;
+        state.userId = action.payload.user;
         console.log(action.type);
       }) 
       .addCase(clientLogin.rejected, (state, action) => {

@@ -6,50 +6,49 @@ import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 
-
-
 export default function ClientViewNearbyUI({
-  navigateToProfileClient,
+  client,
+  restaurants,
+  favourites,
+  filters,
+  setFilters,
+  navigateToProfileClient
 }) {
-  welcomeString = 'Bienvenido a Morfando';
-  //const DATA = [{owner: "Pedro Rodrigez"}]  
 
   const  getNameOwner = () => {
     return "Pedro Rodriguez"
   }
 
-  const  getInicialOwner = () => {
-    return getNameOwner().substring(0,1)
+  const  clientFirstLetter = () => {
+    return client?.name?.substring(0, 1) ?? '';
   }
-  const loginHandler = () => {
-    console.log("Hola mundo");
-  }
-
 
   return (
     <KeyboardAwareScrollView>
       <View style={styles.container}> 
 
         <View style={styles.containerCircle}>
-          <Button style={styles.circleGreen} onPress={() => loginHandler('enviar datos')} title="◀"/>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfileClient} title={getInicialOwner()} />
+          <Button style={styles.circleGreen} title="◀"/>
+          <Button
+            style={styles.circle} 
+            onClick={this.switchColor}
+            onPress={navigateToProfileClient}
+            title={clientFirstLetter()}
+          />
         </View>
         <View style={styles.container}>
-            <SearchRestaurants
-            loginHandler={loginHandler}/>
+            <SearchRestaurants filters={filters} setFilters={setFilters} />
         </View>
-        <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
-        <View>
-        </View>
+        
+        <Text style={styles.title}>Restaurantes Cercanos 📍</Text>
         <View style={styles.container}>
-            <RestaurantListNearby
-            loginHandler={loginHandler}/>
+            <RestaurantListNearby restaurants={restaurants}/>
         </View>
         <Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
-        <Text style={styles.title}> Mis Favoritos ♥</Text>
+        
+        <Text style={styles.title}>Mis Favoritos ♥</Text>
         <View style={styles.container}>
-            <RestaurantListNearby
-            loginHandler={loginHandler}/> 
+            <RestaurantListNearby restaurants={favourites}/> 
         </View>
         <Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
       </View>
