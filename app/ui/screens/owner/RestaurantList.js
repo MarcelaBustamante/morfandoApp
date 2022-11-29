@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import React from "react";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import ImageCustom from "../../components/shared/ImageCustom";
 import moment from "moment";
@@ -34,7 +34,6 @@ const printStatus = (status) => {
 };
 
 const RestaurantList = ({ navigateMenuOwner, restaurants }) => {
-  console.log("Lista de restaurantes", restaurants.length);
   const Item = ({ item, onPress, backgroundColor, textColor, navigateMenuOwner }) => (
     <TouchableOpacity onPress={() => navigateMenuOwner(item)} style={[styles.item, backgroundColor]}>
       <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
@@ -57,14 +56,10 @@ const RestaurantList = ({ navigateMenuOwner, restaurants }) => {
   );
 
   const renderItem = ({ item }) => {
-    //const backgroundColor = item.id === selectedId ? Theme.colors.GREY : Theme.colors.GREY ;
-    //const color = item.id === selectedId ?  Theme.colors.PRIMARY : Theme.colors.PRIMARY;
     return (
       <Item
         item={item}
         navigateMenuOwner={navigateMenuOwner}
-      //backgroundColor={{ backgroundColor }}
-      //textColor={{ color }}
       />
     );
   };

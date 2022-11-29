@@ -4,6 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button, ListItem, Switch  } from "@react-native-material/core";
 import CheckBox from '@react-native-community/checkbox';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const dataCategory = [
   { label: 'Minutas', value: '1' },
@@ -14,8 +15,7 @@ const dataCategory = [
 
 ];
 const NewMealScreenUI = ({
-    primText = 'No vino ningún texto',
-    secText,
+    fprmik,
     loginHandler,
     navigateToHomeResto,
   }) => {
@@ -61,8 +61,9 @@ const NewMealScreenUI = ({
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={item => {
-              setValueCategory(item.value);
+              //setValueCategory(item.value);
               setIsFocus(false);
+              formik.setFieldValue("category",item.label);
             }}
           />
         </View>
@@ -70,13 +71,13 @@ const NewMealScreenUI = ({
         <TextInput
             style={styles.input}
             placeholder='Nombre del plato'
-            onChange={console.log("nameMeal")}
+            onChangeText={(text)=>formik.setFieldValue("name", text)}
             placeholderTextColor={Theme.colors.PRIMARY}
             />
           <TextInput
             style={styles.input}
             placeholder='Precio'
-            onChange={console.log("price")}
+            onChange={formik.setFieldValue("")}
             placeholderTextColor={Theme.colors.PRIMARY}
             keyboardType='numeric'
             />

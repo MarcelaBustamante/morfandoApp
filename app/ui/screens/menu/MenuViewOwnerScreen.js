@@ -11,7 +11,7 @@ export default function MenuViewOwnerScreen({navigation, route}) {
   return ( 
           <MenuViewOwnerScreenUI
             navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
-            onCreateMenu={()=> navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL)}
+            onCreateMenu={()=> navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL, {restaurant})}
           /> 
 
   )};
