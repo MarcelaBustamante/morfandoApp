@@ -85,7 +85,7 @@ const RestaurantListNearby = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
-        ListFooterComponent={<Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>}
+        //ListFooterComponent={<Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>}
       />
     </SafeAreaView>
   );

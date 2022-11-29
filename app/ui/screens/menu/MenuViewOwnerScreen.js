@@ -9,8 +9,7 @@ export default function MenuViewOwnerScreen({navigation, route}) {
   console.log("Menu de Restaurant " + restaurant?.name);
 
   return ( 
-          <MenuViewOwnerScreenUI
-            navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
-          /> 
-
+    <MenuViewOwnerScreenUI
+    navigateToHome={()=> navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
+    /> 
   )};

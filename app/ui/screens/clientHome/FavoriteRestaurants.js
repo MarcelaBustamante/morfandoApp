@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import RestaurantListNearby from './RestaurantListNearby';
-import SearchRestaurants from './SearchRestaurants';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
@@ -9,28 +8,19 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default function ClientViewNearbyUI() {
   welcomeString = 'Bienvenido a Morfando';
-  //const DATA = [{owner: "Pedro Rodrigez"}]  
 
-  const  getNameOwner = () => {
-    return "Pedro Rodriguez"
-  }
-
-  const  getInicialOwner = () => {
-    return getNameOwner().substring(0,1)
-  }
   const loginHandler = () => {
     console.log("Hola mundo");
   }
 
-
+/* le saque el <SearchRestaurants
+            loginHandler={loginHandler}/> si lo quieren lo pongo pero es mas trabajo al pedo*/
   return (
       <View style={styles.container}> 
         <View style={styles.containerCircle}>
             <Button style={styles.back} title="<"/>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
         </View>
-            <SearchRestaurants
-            loginHandler={loginHandler}/>
+            
         <Text style={styles.title}> Mis Favoritos ♥ </Text>
         <View>
         </View>

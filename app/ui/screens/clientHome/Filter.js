@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MultiSelect } from 'react-native-element-dropdown';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import SliderApp from './SliderApp';
 
 export default function Filter({}) {
     welcomeString = 'Bienvenido a Morfando';
@@ -58,7 +59,6 @@ export default function Filter({}) {
             { labelS: '⭐⭐⭐', valueS: '15' },
             { labelS: '⭐⭐⭐⭐', valueS: '16' },
             { labelS: '⭐⭐⭐⭐⭐', valueS: '17' },
-
           ];
     const data = [
         { label: 'Comida Mexicana', value: '1' },
@@ -167,6 +167,7 @@ export default function Filter({}) {
                     }}
                     />
                     </View>
+                    <SliderApp/>
                     <Pressable
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => setModalVisible(!modalVisible)}
@@ -185,7 +186,6 @@ export default function Filter({}) {
         </View>
                 )};
                 const width = Dimensions.get("window").width;
-                const height = Dimensions.get("window").height;
 const styles = StyleSheet.create({
 centeredView: {
     flex: 1,
@@ -310,3 +310,4 @@ centeredView: {
         padding: 16 
     },
 });
+ 

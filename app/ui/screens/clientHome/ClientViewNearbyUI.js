@@ -9,9 +9,10 @@ import Filter from "./Filter"
 
 export default function ClientViewNearbyUI({
   navigateToProfileClient,
+  /* MENSAJE PARA FLOR : supuestamente el boton de favs seconecta con FavoriteRestaurants y de ahi con el boton de bak deberia volver a esta pantalla*/
+
 }) {
   welcomeString = 'Bienvenido a Morfando';
-  //const DATA = [{owner: "Pedro Rodrigez"}]  
 
   const  getNameOwner = () => {
     return "Pedro Rodriguez"
@@ -24,12 +25,11 @@ export default function ClientViewNearbyUI({
     console.log("Hola mundo");
   }
 
-
   return (
       <View style={styles.container}> 
 
         <View style={styles.containerCircle}>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={() => loginHandler()} title={getInicialOwner()} />
+          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfileClient} title={getInicialOwner()} />
         </View>
         <Text style={styles.welcomeOwner}>Hola, {getNameOwner()}</Text> 
             <SearchRestaurants
@@ -37,7 +37,7 @@ export default function ClientViewNearbyUI({
         <View style={{flexDirection:"row", justifyContent: "space-between"}} >
                <Filter
             loginHandler={loginHandler}/>
-        <Button title="Mis Favoritos ♥"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>
+        <Button title="Mis Favoritos ♥"  color={Theme.colors.SECONDARY} style={styles.seeMore}/> 
         </View>
         <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
         <View style={styles.container}>
@@ -114,9 +114,4 @@ export default function ClientViewNearbyUI({
       flexDirection: 'row',
       justifyContent: 'flex-end'
     },
-    seeMore:{
-      margin: 10,
-      alignItems: "center",
-      justifyContent: "flex-end"
-    }
   });
