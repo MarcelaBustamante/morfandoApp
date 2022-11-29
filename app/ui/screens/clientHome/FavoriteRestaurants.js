@@ -1,45 +1,29 @@
 import React, { useState } from 'react';
 import RestaurantListNearby from './RestaurantListNearby';
-import SearchRestaurants from './SearchRestaurants';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
-import Filter from "./Filter"
 
 
-export default function ClientViewNearbyUI({
-  navigateToProfileClient,
-  /* MENSAJE PARA FLOR : supuestamente el boton de favs seconecta con FavoriteRestaurants y de ahi con el boton de bak deberia volver a esta pantalla*/
 
-}) {
+export default function ClientViewNearbyUI() {
   welcomeString = 'Bienvenido a Morfando';
 
-  const  getNameOwner = () => {
-    return "Pedro Rodriguez"
-  }
-
-  const  getInicialOwner = () => {
-    return getNameOwner().substring(0,1)
-  }
   const loginHandler = () => {
     console.log("Hola mundo");
   }
 
+/* le saque el <SearchRestaurants
+            loginHandler={loginHandler}/> si lo quieren lo pongo pero es mas trabajo al pedo*/
   return (
       <View style={styles.container}> 
-
         <View style={styles.containerCircle}>
-          <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfileClient} title={getInicialOwner()} />
+            <Button style={styles.back} title="<"/>
         </View>
-        <Text style={styles.welcomeOwner}>Hola, {getNameOwner()}</Text> 
-            <SearchRestaurants
-            loginHandler={loginHandler}/>
-        <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-               <Filter
-            loginHandler={loginHandler}/>
-        <Button title="Mis Favoritos ♥"  color={Theme.colors.SECONDARY} style={styles.seeMore}/> 
+            
+        <Text style={styles.title}> Mis Favoritos ♥ </Text>
+        <View>
         </View>
-        <Text style={styles.title}> Restaurantes Cercanos 📍 </Text>
         <View style={styles.container}>
             <RestaurantListNearby
             loginHandler={loginHandler}/>
@@ -55,7 +39,7 @@ export default function ClientViewNearbyUI({
       borderRadius: 100,
     },
     welcomeOwner: {
-        fontSize: 25,
+        fontSize: 35,
         marginTop: 5,
         color: Theme.colors.SECONDARY,
         fontWeight: "bold",
@@ -98,6 +82,13 @@ export default function ClientViewNearbyUI({
         justifyContent:'center',
         alignItems: 'center',
     },
+    back:{
+        width:39,
+        height:39,
+        borderBottomEndRadius: 20,
+        borderTopEndRadius: 20,
+        margin: 5,
+      },
     circleGreen: {
       width:50,
       height:50,
@@ -114,4 +105,9 @@ export default function ClientViewNearbyUI({
       flexDirection: 'row',
       justifyContent: 'flex-end'
     },
+    seeMore:{
+      margin: 10,
+      justifyContent:"flex-end",
+      alignItems: "flex-end",
+    }
   });

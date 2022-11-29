@@ -51,39 +51,40 @@ const NewMealScreenUI = ({
   const [isFocus, setIsFocus] = useState(false);
   const [checkedVegan, setCheckedVegan] = useState(false);
   const [checkedCeliac, setCheckedCeliac] = useState(false);
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <View style={styles.container1}>
       <Button style={styles.circle} onPress={navigateToHome} title="<" />
       <Text style={styles.title}>{restaurant.name}</Text>
       <Text style={styles.subTitle}>Datos principales de nuevo plato</Text>
+      <View style={styles.container2}>
+        {renderLabelCategory()}
+        <Dropdown
+          style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={styles.iconStyle}
+          data={dataCategory}
+          search
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          placeholder={!isFocus ? 'Seleccionar categoría' : '...'}
+          searchPlaceholder="Buscar..."
+          value={valueCategory}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={item => {
+            //setValueCategory(item.value);
+            setIsFocus(false);
+            formik.setFieldValue("category", item.label);
+          }}
+        />
+        <Text style={styles.error}>{formik.errors.category}</Text>
+      </View>
       <View style={{ alignItems: "center" }}>
-        <View style={styles.container2}>
-          {renderLabelCategory()}
-          <Dropdown
-            style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={dataCategory}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus ? 'Seleccionar categoría' : '...'}
-            searchPlaceholder="Buscar..."
-            value={valueCategory}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={item => {
-              //setValueCategory(item.value);
-              setIsFocus(false);
-              formik.setFieldValue("category", item.label);
-            }}
-          />
-        </View>
         <Input
           placeholder='Nombre del plato'
           onChangeText={(text) => formik.setFieldValue("name", text)}
@@ -121,13 +122,13 @@ const NewMealScreenUI = ({
           formik.setFieldValue("tac", checkedCeliac)
         }}
       />
-      <FileUploadButton 
-          title={"+ Agregar Fotos"}
-          onSuccess={onPhotoUploaded}
-          onStartUpload={onPhotoStartUpload}
-          onError={onPhotoError} 
-        />
-         <LoadingModal show={isLoading} text='Subiendo imagen'/>
+      <FileUploadButton
+        title={"+ Agregar Fotos"}
+        onSuccess={onPhotoUploaded}
+        onStartUpload={onPhotoStartUpload}
+        onError={onPhotoError}
+      />
+      <LoadingModal show={isLoading} text='Subiendo imagen' />
       <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar" color={Theme.colors.PRIMARY} />
     </View>
   );
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
   },
   container2: {
     backgroundColor: Theme.colors.GREY,
-    padding: 16,
+    padding: 10,
   },
   dropdown: {
     height: 40,
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 8,
-    color:Theme.colors.PRIMARY
+    color: Theme.colors.PRIMARY
   },
   icon: {
     marginRight: 5,
@@ -244,4 +245,9 @@ const styles = StyleSheet.create({
     margin: 13,
     alignSelf: "flex-end",
   },
-});
+  error: {
+    color: Theme.colors.ERROR,
+    fontSize: 18,
+    fontWeight: "bold",
+  }
+  });

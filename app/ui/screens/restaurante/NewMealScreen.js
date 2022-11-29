@@ -17,7 +17,9 @@ export default function NewMealScreen({navigation,route}) {
     validationSchema: validationSchemma(),
     validateOnChange: false,
     onSubmit: async (formValue) =>{
-      console.log("datos de plato",formValue);
+      console.log("Datos del formulario",formValue);
+      formValue.setFieldValue("type",restaurant.type)
+      console.log("Agrego campo type",formValue);
       dispatch(createMeal(formValue));
       navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
     }
