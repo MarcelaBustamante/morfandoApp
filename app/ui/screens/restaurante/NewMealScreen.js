@@ -19,7 +19,7 @@ export default function NewMealScreen({navigation,route}) {
     onSubmit: async (formValue) =>{
       console.log("datos de plato",formValue);
       dispatch(createMeal(formValue));
-      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS);
     }
   });
 
@@ -28,7 +28,7 @@ export default function NewMealScreen({navigation,route}) {
           <NewMealScreenUI
             formik={formik}
             restaurant={restaurant}
-            navigateToHome={()=>navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
+            navigateToResto={()=>navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS)}
             /> 
     </KeyboardAwareScrollView>
   )};
