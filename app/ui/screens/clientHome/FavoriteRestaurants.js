@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export default function ClientViewNearbyUI() {
+export default function FavoriteRestaurants() {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
