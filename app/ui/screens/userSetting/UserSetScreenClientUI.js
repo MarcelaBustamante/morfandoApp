@@ -6,6 +6,7 @@ import {
 import Theme from '../../styles/Theme';
 import { Button  } from "@react-native-material/core";
 import React, { useState } from "react";
+import { Icon } from '@rneui/base';
 
 
 const UserSetScreenClientUI = ({
@@ -38,7 +39,6 @@ const UserSetScreenClientUI = ({
             placeholderTextColor={Theme.colors.PRIMARY}
             />
          </View>
-        <Button style={styles.buttonText} onPress={navigateToChangePassword} variant="text" title="Cambiar contraseña" color={Theme.colors.SECONDARY}/> 
         <View>
         <Modal
         animationType="slide"
@@ -55,7 +55,13 @@ const UserSetScreenClientUI = ({
             <Pressable
                onPress={ () => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.modalText}>X</Text>
+              <View style={styles.close}> 
+              <Icon
+              type= "material-community"
+              name= "close-box" 
+              color= {Theme.colors.ERROR}
+              />
+              </View>
             </Pressable>
             <Text style={styles.modalText}>¿Está seguro de eliminar esta cuenta?</Text>
             <TextInput
@@ -74,7 +80,12 @@ const UserSetScreenClientUI = ({
           </View>
         </View>
       </Modal>
-      
+      <Pressable
+        style={[styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.textStyle}>  Eliminar cuenta  </Text>
+      </Pressable>
         </View>
         <Button style={styles.button1} onPress={navigateToProfile} title="Guardar" />
         </View> 
@@ -152,7 +163,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -179,8 +189,10 @@ const styles = StyleSheet.create({
  },
  textStyle1: {
   color: "white",
-  textAlign: "left",
   fontSize: 16,
+  textAlign: "center",
+  justifyContent: "center",
+  alignItems: "center",
 },
   modalText: {
     marginBottom: 15,
@@ -200,4 +212,8 @@ const styles = StyleSheet.create({
     borderColor: Theme.colors.ERROR,
     color: Theme.colors.ERROR,
     }, 
+    close:{
+      flexDirection: 'row',
+      justifyContent: 'flex-end'
+    }
 });

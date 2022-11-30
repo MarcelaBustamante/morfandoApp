@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu"
+import FooterDelete from "./FooterDelete"
+
 const DATA = [
   {id: 1,
     title: "Minutas",
@@ -106,6 +108,7 @@ const MenuViewOwnerScreenUI = ({onCreateMenu}) => {
       renderSectionHeader={({ section: { title } }) => (
         <Text style={styles.header}>{title}</Text>
       )}
+      ListFooterComponent= {FooterDelete}
     />
     <Icon
       reverse
@@ -116,6 +119,7 @@ const MenuViewOwnerScreenUI = ({onCreateMenu}) => {
       onPress={onCreateMenu}
       size={30}
       />
+      
   </SafeAreaView>
   );
 };
