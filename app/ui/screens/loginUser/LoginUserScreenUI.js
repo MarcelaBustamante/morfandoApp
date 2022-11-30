@@ -11,37 +11,46 @@ import { Button } from "@react-native-material/core";
 import {
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
+import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal"
 
 const LoginUserScreenUI = ({
   navigateToPartner,
   navigateToClientRegister,
-  _signIn
+  _signIn,
+  isLoading
   }) => {
 
   return (
     <View style={styles.container}>
-          <View style={styles.container2}>
-              <IMAGES.logo style={styles.image} />
-              <Text style={styles.title}>Bienvenido a Morfando</Text>
-              <Text style={styles.subTitle}>Ingrese su cuenta</Text>
-            </View>
-            <View style={styles.viewRow}>
-              <View style={styles.tabLeftButton}><Button color={Theme.colors.GREY} variant="text"  title="Cliente" /></View>
-              <View style={styles.tabRightButton}><Button  variant="text" onPress={ navigateToPartner } title="Restaurante" /></View>
-            </View>
-            <View style={styles.form}>
-              <View style={styles.container2}></View>
-              <View style={styles.container2}>
-                <GoogleSigninButton
-                  size={GoogleSigninButton.Size.Wide}
-                  color={GoogleSigninButton.Color.Dark}
-                  onPress={_signIn}
-                />
-              </View>
-              
-              <View style={styles.container}></View>
-              <Button onPress={navigateToClientRegister} title='atajo para flor'/>
-              </View>
+      <View style={styles.container2}>
+        <IMAGES.logo style={styles.image} />
+        <Text style={styles.title}>Bienvenido a Morfando</Text>
+        <Text style={styles.subTitle}>Ingrese su cuenta</Text>
+      </View>
+      <View style={styles.viewRow}>
+        <View style={styles.tabLeftButton}>
+          <Button color={Theme.colors.GREY} variant="text"  title="Cliente" />
+        </View>
+        <View style={styles.tabRightButton}>
+          <Button  variant="text" onPress={ navigateToPartner } title="Restaurante" />
+        </View>
+      </View>
+      <View style={styles.form}>
+        <View style={styles.container2}></View>
+        <View style={styles.container2}>
+          <GoogleSigninButton
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={_signIn}
+          />
+        </View>
+        <View style={styles.container}/>
+        <Button onPress={navigateToClientRegister} title='atajo para flor'/>
+      </View>
+      <LoadingModal
+        text="Iniciando sesión"
+        show={isLoading}
+      />
     </View>
     );
 }
