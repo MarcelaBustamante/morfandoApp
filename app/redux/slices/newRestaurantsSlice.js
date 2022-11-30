@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { newRestaurantAPI } from '../../networking/api/endpoints/AuthPartnerWS'
+import { newRestaurantAPI, newItemAPI, getListItemAPI } from '../../networking/api/endpoints/AuthPartnerWS'
 import { getListRestaurants } from './restaurantsSlice';
 const initialState = {
   restaurants: null,
   error: null,
   status: 'idle',
-  isLoading: false
+  statusMeal: 'idle',
+  isLoading: false,
+  restaurantMeals: [],
 }
 
 export const createRestaurants = createAsyncThunk(
@@ -18,10 +20,18 @@ export const createRestaurants = createAsyncThunk(
 );
 
 export const createMeal = createAsyncThunk('partner/createMenu',
-  async (data,thunkAPI) => {
-    console.log(data);
+  async ({formValue,restoId},thunkAPI) => {
+    const result = await newItemAPI(formValue,restoId);
+    thunkAPI.dispatch(getMeal(restoId));
+    return result
   }
-)
+);
+export const getMeal = createAsyncThunk('partner/getMenu',
+  async (restoId,thunkAPI) => {
+    const result = await getListItemAPI(restoId);
+    return result
+  }
+);
 
 export const newRestaurantsSlice = createSlice({
   name: 'restaurant',
@@ -43,7 +53,39 @@ export const newRestaurantsSlice = createSlice({
         state.error = 'Hubo un error en la creación del restaurante';
         state.isLoading = false;
         console.log(action);
+      }).addCase(createMeal.pending, (state, action) => {
+        state.status = 'loading';
+        state.error = null;
+        state.isLoading = true;
       })
+        .addCase(createMeal.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.restaurants = action.payload;
+          state.isLoading = false;
+          console.log(action.type);
+        })
+        .addCase(createMeal.rejected, (state, action) => {
+          state.status = 'failed';
+          state.error = 'Hubo un error en la creación del plato';
+          state.isLoading = false;
+          console.log(action);
+        }).addCase(getMeal.pending, (state, action) => {
+          state.statusMeal = 'loading';
+          state.error = null;
+          state.isLoading = true;
+        })
+          .addCase(getMeal.fulfilled, (state, action) => {
+            state.statusMeal = 'succeeded';
+            state.restaurantMeals = action.payload;
+            state.isLoading = false;
+            console.log(action.type);
+          })
+          .addCase(getMeal.rejected, (state, action) => {
+            state.statusMeal = 'failed';
+            state.error = 'Hubo un error en la lista del plato';
+            state.isLoading = false;
+            console.log(action);
+          })
   }
 })
 

@@ -3,7 +3,7 @@ import DocumentPicker, {types} from 'react-native-document-picker';
 import { Button  } from "@react-native-material/core";
 import { StyleSheet} from 'react-native';
 import Theme from '../../styles/Theme';
-import axios from 'axios';
+import axios from '../../../networking/api/Api';
 
 export default function FileUploadButton({
   title,

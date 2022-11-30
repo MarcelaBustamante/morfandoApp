@@ -34,7 +34,7 @@ export const partnerLoginSlice = createSlice({
     }) 
     .addCase(loginPartner.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = 'Credenciales inválidas';
+      state.error = 'Error en el login';
       state.isLoggedIn = false;
       console.log(action.type.timeout);
     })
