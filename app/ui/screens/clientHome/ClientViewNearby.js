@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import ClientViewNearbyUI from './ClientViewNearbyUI';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import {useDispatch, useSelector} from 'react-redux';
 import {getPublicRestaurants} from '../../../redux/slices/clientRestaurantsSlice';
@@ -37,17 +36,19 @@ export default function ClientViewNearby({navigation}) {
   }, [userId]);
 
   return (
-    <KeyboardAwareScrollView>
       <ClientViewNearbyUI
         client={user}
         restaurants={restaurants}
-        favourites={user?.favourites}
         longitude={position.longitude}
         latitude={position.latitude}
         navigateToProfileClient={() =>
           navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_INFORMATION)
         }
+        navigateToFavourites={() =>
+          navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_FAVOURITES, {
+            favourites: user?.favourites
+          })
+        }
       />
-    </KeyboardAwareScrollView>
   );
 }

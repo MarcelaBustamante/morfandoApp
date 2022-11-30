@@ -10,5 +10,5 @@ export const login = async function (idToken) {
 
 export const getUserProfile = async function (userId) {
     const result = await axios.get(`/users/${userId}`);
-    return result;
+    return result.data;
 }

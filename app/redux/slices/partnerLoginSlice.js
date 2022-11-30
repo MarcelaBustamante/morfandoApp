@@ -36,7 +36,7 @@ export const partnerLoginSlice = createSlice({
       state.isLoading = false;
       state.error = 'Credenciales inválidas';
       state.isLoggedIn = false;
-      console.log(action.type);
+      console.log(action.type.timeout);
     })
   }
 })

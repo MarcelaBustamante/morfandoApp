@@ -92,7 +92,6 @@ export default function NewRestaurantScreen2({ navigation, route }) {
     <KeyboardAwareScrollView>
       <NewRestaurantScreen2UI
         navigateToNewResto={() => navigation.navigate(NavigatorConstant.LANDING_STACK.NEW_RESTAURANT)}
-        navigateToNewMeal={() => navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL)}
         dataPrice={dataPrice}
         dataTypeFood={restaurantType}
         businessHours={businessHours}
