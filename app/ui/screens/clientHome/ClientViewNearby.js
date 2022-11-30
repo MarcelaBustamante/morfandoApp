@@ -46,7 +46,7 @@ export default function ClientViewNearby({navigation}) {
         }
         navigateToFavourites={() =>
           navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_FAVOURITES, {
-            favourites: user?.favourites
+            restaurants: user?.favourites
           })
         }
       />

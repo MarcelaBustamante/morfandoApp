@@ -6,15 +6,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export default function FavoriteRestaurants() {
-  welcomeString = 'Bienvenido a Morfando';
-
-  const loginHandler = () => {
-    console.log("Hola mundo");
-  }
-
-/* le saque el <SearchRestaurants
-            loginHandler={loginHandler}/> si lo quieren lo pongo pero es mas trabajo al pedo*/
+export default function FavoriteRestaurants({route}) {
+  const {restaurants} = route.params;
   return (
       <View style={styles.container}> 
         <View style={styles.containerCircle}>
@@ -25,8 +18,7 @@ export default function FavoriteRestaurants() {
         <View>
         </View>
         <View style={styles.container}>
-            <RestaurantListNearby
-            loginHandler={loginHandler}/>
+            <RestaurantListNearby restaurants={restaurants}/>
         </View>
       </View>
   )};

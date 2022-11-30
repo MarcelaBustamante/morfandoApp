@@ -41,7 +41,6 @@ const SearchRestaurants = ({longitude, latitude}) => {
   );
 };
 
-// TODO implementar otros filtros
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
