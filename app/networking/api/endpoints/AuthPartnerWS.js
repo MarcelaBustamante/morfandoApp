@@ -37,7 +37,6 @@ export const getListRestoAPI = async function() {
 
 export const newRestaurantAPI = async function(form){
     try {
-        console.log("llego a la creación", form)
         const result = await axios.post('restaurants', form).catch(err => {
             console.log("Alta de restaurante error", err);
             return Promise.reject(err);
@@ -47,4 +46,22 @@ export const newRestaurantAPI = async function(form){
     } catch (error) {
         return Promise.reject(error);
     }
+}
+export const newItemAPI = async function(form, restoId){
+    try {
+        console.log(form);
+        const result = await axios.post(`/restaurants/${restoId}/menu/items`, form).catch(err => {
+            console.log("Alta de plato error", err);
+            return Promise.reject(err);
+        });
+        console.log("Alta plato ok", result);
+        return result.data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+export const getListItemAPI = async function(restoId) {
+    const results = await axios.get(`/restaurants/${restoId}/menu/items`);
+    return results.data;
 }

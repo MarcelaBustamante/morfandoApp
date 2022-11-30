@@ -6,6 +6,8 @@ import { Button, ListItem, Switch } from "@react-native-material/core";
 import { Input } from '@rneui/themed';
 import FileUploadButton from '../../components/shared/FileUploadButton';
 import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
+import Toast from 'react-native-simple-toast';
+import Avatar from '../../components/shared/AvatarCustom';
 
 const dataCategory = [
   { label: 'Minutas', value: '1' },
@@ -15,21 +17,7 @@ const dataCategory = [
   { label: 'Postres', value: '5' },
 
 ];
-const onPhotoUploaded = (fileKey) => {
-  setIsLoading(false);
-  setPictures([...pictures, fileKey]);
-  formik.setFieldValue("imageRest", pictures);
-};
 
-
-const onPhotoStartUpload = () => {
-  setIsLoading(true);
-}
-
-const onPhotoError = () => {
-  setIsLoading(false);
-  Toast("Hubo un error cargando la imagen")
-}
 
 const NewMealScreenUI = ({
   formik,
@@ -52,7 +40,23 @@ const NewMealScreenUI = ({
   const [checkedVegan, setCheckedVegan] = useState(false);
   const [checkedCeliac, setCheckedCeliac] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [ picture, setPicture ] = useState("");
 
+  const onPhotoUploaded = (fileKey) => {
+    setIsLoading(false);
+    setPicture(fileKey);
+    formik.setFieldValue("photo", fileKey);
+  };
+
+
+  const onPhotoStartUpload = () => {
+    setIsLoading(true);
+  }
+
+  const onPhotoError = () => {
+    setIsLoading(false);
+    Toast.show("Hubo un error cargando la imagen")
+  }
   return (
     <View style={styles.container1}>
       <Button style={styles.circle} onPress={navigateToHome} title="<" />
@@ -77,7 +81,6 @@ const NewMealScreenUI = ({
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={item => {
-            //setValueCategory(item.value);
             setIsFocus(false);
             formik.setFieldValue("category", item.label);
           }}
@@ -128,6 +131,12 @@ const NewMealScreenUI = ({
         onStartUpload={onPhotoStartUpload}
         onError={onPhotoError}
       />
+      <Text style={styles.error}>{formik.errors.photo}</Text>
+      <Avatar
+        key={picture}
+        uri={picture}
+        styles={styles.imageStyle}
+        />
       <LoadingModal show={isLoading} text='Subiendo imagen' />
       <Button style={styles.button2} onPress={formik.handleSubmit} title="Guardar" color={Theme.colors.PRIMARY} />
     </View>
@@ -249,5 +258,9 @@ const styles = StyleSheet.create({
     color: Theme.colors.ERROR,
     fontSize: 18,
     fontWeight: "bold",
+  },imageStyle:{
+    width:70,
+    height:70,
+    marginRight:10
   }
   });
