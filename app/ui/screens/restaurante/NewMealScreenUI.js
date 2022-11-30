@@ -22,7 +22,7 @@ const dataCategory = [
 const NewMealScreenUI = ({
   formik,
   restaurant,
-  navigateToHome
+  navigateToResto
 }) => {
   const [valueCategory, setValueCategory] = useState(null);
 
@@ -59,7 +59,7 @@ const NewMealScreenUI = ({
   }
   return (
     <View style={styles.container1}>
-      <Button style={styles.circle} onPress={navigateToHome} title="<" />
+      <Button style={styles.circle} onPress={navigateToResto} title="<" />
       <Text style={styles.title}>{restaurant.name}</Text>
       <Text style={styles.subTitle}>Datos principales de nuevo plato</Text>
       <View style={styles.container2}>

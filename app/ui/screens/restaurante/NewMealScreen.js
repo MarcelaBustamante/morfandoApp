@@ -19,17 +19,17 @@ export default function NewMealScreen({ navigation, route }) {
     onSubmit: async (formValue) => {
       console.log("Datos del formulario .....", formValue);
       dispatch(createMeal({ formValue, restoId: restaurant.id }));
-      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+      navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS);
     }
   });
 
   return (
     <KeyboardAwareScrollView>
-      <NewMealScreenUI
-        formik={formik}
-        restaurant={restaurant}
-        navigateToHome={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
-      />
+          <NewMealScreenUI
+            formik={formik}
+            restaurant={restaurant}
+            navigateToResto={()=>navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS)}
+            /> 
     </KeyboardAwareScrollView>
   )
 };

@@ -1,89 +1,74 @@
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View , Image, SearchBar, TouchableHighlightBase} from "react-native";
+import React, {useState} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Theme from '../../styles/Theme';
-import { Button } from '@react-native-material/core';
+import Image from '../../components/shared/ImageCustom';
 
-const DATA = [
-  {
-    id: '1',
-    titleRestaurant: 'El almacén',
-    timeRestaurant: "Lunes abierto de 6:00 a 22:30",
-    directionRestaurant: 'Av Belgrano 924',
-    locationRestaurant: 'CABA',
-    distanceRestaurant: '0.5 km',
-    travelRestaurant: '2 min',
-    stateRestaurant: "Abierto",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Bar_Viejo_Almac%C3%A9n_-Buenos_Aires.JPG/1024px-Bar_Viejo_Almac%C3%A9n_-Buenos_Aires.JPG",
-  },
-  {
-    id: "2",
-    titleRestaurant: 'La comida de Manolo',
-    timeRestaurant: "Lunes abierto de 11:00 a 22:30",
-    directionRestaurant: 'Av Martinez 1924',
-    locationRestaurant: 'San Isidro',
-    distanceRestaurant: '2 km',
-    travelRestaurant: '10 min',
-    stateRestaurant: "Abierto",
-    image: "https://www.infobae.com/new-resizer/LeKef6TgPOv3475l7p48rE_ZVIM=/992x661/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/12/19081125/Restaurante-Manolo-de-Mar-del-Plata-Juan-Manuel-Santurian-14.jpg",
-  },
-  {
-    id: '3',
-    titleRestaurant: 'Don Benito',
-    timeRestaurant: "Lunes abierto de 8:00 a 00:30",
-    directionRestaurant: '12 de Octubre 1200',
-    locationRestaurant: 'Quilmes',
-    distanceRestaurant: '5 km', //esto si es mio no iria
-    travelRestaurant: '5 min', // lo de arriba
-    stateRestaurant: "Cerrado Temporalmete",
-    image: "https://storage.googleapis.com/diariodemocracia/uploads/2022/07/10/tapa-don-benito.jpg",
-  },
-];
+const printAddress = (restaurant) => {
+  const { street, number } = restaurant.address;
+  return `${street} ${number}`;
+};
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
+const printNeighbor = (restaurant) => {
+  const { neighborhood, city } = restaurant.address;
+  return `${neighborhood}, ${city}`;
+};
+
+const Item = ({item, onPress, backgroundColor, textColor}) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <View>
-      <Text style={[styles.title, textColor]}>{item.titleRestaurant}</Text>
+      <Text style={[styles.title, textColor]}>{item.name}</Text>
       <View style={styles.containerInfo}>
         <View>
-          <Image
-            style={styles.imageList}
-            source={{ uri: item.image }}
-          />
+        {item.photos && item.photos.length > 0 && 
+          <Image styles={styles.imageList} uri={item.photos[0].url} />
+        }
         </View>
         <View style={styles.listText}>
-          <Text style={[styles.general, textColor]}>{item.directionRestaurant}, {item.locationRestaurant}</Text>
-          <Text style={[styles.general, textColor]}>{item.distanceRestaurant}</Text>
-          <Text style={[styles.general, textColor]}>{item.travelRestaurant}</Text>
+          <Text style={[styles.general, textColor]}>
+            {printAddress(item)}
+          </Text>
+          <Text style={[styles.general, textColor]}>
+            {printNeighbor(item)}
+          </Text>
         </View>
       </View>
     </View>
   </TouchableOpacity>
 );
- 
-const RestaurantListNearby = () => {
+
+const RestaurantListNearby = ({restaurants}) => {
   const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({ item }) => {
-    //const backgroundColor = item.id === selectedId ? Theme.colors.GREY : Theme.colors.GREY ;
-    //const color = item.id === selectedId ?  Theme.colors.PRIMARY : Theme.colors.PRIMARY;
-
-    
-    return (
-        <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        //backgroundColor={{ backgroundColor }}
-        textColor={{ color: Theme.colors.PRIMARY }}
-      />
-    );
+  const renderItem = ({item}) => {
+    return <Item 
+      item={item}
+      onPress={() => setSelectedId(item.id)}
+      textColor={{ color: Theme.colors.PRIMARY }} 
+    />;
   };
+
+  if (!restaurants || restaurants.length == 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.general}>No encontramos restaurantes</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={restaurants}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         extraData={selectedId}
         //ListFooterComponent={<Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>}
       />
@@ -96,11 +81,11 @@ const styles = StyleSheet.create({
     //flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  
+
   containerInfo: {
     flexDirection: 'row',
-    alignItems: "center",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    justifyContent: 'space-between',
     color: Theme.colors.GREY,
   },
   imageList: {
@@ -130,7 +115,7 @@ const styles = StyleSheet.create({
   state: {
     color: Theme.colors.ERROR,
   },
-  general:{
+  general: {
     color: Theme.colors.PRIMARY,
     textAlign: 'right',
   },

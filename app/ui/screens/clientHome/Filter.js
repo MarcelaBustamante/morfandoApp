@@ -6,16 +6,16 @@ import { MultiSelect } from 'react-native-element-dropdown';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SliderApp from './SliderApp';
+import { IconButton } from 'react-native-paper';
 
-export default function Filter({}) {
-    welcomeString = 'Bienvenido a Morfando';
+export default function Filter({filters, setFilters}) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [selected, setSelected] = useState([]); //dropdown menu tags
+    const [selected, setSelected] = useState({}); //dropdown menu
     const [valueP, setValueP] = useState(null); //dropdown menu
     const [valueS, setValueS] = useState(null); //dropdown menu
     const [isFocusP, setIsFocusP] = useState(false); //dropdown menu
     const [isFocusS, setIsFocusS] = useState(false); //dropdown menu
-
+    const [radius, setRadius] = useState(15);
 
     const renderItem = (item: any) => {
         return (
@@ -48,28 +48,32 @@ export default function Filter({}) {
           };
 
         const dataPrice = [
-            { labelP: '$', valueP: '9' },
-            { labelP: '$$', valueP: '10' },
-            { labelP: '$$$', valueP: '11' },
-            { labelP: '$$$$', valueP: '12' },
+          { labelP: 'Sin filtro', valueP: null },
+            { labelP: '$', valueP: '1' },
+            { labelP: '$$', valueP: '2' },
+            { labelP: '$$$', valueP: '3' },
+            { labelP: '$$$$', valueP: '4' },
           ];
           const dataStar = [
-            { labelS: '⭐', valueS: '13' },
-            { labelS: '⭐⭐', valueS: '14' },
-            { labelS: '⭐⭐⭐', valueS: '15' },
-            { labelS: '⭐⭐⭐⭐', valueS: '16' },
-            { labelS: '⭐⭐⭐⭐⭐', valueS: '17' },
+            { labelS: 'Sin filtro', valueS: null },
+            { labelS: '⭐', valueS: '1' },
+            { labelS: '⭐⭐', valueS: '2' },
+            { labelS: '⭐⭐⭐', valueS: '3' },
+            { labelS: '⭐⭐⭐⭐', valueS: '4' },
+            { labelS: '⭐⭐⭐⭐⭐', valueS: '5' },
           ];
     const data = [
-        { label: 'Comida Mexicana', value: '1' },
-        { label: 'Comida Italiana', value: '2' },
-        { label: 'Heladería', value: '3' },
-        { label: 'Pizzería', value: '4' },
-        { label: 'Item 5', value: '5' },
-        { label: 'Item 6', value: '6' },
-        { label: 'Item 7', value: '7' },
-        { label: 'Item 8', value: '8' },
-      ];
+      { label: 'Sin filtro', value: null },
+      { label: 'Comida Alemana', value: 'ALEMANA' },
+      { label: 'Comida Italiana', value: 'ARGENTINA' },
+      { label: 'Comida Armenia', value: 'ARMENIA' },
+      { label: 'Comida China', value: 'CHINA' },
+      { label: 'Comida India', value: 'INDIA' },
+      { label: 'Comida Italiana', value: 'ITALIANA' },
+      { label: 'Comida Japonesa', value: 'JAPONESA' },
+      { label: 'Comida Norteamericana', value: 'NORTEAMERICANA' },
+      { label: 'Comida Peruana', value: 'PERUANA' },
+    ];
 
     return (
 <View style={styles.centeredView}>
@@ -86,7 +90,7 @@ export default function Filter({}) {
                 <View style={styles.modalView}>
                     <Text style={styles.modalText}>Seleccionar filtros</Text>
                     <View style={styles.container}>
-                        <MultiSelect
+                        <Dropdown
                         style={styles.dropdown}
                         placeholderStyle={styles.placeholderStyle}
                         selectedTextStyle={styles.selectedTextStyle}
@@ -100,7 +104,7 @@ export default function Filter({}) {
                         search
                         searchPlaceholder="Buscar..."
                         onChange={item => {
-                        setSelected(item);
+                          setSelected(item);
                         }}
                         renderLeftIcon={() => (
                         <AntDesign
@@ -141,6 +145,7 @@ export default function Filter({}) {
                     onChange={item => {
                         setValueP(item.valueP);
                         setIsFocusP(false);
+                        console.log("Value price", item.valueP);
                     }}
                     />
                     </View>
@@ -167,22 +172,28 @@ export default function Filter({}) {
                     }}
                     />
                     </View>
-                    <SliderApp/>
+                    <SliderApp sliderValue={radius} setSliderValue={setRadius}/>
                     <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                        const newFilters = {
+                          ...filters, 
+                          minPrice: valueP, 
+                          rating: valueS, 
+                          type: selected.value,
+                          radius: radius
+                        };
+                        setFilters(newFilters);
+                        console.log("New filters", newFilters);
+                      }}
                     >
-                    <Text style={styles.textStyle}> OK </Text>
+                      <Text style={styles.textStyle}> OK </Text>
                     </Pressable>
                 </View>
                 </View>
             </Modal>
-            <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}
-            >
-            <Text style={styles.textStyle}> Filtros </Text>
-            </Pressable>
+            <IconButton icon={"filter-variant"} onPress={() => setModalVisible(true)}/>
         </View>
                 )};
                 const width = Dimensions.get("window").width;

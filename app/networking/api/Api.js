@@ -25,7 +25,14 @@ export function setAuthToken(token) {
 
 instance.interceptors.response.use(
   function (response) {
-    console.log("Http Response: " + JSON.stringify(response ?? ""));
+    if (response) {
+      console.log(
+        `HTTP Response\n` +
+        `> Status: ${response.status}\n` +
+        `> Headers: ${JSON.stringify(response.headers)}\n` +
+        `> Body: ${JSON.stringify(response.data)}`
+      );
+    }
     return response;
   },
   function (error) {
@@ -36,7 +43,16 @@ instance.interceptors.response.use(
 
 instance.interceptors.request.use(
   function (request) {
-    console.log("Http Request", JSON.stringify(request ?? ""));
+    if (request) {
+      console.log(
+        `HTTP Request\n` +
+        `> URL: ${request.url}\n` +
+        `> Method: ${request.method}\n` +
+        `> Params: ${JSON.stringify(request.params)}\n` +
+        `> Headers: ${JSON.stringify(request.headers)}\n` +
+        `> Body: ${JSON.stringify(request.data)}`
+      );
+    }
     return request;
   },
   function (error) {

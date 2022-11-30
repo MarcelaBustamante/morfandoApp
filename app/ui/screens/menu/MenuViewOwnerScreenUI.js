@@ -5,7 +5,6 @@ import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu"
 
-
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
     <Text style={[styles.extra, textColor]}>vegano: {item.vegan ? 'Si' : 'No'} // celiaco: {item.tacc ? 'Si' : 'No'}</Text>
@@ -14,7 +13,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
       <View>
         <Image
           styles={styles.imagenLista}
-          uri={ item.photo }
+          uri={item.photo}
         />
       </View>
       <View style={{ paddingEnd: 30, paddingStart: 5 }}>
@@ -73,6 +72,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
         renderSectionHeader={({ section: { category } }) => (
           <Text style={styles.header}>{category}</Text>
         )}
+        ListFooterComponent={FooterDelete}
       />
       <Icon
         reverse

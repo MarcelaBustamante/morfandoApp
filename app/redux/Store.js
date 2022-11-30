@@ -1,10 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { setAuthToken } from '../networking/api/Api';
+import { createAction } from '@reduxjs/toolkit'
 import partnerLoginReducer from './slices/partnerLoginSlice';
 import partnerRegisterReducer from './slices/partnerRegisterSlice';
 import restaurantsReducer from './slices/restaurantsSlice';
 import newRestaurantsReducer from './slices/newRestaurantsSlice';
-import { setAuthToken } from '../networking/api/Api';
-import { createAction } from '@reduxjs/toolkit'
+import clientLoginReducer from './slices/clientLoginSlice';
+import clientRestaurantsReducer from './slices/clientRestaurantsSlice';
+import clientReducer from './slices/clientSlice';
 
 
 // logout global
@@ -15,6 +18,9 @@ const combinedReducer = combineReducers({
   partnerRegister: partnerRegisterReducer,
   restaurants: restaurantsReducer,
   restaurant: newRestaurantsReducer,
+  clientLogin: clientLoginReducer,
+  client: clientReducer,
+  clientRestaurants: clientRestaurantsReducer,
 });
 
 const rootReducer = (state, action) => {
@@ -27,4 +33,5 @@ const rootReducer = (state, action) => {
 
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
 });
