@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet, Dimensions} from 'react-native';
 import Slider from '@react-native-community/slider';
 import Theme from '../../styles/Theme';
-const SliderApp = () => {
-  const [sliderValue, setSliderValue] = useState(15);
- 
+const SliderApp = ({sliderValue, setSliderValue}) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>

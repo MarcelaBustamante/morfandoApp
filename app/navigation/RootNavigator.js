@@ -22,7 +22,7 @@ import UserSetScreenClient from '../ui/screens/userSetting/UserSetScreenClient';
 import ChangePasswordScreenClient from '../ui/screens/changePassword/ChangePasswordScreenClient';
 import EditRestaurantScreen1 from '../ui/screens/restaurante/EditRestaurantScreen1';
 import EditRestaurantScreen2 from '../ui/screens/restaurante/EditRestaurantScreen2';
-import FavoriteRestaurants from '../ui/screens/clientHome/FavoriteRestaurants';
+import FavouriteRestaurants from '../ui/screens/clientHome/FavoriteRestaurants';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,7 +79,6 @@ export default RootNavigator = () => {
           name={NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2}
           component={NewResto2}
         />
-        
         <Stack.Screen
           name={NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL}
           component={NewMealScreen}
@@ -91,6 +90,10 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY}
           component={ClientViewNearby}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.CLIENT_STACK.CLIENT_FAVOURITES}
+          component={FavouriteRestaurants}
         />
         <Stack.Screen
           name={NavigatorConstant.CLIENT_STACK.REGISTER_CLIENT}
@@ -115,10 +118,6 @@ export default RootNavigator = () => {
         <Stack.Screen
           name={NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_2}
           component={EditRestaurantScreen2}
-        />
-         <Stack.Screen
-          name={NavigatorConstant.CLIENT_STACK.CLIENT_FAVORITES}
-          component={FavoriteRestaurants}
         />
       </Stack.Navigator>
     </NavigationContainer>
