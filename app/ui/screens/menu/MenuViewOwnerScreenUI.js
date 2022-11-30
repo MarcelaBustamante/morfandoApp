@@ -1,122 +1,89 @@
 import { Icon } from '@rneui/themed';
 import React, { useState } from "react";
-import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
+import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu"
-const DATA = [
-  {id: 1,
-    title: "Minutas",
-      data: [{
-        titleMenu: 'Milanesa con papas fritas',
-        description: "Carne de peceto rebozada y acompañada con papas fritas",
-        ingridents: "carne vacuna, pan ese cortadito, huevo",
-        price: '1050',
-        vegan: "no",
-        celiac: "no",
-        image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-      },{
-        id: "2",
-        titleMenu: 'Milanesa de soja',
-        description: "qsy es de soja",
-        ingridents: "soja",
-        price: '1000',
-        vegan: "si",
-        celiac: "no",
-        image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-      },{
-          id: "2",
-          titleMenu: 'Rabas',
-          description: "qsy son rabas",
-          ingridents: "pulpito",
-          price: '1100',
-          vegan: "no",
-          celiac: "no",
-          image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-      }]
-  },
-  {
-    id: 2,
-    title: "Postre",
-    data: [{
-      id: "3",
-      titleMenu: 'Bombón',
-      description: "Helado cubierto de chocolate",
-      ingridents: "helado y chocolate",
-      price: '800',
-      vegan: "no",
-      celiac: "si",
-      image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-    }]
-},
-{
-  id: 2,
-  title: "Vinos",
-  data: [{
-    id: "4",
-    titleMenu: 'Vino',
-    description: "y se fue",
-    ingridents: "helado y chocolate",
-    price: '800',
-    vegan: "no",
-    celiac: "si",
-    image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-  }]
-}
-];
+
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
-    <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
+    <Text style={[styles.extra, textColor]}>vegano: {item.vegan ? 'Si' : 'No'} // celiaco: {item.tacc ? 'Si' : 'No'}</Text>
+    <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
     <View style={styles.contenedorLista}>
       <View>
         <Image
-          style={styles.imagenLista}
-          source={{ uri: item.image }}
+          styles={styles.imagenLista}
+          uri={ item.photo }
         />
-      </View> 
-    <View  style={{paddingEnd: 30, paddingStart: 5}}>
-      <Text style={[styles.general, textColor]}>{item.description}</Text>
-      <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
+      </View>
+      <View style={{ paddingEnd: 30, paddingStart: 5 }}>
+        <Text style={[styles.general, textColor]}>{item.description}</Text>
+        <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
+      </View>
     </View>
-    </View>  
-    </TouchableOpacity>
+  </TouchableOpacity>
 );
 
 
-const MenuViewOwnerScreenUI = ({onCreateMenu}) => {
+const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
     return (
-        <Item
+      <Item
         item={item}
         onPress={() => setSelectedId(item.innerArray)}
       />
     );
   };
 
+  const result = [];
+  const miData = {}
+  categoryMeals?.forEach((data) => {
+    const category = data.category;
+    if (!result[category]) {
+      miData[category] = categoryMeals.filter(plato => plato.category === category).map(plato => {
+        return {
+          name: plato.name,
+          description: plato.description,
+          price: plato.price,
+          vegan: plato.vegan,
+          tacc: plato.tacc,
+          photo: plato.photo,
+        };
+      })
+    }
+  });
+
+  Object.keys(miData).forEach((key) => {
+    result.push({
+      category: key,
+      data: miData[key],
+    })
+  })
+
   return (
     <SafeAreaView style={styles.container}>
-     <SectionList  
-     ListHeaderComponent={HeaderForMenu}
-      sections={DATA}
-      keyExtractor={(item, index) => item + index}
-      renderItem={renderItem}
-      renderSectionHeader={({ section: { title } }) => (
-        <Text style={styles.header}>{title}</Text>
-      )}
-    />
-    <Icon
-      reverse
-      type='material-community'
-      name='plus'
-      color={Theme.colors.PRIMARY}
-      containerStyle={styles.btnContainer}
-      onPress={onCreateMenu}
-      size={30}
+      <SectionList
+        ListHeaderComponent={HeaderForMenu}
+        sections={result}
+        keyExtractor={(item, index) => item + index}
+        renderItem={renderItem}
+        renderSectionHeader={({ section: { category } }) => (
+          <Text style={styles.header}>{category}</Text>
+        )}
       />
-  </SafeAreaView>
+      <Icon
+        reverse
+        type='material-community'
+        name='plus'
+        color={Theme.colors.PRIMARY}
+        containerStyle={styles.btnContainer}
+        onPress={onCreateMenu}
+        size={30}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -141,7 +108,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-},
+  },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
@@ -149,13 +116,13 @@ const styles = StyleSheet.create({
   state: {
     color: Theme.colors.ERROR,
   },
-  general:{
+  general: {
     color: Theme.colors.PRIMARY,
   },
-  extra:{
+  extra: {
     color: "#008f39"
   },
-  price:{
+  price: {
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -173,11 +140,11 @@ const styles = StyleSheet.create({
     color: Theme.colors.SECONDARY,
     marginStart: 10,
   },
-  btnContainer:{
-    position:"absolute",
-    bottom:10,
-    right:10,
-    elevation:7
+  btnContainer: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    elevation: 7
   },
 });
 

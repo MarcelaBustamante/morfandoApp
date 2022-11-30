@@ -14,7 +14,7 @@ const combinedReducer = combineReducers({
   partnerLogin: partnerLoginReducer,
   partnerRegister: partnerRegisterReducer,
   restaurants: restaurantsReducer,
-  restaurant: newRestaurantsReducer
+  restaurant: newRestaurantsReducer,
 });
 
 const rootReducer = (state, action) => {
