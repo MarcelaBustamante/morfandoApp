@@ -7,7 +7,8 @@ export const getRestaurantsAPI = async function ({
   type,
   rating,
   minPrice,
-  maxPrice
+  maxPrice,
+  search
 }) {
   const params = {
     page, 
@@ -17,7 +18,8 @@ export const getRestaurantsAPI = async function ({
     type,
     rating, 
     minPrice,
-    maxPrice
+    maxPrice,
+    search
   };
   const results = await axios.get('/restaurants', {params});
   return results.data;

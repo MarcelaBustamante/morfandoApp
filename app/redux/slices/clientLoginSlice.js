@@ -6,12 +6,6 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { config } from '../../config/config';
 
-GoogleSignin.configure({
-  webClientId: config.GOOGLE_API_KEY,
-  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-  forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-});
-
 const initialState = {
     isLoggedIn: false,
     isLoading: false,

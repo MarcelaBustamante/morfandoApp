@@ -10,14 +10,10 @@ export default function ClientViewNearbyUI({
   client,
   restaurants,
   favourites,
-  filters,
-  setFilters,
+  longitude,
+  latitude,
   navigateToProfileClient
 }) {
-
-  const  getNameOwner = () => {
-    return "Pedro Rodriguez"
-  }
 
   const  clientFirstLetter = () => {
     return client?.name?.substring(0, 1) ?? '';
@@ -37,7 +33,7 @@ export default function ClientViewNearbyUI({
           />
         </View>
         <View style={styles.container}>
-            <SearchRestaurants filters={filters} setFilters={setFilters} />
+            <SearchRestaurants longitude={longitude} latitude={latitude} />
         </View>
         
         <Text style={styles.title}>Restaurantes Cercanos 📍</Text>

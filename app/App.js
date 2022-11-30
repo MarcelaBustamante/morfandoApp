@@ -16,10 +16,26 @@ import {
 import RootNavigator from './navigation/RootNavigator';
 import { store } from './redux/Store'
 import { Provider } from 'react-redux'
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import { config } from './config/config';
+
+const loadGoogleSignIn = () => {
+  GoogleSignin.configure({
+    webClientId: config.GOOGLE_API_KEY,
+    offlineAccess: true,
+    forceCodeForRefreshToken: true
+  });
+}
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
+  loadGoogleSignIn();
+
+  const isDarkMode = useColorScheme() === 'dark';
+  
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
