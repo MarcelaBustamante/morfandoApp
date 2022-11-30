@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
-import HeaderForMenu from "./HeaderForMenu"
+import HeaderForMenu from "./HeaderForMenu";
+import FooterDelete from './FooterDelete';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
