@@ -8,7 +8,7 @@ import Days from './Days';
 
 const HeaderForMenu = ({
     navigateToEditScreen1,
-    navigateToMenuOwner
+    navigateToHome
 }) => {
     welcomeString = 'Bienvenido a Morfando';
     const loginHandler = () => {
@@ -18,7 +18,7 @@ return(
     <View>
         <NavegationBarMenu
         navigateToEditScreen1={navigateToEditScreen1}
-        navigateToMenuOwner= {navigateToMenuOwner}
+        navigateToHome= {navigateToHome}
         />
         <CarouselImages                    
         loginHandler={loginHandler}/> 

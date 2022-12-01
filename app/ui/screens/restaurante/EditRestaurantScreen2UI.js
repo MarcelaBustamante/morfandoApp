@@ -28,8 +28,8 @@ import React, { useState } from 'react';
     primText = 'No vino ningún texto',
     secText,
     loginHandler,
-    navigateToNewResto,
-    navigateToNewMeal,
+    navigateToMenuOwner,
+    navigateToEditScreen1,
   }) => {
     const [selected, setSelected] = useState([]); //dropdown menu tags
     const [value, setValue] = useState(null); //dropdown menu
@@ -635,12 +635,11 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
         }
         onPress={() => setChecked(!checked)}
       />
-      <Text style={styles.closeSubTitle}>Si activas esta opción tu restaurante comenzará
+      <Text style={styles.closeSubTitle}>Si activas esta opción tu restaurante encontrara
 en modo inactivo</Text>
-      <Button style={styles.food} onPress={navigateToNewMeal} title="+ Agregar Nuevo Plato" color={Theme.colors.SECONDARY}/>
       <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-        <Button style={styles.button1} onPress={navigateToNewResto} title="Volver" color={Theme.colors.SECONDARY}/>
-        <Button style={styles.button2} onPress={navigateToNewMeal} title="Continuar" color={Theme.colors.PRIMARY}/>
+        <Button style={styles.button1} onPress={navigateToEditScreen1} title="Volver" color={Theme.colors.SECONDARY}/>
+        <Button style={styles.button2} onPress={navigateToMenuOwner} title="Continuar" color={Theme.colors.PRIMARY}/>
         </View>      
         </View>
 

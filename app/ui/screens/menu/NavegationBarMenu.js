@@ -5,7 +5,7 @@ import { Icon } from '@rneui/base';
 import Theme from '../../styles/Theme';
 
 const NavegationBarMenu = ({
-  navigateToMenuOwner,
+  navigateToHome,
   navigateToEditScreen1,
 }) => {
     const  getNameRestaurant = () => {
@@ -15,7 +15,7 @@ const NavegationBarMenu = ({
 return(
 <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
-        <Button style={styles.circle} onPress={navigateToMenuOwner} title="<"/>
+        <Button style={styles.circle} onPress={navigateToHome} title="<"/>
         <Text style={styles.name}>{getNameRestaurant()}</Text> 
         <Icon
         raised

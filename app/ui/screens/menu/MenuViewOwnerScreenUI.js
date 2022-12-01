@@ -30,7 +30,7 @@ const MenuViewOwnerScreenUI = ({
   onCreateMenu, 
   categoryMeals,
   navigateToEditScreen1,
-  navigateToMenuOwner
+  navigateToHome
 }) => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -71,7 +71,7 @@ const MenuViewOwnerScreenUI = ({
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
-        ListHeaderComponent={HeaderForMenu({navigateToEditScreen1,navigateToMenuOwner})}
+        ListHeaderComponent={HeaderForMenu({navigateToEditScreen1,navigateToHome})}
         sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}

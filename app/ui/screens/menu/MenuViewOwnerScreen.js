@@ -22,7 +22,7 @@ export default function MenuViewOwnerScreen({ navigation, route }) {
       navigateToHome={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT)}
       onCreateMenu={() => navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL, { restaurant })}
       navigateToEditScreen1={() => navigation.navigate(NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_1)}
-      navigateToMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS)}
+      navigateToMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS,{ restaurant })}
     />
   )
 };
