@@ -6,7 +6,6 @@ import NavegationBarMenu from "./NavegationBarMenu";
 import Days from './Days';
 
 const HeaderForMenu = ({}) => {
-    welcomeString = 'Bienvenido a Morfando';
     const loginHandler = () => {
         console.log("Hola mundo");
       }

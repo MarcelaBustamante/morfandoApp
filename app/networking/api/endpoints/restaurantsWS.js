@@ -26,3 +26,9 @@ export const getRestaurantsAPI = async function ({
   const results = await axios.get('/restaurants', {params});
   return results.data;
 };
+
+export const getCategorizedMenuItemsAPI = async function (restaurantId) {
+  const results = await axios.get(`/restaurants/${restaurantId}/menu/items/categorized`);
+  return results.data;
+};
+

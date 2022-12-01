@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Theme from '../../styles/Theme';
 import Image from '../../components/shared/ImageCustom';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 const printAddress = (restaurant) => {
   const { street, number } = restaurant.address;
@@ -44,13 +45,15 @@ const Item = ({item, onPress, backgroundColor, textColor}) => (
   </TouchableOpacity>
 );
 
-const RestaurantListNearby = ({restaurants}) => {
+const RestaurantListNearby = ({navigation, restaurants}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({item}) => {
     return <Item 
       item={item}
-      onPress={() => setSelectedId(item.id)}
+      onPress={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_MENU_VIEW, {
+        restaurant: item
+      })}
       textColor={{ color: Theme.colors.PRIMARY }} 
     />;
   };
@@ -70,7 +73,6 @@ const RestaurantListNearby = ({restaurants}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         extraData={selectedId}
-        //ListFooterComponent={<Button variant="text" title="Ver más >>>"  color={Theme.colors.SECONDARY} style={styles.seeMore}/>}
       />
     </SafeAreaView>
   );

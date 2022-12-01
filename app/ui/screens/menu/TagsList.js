@@ -3,21 +3,13 @@ import { FlatList, StyleSheet, Text, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native';
 import Theme from '../../styles/Theme';
 
-const TagsList = () => {
+const TagsList = ({tags}) => {
   return (
     <ScrollView horizontal= {true}>
         <FlatList
           horizontal={true}
-        data={[
-          {key: '1',
-          specialty: "Mexicana"}, 
-          {key: '2',
-          specialty: "Italiana"}, 
-         {key: '3',
-         specialty: "Francesa"}, 
-         
-        ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.specialty}</Text>}
+        data={tags}
+        renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
       />
     </ScrollView>
   );

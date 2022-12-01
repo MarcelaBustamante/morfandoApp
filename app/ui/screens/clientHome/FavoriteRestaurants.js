@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export default function FavoriteRestaurants({route}) {
+export default function FavoriteRestaurants({navigation, route}) {
   const {restaurants} = route.params;
   return (
       <View style={styles.container}> 
@@ -18,7 +18,7 @@ export default function FavoriteRestaurants({route}) {
         <View>
         </View>
         <View style={styles.container}>
-            <RestaurantListNearby restaurants={restaurants}/>
+            <RestaurantListNearby restaurants={restaurants} navigation={navigation}/>
         </View>
       </View>
   )};
