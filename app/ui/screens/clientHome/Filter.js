@@ -18,7 +18,7 @@ export default function Filter({filters, setFilters}) {
     const [isFocusS, setIsFocusS] = useState(false); //dropdown menu
     const [radius, setRadius] = useState(15);
 
-    const renderItem = (item: any) => {
+    const renderItem = (item) => {
         return (
           <View style={styles.item}>
             <Text style={styles.selectedTextStyle}>{item.label}</Text>

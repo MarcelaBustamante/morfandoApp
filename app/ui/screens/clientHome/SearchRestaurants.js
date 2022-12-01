@@ -20,7 +20,7 @@ const SearchRestaurants = ({longitude, latitude}) => {
   });
   React.useEffect(() => {    
     dispatch(
-      getPublicRestaurants(filters),
+      getPublicRestaurants({...filters, latitude, longitude}),
     );
   }, [filters]);
 
