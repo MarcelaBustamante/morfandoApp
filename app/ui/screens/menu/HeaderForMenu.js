@@ -5,23 +5,21 @@ import CarouselImages from "./CarouselImages";
 import NavegationBarMenu from "./NavegationBarMenu";
 import Days from './Days';
 import RatingView from "./RatingView"
-const HeaderForMenu = ({}) => {
-    const loginHandler = () => {
-        console.log("Hola mundo");
-      }
+
+const HeaderForMenu =({restaurant})  => {
+    
+    if (!restaurant) {
+        return <View />
+    }
 return(
     <View>
-        <NavegationBarMenu                    
-        loginHandler={loginHandler}/>
-        <CarouselImages                    
-        loginHandler={loginHandler}/> 
+        <NavegationBarMenu restaurant={restaurant}/>
+        <CarouselImages images={restaurant.photos}/> 
         <View style={{flexDirection:"row", justifyContent: "space-between"}} >
-        <TagsList                    
-        loginHandler={loginHandler}/> 
+        <TagsList tags={[restaurant.type]}/> 
         <RatingView/>
         </View>
-        <Days                    
-        loginHandler={loginHandler}/> 
+        <Days businessHours={restaurant.businessHours}/> 
     </View>
 );
 }
