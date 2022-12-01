@@ -8,7 +8,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 export default function ClientViewNearby({navigation}) {
   const dispatch = useDispatch();
-  const {restaurants, error, status} = useSelector(
+  const {restaurants} = useSelector(
     state => state.clientRestaurants,
   );
   const {userId} = useSelector(state => state.clientLogin);
@@ -37,6 +37,7 @@ export default function ClientViewNearby({navigation}) {
 
   return (
       <ClientViewNearbyUI
+        navigation={navigation}
         client={user}
         restaurants={restaurants}
         longitude={position.longitude}
@@ -46,7 +47,7 @@ export default function ClientViewNearby({navigation}) {
         }
         navigateToFavourites={() =>
           navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_FAVOURITES, {
-            favourites: user?.favourites
+            restaurants: user?.favourites
           })
         }
       />

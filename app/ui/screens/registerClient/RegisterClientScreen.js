@@ -17,16 +17,17 @@ export default function RegisterClientScreen({navigation}) {
     validateOnChange: false,
     onSubmit: async (formValue) =>{
       console.log(formValue);
-      navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY,{form: formValue});
+      //navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY,{form: formValue});
+      navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)
     }
   });
 
   return (
     <KeyboardAwareScrollView>
-      <RegisterClientScreenUI
+      <RegisterClientScreenUI  
             formik={formik}
             loginHandler={loginHandler}
-            navigateToClientNearBy ={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)}
+            navigateToClientNearBy ={formik.handleSubmit}
             navigateToClient ={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER)}
             /> 
     </KeyboardAwareScrollView>

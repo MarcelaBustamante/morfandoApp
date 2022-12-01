@@ -2,8 +2,8 @@ import React from 'react';
 import { 
     StyleSheet,
     View,
-    Text,
-    Alert} from 'react-native';
+    Text
+  } from 'react-native';
 import Theme from '../../styles/Theme';
 import IMAGES from "../../../assets/images/index";
 
@@ -44,8 +44,8 @@ const LoginUserScreenUI = ({
             onPress={_signIn}
           />
         </View>
-        <View style={styles.container}/>
-        <Button onPress={navigateToClientRegister} title='atajo para flor'/>
+        {/* <View style={styles.container}/>
+        <Button onPress={navigateToClientRegister} title='atajo para flor'/> */}
       </View>
       <LoadingModal
         text="Iniciando sesión"

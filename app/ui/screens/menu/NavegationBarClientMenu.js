@@ -5,23 +5,17 @@ import { Icon } from '@rneui/themed';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 
-const NavegationBarClientMenu = () => {
+const NavegationBarClientMenu = ({restaurant}) => {
   const [estado, setEstado] = useState(false);
 
   const agregarFavoritos = () => {
     setEstado(!estado);
   };
-
-  console.log(estado);
-
-  const  getNameRestaurant = () => {
-    return "El almacén"
-  }
   return (
     <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} title="<"/>
-        <Text style={styles.name}>  {getNameRestaurant()}</Text> 
+        <Text style={styles.name}>{restaurant?.name}</Text> 
       <TouchableOpacity style={styles.button} onPress={() => agregarFavoritos()}>
         <Ionicons
           raised
@@ -30,13 +24,16 @@ const NavegationBarClientMenu = () => {
           color="#ff6347"
         />
       </TouchableOpacity>
-      <Icon
-        raised
-        type= "material-community"
-        name= "map-marker-radius-outline"
-        color= {Theme.colors.PRIMARY}
-        size={18}
-        onPress={() => console.log('hello')} />
+      <TouchableOpacity style={styles.button} onPress={() => agregarFavoritos()}>
+        <Icon
+          raised
+          type= "material-community"
+          name= "map-marker-radius-outline"
+          color= {Theme.colors.PRIMARY}
+          size={18}
+          onPress={() => console.log('hello')}
+        />
+      </TouchableOpacity>
     </View>
  </View>
  

@@ -1,71 +1,12 @@
 import React, { useState } from "react";
-import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
+import { SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
-import HeaderForMenu from "./HeaderForMenu"
-const DATA = [
-  {id: 1,
-    title: "Minutas",
-      data: [{
-        titleMenu: 'Milanesa con papas fritas',
-        description: "Carne de peceto rebozada y acompañada con papas fritas",
-        ingridents: "carne vacuna, pan ese cortadito, huevo",
-        price: '1050',
-        vegan: "no",
-        celiac: "no",
-        image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-      },{
-        id: "2",
-        titleMenu: 'Milanesa de soja',
-        description: "qsy es de soja",
-        ingridents: "soja",
-        price: '1000',
-        vegan: "si",
-        celiac: "no",
-        image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-      },{
-          id: "2",
-          titleMenu: 'Rabas',
-          description: "qsy son rabas",
-          ingridents: "pulpito",
-          price: '1100',
-          vegan: "no",
-          celiac: "no",
-          image: "https://www.mausi.com/wp-content/uploads/2019/02/rabas-1.jpg",
-      }]
-  },
-  {
-    id: 2,
-    title: "Postre",
-    data: [{
-      id: "3",
-      titleMenu: 'Bombón',
-      description: "Helado cubierto de chocolate",
-      ingridents: "helado y chocolate",
-      price: '800',
-      vegan: "no",
-      celiac: "si",
-      image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-    }]
-},
-{
-  id: 2,
-  title: "Vinos",
-  data: [{
-    id: "4",
-    titleMenu: 'Vino',
-    description: "y se fue",
-    ingridents: "helado y chocolate",
-    price: '800',
-    vegan: "no",
-    celiac: "si",
-    image: "https://elsol-compress-release.s3-accelerate.amazonaws.com/images/large/1614296501390milanesa%20con%20huevos.jpg",
-  }]
-}
-];
+import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal";
+import HeaderForClientMenu from "./HeaderForClientMenu";
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
+    <Text style={[styles.extra, textColor]}>Vegano: {item.vegan} // Celíaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
     <View style={styles.contenedorLista}>
       <View>
@@ -82,24 +23,46 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
 );
 
-
-const MenuViewClientScreenUI = () => {
-  const [selectedId, setSelectedId] = useState(null);
-
+const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading}) => {
+  console.log("Resto", restaurant);
+  let DATA = !menuItems ? [] : menuItems.map(item => {
+    return {
+      id: item.category,
+      title: item.category,
+      data: item.items.map(i => {
+        return {
+          titleMenu: i.name,
+          description: i.description,
+          ingridents: i.description,
+          price: i.price,
+          vegan: i.vegan ? "Sí" : "No",
+          celiac: i.tacc ? "Sí" : "No",
+          image: i.photo
+        }
+      })
+    };
+  });
   const renderItem = ({ item }) => {
     console.log(item)
     return (
         <Item
         item={item}
-        onPress={() => setSelectedId(item.innerArray)}
+        onPress={() => {}}
       />
     );
   };
-
+  if (isLoading) {
+    return (
+      <LoadingModal
+        text="Cargando Menú"
+        show={isLoading}
+      />
+    );
+  }
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
      <SectionList  
-     ListHeaderComponent={HeaderForMenu}
+      ListHeaderComponent={() => HeaderForClientMenu({restaurant})}
       sections={DATA}
       keyExtractor={(item, index) => item + index}
       renderItem={renderItem}
@@ -107,7 +70,7 @@ const MenuViewClientScreenUI = () => {
         <Text style={styles.header}>{title}</Text>
       )}
     />
-  </SafeAreaView>
+  </View>
   );
 };
 

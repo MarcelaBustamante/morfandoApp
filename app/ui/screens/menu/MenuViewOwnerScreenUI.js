@@ -1,6 +1,6 @@
 import { Icon } from '@rneui/themed';
 import React, { useState } from "react";
-import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { View, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu";
@@ -8,7 +8,7 @@ import FooterDelete from './FooterDelete';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.extra, textColor]}>vegano: {item.vegan ? 'Si' : 'No'} // celiaco: {item.tacc ? 'Si' : 'No'}</Text>
+    <Text style={[styles.extra, textColor]}>Vegano: {item.vegan ? 'Si' : 'No'} // Celíaco: {item.tacc ? 'Si' : 'No'}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
     <View style={styles.contenedorLista}>
       <View>
@@ -26,7 +26,13 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 
-const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
+const MenuViewOwnerScreenUI = ({ 
+  onCreateMenu, 
+  categoryMeals, 
+  restaurant,
+  navigateToEditScreen1,
+  navigateToHome,
+}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -64,10 +70,9 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <SectionList
-        ListHeaderComponent={HeaderForMenu}
-        sections={result}
+        ListHeaderComponent={() => HeaderForMenu({restaurant,navigateToEditScreen1,navigateToHome})}        sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
         renderSectionHeader={({ section: { category } }) => (
@@ -84,7 +89,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
         onPress={onCreateMenu}
         size={30}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

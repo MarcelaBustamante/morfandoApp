@@ -30,8 +30,8 @@ const EditRestaurantScreen1UI = ({
   primText = 'No vino ningún texto',
   secText,
   loginHandler,
-  navigateToHomeResto,
-  navigateToScreen2,
+  navigateToMenuOwner,
+  navigateToEditScreen2,
 }) => {
   const [valueCoutry, setValueCoutry] = useState(null);
   const [valueLocation, setValueLocation] = useState(null);
@@ -84,7 +84,7 @@ const EditRestaurantScreen1UI = ({
 
   return (
     <View style={styles.container1}>
-        <Button style={styles.circle} onPress={navigateToHomeResto} title="<"/>
+        <Button style={styles.circle} onPress={navigateToMenuOwner} title="<"/>
           <Text style={styles.title}>Editar Restaurante</Text>
           <Text style={styles.subTitle}>Datos principales</Text>
           <View style={{alignItems: "center"}}>
@@ -204,7 +204,7 @@ const EditRestaurantScreen1UI = ({
             keyboardType='numeric'
             />
             <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
-             <Button style={styles.button2} onPress={navigateToScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
+             <Button style={styles.button2} onPress={navigateToEditScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
           </View> 
        </View>
   );

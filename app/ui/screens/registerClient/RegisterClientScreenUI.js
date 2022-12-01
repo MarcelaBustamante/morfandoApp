@@ -2,7 +2,6 @@ import { Image,
     StyleSheet,
     View,
     Text,
-    TextInput,
     ScrollView,
     Pressable
   } from 'react-native';
@@ -12,12 +11,10 @@ import { Switch, ListItem } from "@react-native-material/core";
 import React, { useState } from "react";
 import FileUploadButton from '../../components/shared/FileUploadButton';
 import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
+import { Input } from '@rneui/themed';
 
 
 const RegisterScreenUI = ({
-    primText = 'No vino ningún texto',
-    secText,
-    loginHandler, 
     navigateToClient,
     formik,
     setFormState,
@@ -30,13 +27,13 @@ const RegisterScreenUI = ({
       setFormState({...formState, [field]: text});
     };
 
-    const [pictures, setPictures] = useState([]);
+    const [pictures, setPictures] = useState('');
 
     const [isLoading,setIsLoading] = useState(false);
 
     const onPhotoUploaded = (fileKey) => {
       setIsLoading(false);
-      setPictures([...pictures, fileKey]);
+      setPictures(fileKey);
       formik.setFieldValue("imageRest", pictures);
     };
   
@@ -80,17 +77,17 @@ const RegisterScreenUI = ({
           <Text style={styles.subTitle}>Ingrese sus datos</Text>
           {error && <Text style={styles.error}>{error}</Text>}
           <View style={{alignItems: "center"}}>
-            <TextInput
-              style={styles.input}
+            <Input
               placeholder='Nombre'
               onChangeText={(text) => { formik.setFieldValue('name', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
+              errorMessage={formik.errors.name}
             />
-            <TextInput
-              style={styles.input}
+            <Input
               placeholder='Apellido'
               onChangeText={(text) => { formik.setFieldValue('lastName', text) }}
               placeholderTextColor={Theme.colors.PRIMARY}
+              errorMessage={formik.errors.lastName}
             />
             <FileUploadButton 
           title={"+ Agregar Fotos"}
@@ -98,7 +95,10 @@ const RegisterScreenUI = ({
           onStartUpload={onPhotoStartUpload}
           onError={onPhotoError} 
         />
-        <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+          <Text>
+            {pictures}
+          </Text>
+        {/* <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
         {pictures.map(p => {
             return (
               <Avatar
@@ -112,7 +112,7 @@ const RegisterScreenUI = ({
         <Text style={styles.error}>
           {formik.errors.imageRest}
         </Text>
-        </ScrollView>
+        </ScrollView> */}
         <LoadingModal show={isLoading} text='Subiendo imagen'/>
          </View>
          <Pressable

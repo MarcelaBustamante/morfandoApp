@@ -1,14 +1,21 @@
 import React from 'react';
 import MenuViewClientScreenUI from './MenuViewClientScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getCategorizedMenuItems } from '../../../redux/slices/clientRestaurantsSlice';
 
-export default function MenuViewOwnerScreen({navigation}) {
-  welcomeString = 'Bienvenido a Morfando';
+export default function MenuViewOwnerScreen({navigation, route}) {
+  const {restaurant} = route.params;
+  const dispatch = useDispatch();
+  const {menuItems, isLoading} = useSelector(state => state.clientRestaurants);
 
-  const loginHandler = () => {
-    console.log("Hola mundo");
-  }
+  useEffect(() => {
+    if (restaurant) {
+      dispatch(getCategorizedMenuItems(restaurant.id));
+    }
+  }, [navigation]);
+
   return (
-      <MenuViewClientScreenUI
-      loginHandler={loginHandler}/> 
+      <MenuViewClientScreenUI restaurant={restaurant} menuItems={menuItems} isLoading={isLoading} /> 
   )};

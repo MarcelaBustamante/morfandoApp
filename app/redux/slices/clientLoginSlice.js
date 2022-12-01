@@ -9,6 +9,7 @@ import { config } from '../../config/config';
 const initialState = {
     isLoggedIn: false,
     isLoading: false,
+    firstLogin: false,
     token: null,
     userId: null,
     error: null
@@ -38,6 +39,7 @@ const initialState = {
         state.error = null;
         state.token = action.payload.token;
         state.userId = action.payload.user;
+        state.firstLogin = action.payload.firstLogin;
         console.log(action.type);
       }) 
       .addCase(clientLogin.rejected, (state, action) => {

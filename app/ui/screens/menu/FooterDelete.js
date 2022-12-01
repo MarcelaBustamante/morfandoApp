@@ -53,7 +53,7 @@ return(
         style={[styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={[styles.button, styles.buttonOpen]}>  Eliminar restaurante  </Text>
+        <Text style={[styles.buttonOpen, styles.text]}>  Eliminar restaurante  </Text>
       </Pressable>
         </View>
         );
@@ -107,8 +107,11 @@ return(
           },
         
           buttonOpen: {
-            backgroundColor: Theme.colors.GREY,
-            padding: 10,
+            backgroundColor: Theme.colors.ERROR,
+            padding: 5,
+            justifyContent: "center",
+            alignSelf: "center",
+            borderRadius: 10
           },
           buttonClose: {
             padding: 10,
@@ -155,4 +158,8 @@ return(
                 alignContent: 'center',
                 alignSelf: 'center',
             },
+            text:{
+              color: "white",
+              fontSize: 20
+            }
             });

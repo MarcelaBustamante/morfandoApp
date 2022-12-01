@@ -5,17 +5,8 @@ import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-
-
-export default function FavoriteRestaurants({navigation}) {
-  welcomeString = 'Bienvenido a Morfando';
-
-  const loginHandler = () => {
-    console.log("Hola mundo");
-  }
-
-/* le saque el <SearchRestaurants
-            loginHandler={loginHandler}/> si lo quieren lo pongo pero es mas trabajo al pedo*/
+export default function FavoriteRestaurants({navigation, route}) {
+  const {restaurants} = route.params;
   return (
       <View style={styles.container}> 
         <View style={styles.containerCircle}>
@@ -26,8 +17,7 @@ export default function FavoriteRestaurants({navigation}) {
         <View>
         </View>
         <View style={styles.container}>
-            <RestaurantListNearby
-            loginHandler={loginHandler}/>
+            <RestaurantListNearby restaurants={restaurants} navigation={navigation}/>
         </View>
       </View>
   )};
