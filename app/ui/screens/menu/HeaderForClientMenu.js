@@ -4,6 +4,7 @@ import TagsList from "./TagsList";
 import CarouselImages from "./CarouselImages";
 import NavegationBarClientMenu from "./NavegationBarClientMenu";
 import Days from './Days';
+import RatingView from "./RatingView";
 
 const HeaderForClientMenu = ({restaurant}) => {
     if (!restaurant) {
@@ -13,7 +14,10 @@ const HeaderForClientMenu = ({restaurant}) => {
         <View>
             <NavegationBarClientMenu restaurant={restaurant}/>
             <CarouselImages images={restaurant.photos}/> 
-            <TagsList tags={[restaurant.type]}/> 
+            <View style={{flexDirection:"row", justifyContent: "space-between"}} >
+                <TagsList tags={[restaurant.type]}/> 
+                <RatingView/>
+            </View>
             <Days businessHours={restaurant.businessHours}/> 
         </View>
     );

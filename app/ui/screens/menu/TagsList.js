@@ -6,8 +6,8 @@ import Theme from '../../styles/Theme';
 const TagsList = ({tags}) => {
   return (
     <ScrollView horizontal= {true}>
-        <FlatList
-          horizontal={true}
+      <FlatList
+        horizontal={true}
         data={tags}
         renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
       />
