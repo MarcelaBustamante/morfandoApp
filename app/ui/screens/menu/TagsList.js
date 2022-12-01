@@ -10,12 +10,7 @@ const TagsList = () => {
           horizontal={true}
         data={[
           {key: '1',
-          specialty: "Mexicana"}, 
-          {key: '2',
-          specialty: "Italiana"}, 
-         {key: '3',
-         specialty: "Francesa"}, 
-         
+          specialty: "Mexicana"},         
         ]}
         renderItem={({item}) => <Text style={styles.item}>{item.specialty}</Text>}
       />

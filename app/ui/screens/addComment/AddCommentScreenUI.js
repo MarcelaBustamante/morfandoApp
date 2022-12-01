@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { AirbnbRating, Input, Button } from "react-native-elements";
+import { AirbnbRating, Input, Button, Rating } from "react-native-elements";
 import Theme from "../../styles/Theme";
 
 export function AddCommentScreenUI (){
