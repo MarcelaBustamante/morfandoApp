@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, View, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import { Rating } from 'react-native-elements';
 import AddCommentScreenUI from "./AddCommentScreenUI";
@@ -49,7 +49,7 @@ const CommentsView = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
     <FlatList
       ListHeaderComponent={AddCommentScreenUI}
       data={DATA}
@@ -57,7 +57,7 @@ const CommentsView = () => {
       keyExtractor={(item) => item.comment}
       extraData={selectedId}
     />
-  </SafeAreaView>
+  </View>
   );
 };
 export default CommentsView;

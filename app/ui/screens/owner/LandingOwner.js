@@ -1,7 +1,7 @@
 import { Button } from '@react-native-material/core';
 import React from 'react';
 import Theme from '../../styles/Theme';
-import { SafeAreaView, View, FlatList, VirtualizedList, StyleSheet, Text, StatusBar } from 'react-native';
+import { View, View, FlatList, VirtualizedList, StyleSheet, Text, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 /*
 const DATA = [

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-  import { StyleSheet, View, TouchableOpacity, Text, Alert, Modal, Pressable, SafeAreaView } from 'react-native';
+  import { StyleSheet, TouchableOpacity, Text, Alert, Modal, Pressable, View } from 'react-native';
   import { MultiSelect } from 'react-native-element-dropdown';
   import AntDesign from 'react-native-vector-icons/AntDesign';
   import { Button, ListItem, Switch } from "@react-native-material/core";
@@ -239,7 +239,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxL}
             onValueChange={(newValue) => setToggleCheckBoxL(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenL && (
             <View>
@@ -257,8 +257,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}      
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseL && (
             <View>
@@ -276,7 +276,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
 
 
@@ -287,7 +287,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxM}
             onValueChange={(newValue) => setToggleCheckBoxM(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenM && (
             <View>
@@ -305,8 +305,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseM && (
             <View>
@@ -324,7 +324,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
 
 
@@ -335,7 +335,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxMi}
             onValueChange={(newValue) => setToggleCheckBoxMi(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenMi && (
             <View>
@@ -353,8 +353,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseMi && (
             <View>
@@ -372,7 +372,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
 
 
@@ -383,7 +383,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxJ}
             onValueChange={(newValue) => setToggleCheckBoxJ(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenJ && (
             <View>
@@ -401,8 +401,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseJ && (
             <View>
@@ -420,7 +420,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
 
 
@@ -431,7 +431,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxV}
             onValueChange={(newValue) => setToggleCheckBoxV(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenV && (
             <View>
@@ -449,8 +449,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseV && (
             <View>
@@ -468,7 +468,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
         
 
@@ -479,7 +479,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxS}
             onValueChange={(newValue) => setToggleCheckBoxS(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenS && (
             <View>
@@ -497,8 +497,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseS && (
             <View>
@@ -516,7 +516,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
 
         
@@ -527,7 +527,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             value={toggleCheckBoxD}
             onValueChange={(newValue) => setToggleCheckBoxD(newValue)}
           />
-          <SafeAreaView>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerOpenD && (
             <View>
@@ -545,8 +545,8 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
-          <SafeAreaView>
+          </View>
+          <View>
               <View style={styleSheet.MainContainer}>
               {!timePickerCloseD && (
             <View>
@@ -564,7 +564,7 @@ const [toggleCheckBoxD, setToggleCheckBoxD] = useState(false)
             />
           )}
             </View>
-          </SafeAreaView>
+          </View>
         </View>
         <Text style={styles.title}>Menú</Text>
         <Text style={styles.subTitle}>Datos menú</Text>

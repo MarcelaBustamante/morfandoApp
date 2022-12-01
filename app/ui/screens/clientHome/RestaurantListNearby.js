@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {
   FlatList,
-  SafeAreaView,
+  View,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import Theme from '../../styles/Theme';
 import Image from '../../components/shared/ImageCustom';
@@ -60,21 +59,21 @@ const RestaurantListNearby = ({navigation, restaurants}) => {
 
   if (!restaurants || restaurants.length == 0) {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.general}>No encontramos restaurantes</Text>
-      </SafeAreaView>
+      </View>
     );
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={restaurants}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         extraData={selectedId}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

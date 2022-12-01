@@ -1,6 +1,6 @@
 import { Icon } from '@rneui/themed';
 import React, { useState } from "react";
-import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { View, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu";
@@ -64,7 +64,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <SectionList
         ListHeaderComponent={HeaderForMenu}
         sections={result}
@@ -84,7 +84,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
         onPress={onCreateMenu}
         size={30}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

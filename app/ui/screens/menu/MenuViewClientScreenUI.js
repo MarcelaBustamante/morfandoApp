@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
+import { SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal";
 import HeaderForClientMenu from "./HeaderForClientMenu";
@@ -60,7 +60,7 @@ const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading}) => {
     );
   }
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
      <SectionList  
       ListHeaderComponent={() => HeaderForClientMenu({restaurant})}
       sections={DATA}
@@ -70,7 +70,7 @@ const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading}) => {
         <Text style={styles.header}>{title}</Text>
       )}
     />
-  </SafeAreaView>
+  </View>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, View, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Theme from "../../styles/Theme";
 import ImageCustom from "../../components/shared/ImageCustom";
 import moment from "moment";
@@ -65,13 +65,13 @@ const RestaurantList = ({ navigateMenuOwner, restaurants }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={restaurants}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

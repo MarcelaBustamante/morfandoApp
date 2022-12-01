@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, SafeAreaView } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native';
 import Theme from '../../styles/Theme';
 
