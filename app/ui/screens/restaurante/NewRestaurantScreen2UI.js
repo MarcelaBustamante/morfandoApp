@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Alert, Modal, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Alert, Modal, Pressable } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Button, ListItem, Switch } from "@react-native-material/core";
 import Theme from '../../styles/Theme';

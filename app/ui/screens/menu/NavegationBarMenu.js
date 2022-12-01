@@ -4,19 +4,18 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Icon } from '@rneui/base';
 import Theme from '../../styles/Theme';
 
+
 const NavegationBarMenu = ({
+  restaurant,
   navigateToHome,
   navigateToEditScreen1,
 }) => {
-    const  getNameRestaurant = () => {
-        return "El almacén"
-      }
 
 return(
 <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} onPress={navigateToHome} title="<"/>
-        <Text style={styles.name}>{getNameRestaurant()}</Text> 
+        <Text style={styles.name}>  {restaurant.name}</Text> 
         <Icon
         raised
         type= "material-community"

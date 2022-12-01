@@ -13,7 +13,8 @@ export default function ClientViewNearbyUI({
   longitude,
   latitude,
   navigateToProfileClient,
-  navigateToFavourites
+  navigateToFavourites,
+  navigation
 }) {
 /* MENSAJE PARA FLOR : supuestamente el boton de favs seconecta con FavoriteRestaurants y de ahi con el boton de bak deberia volver a esta pantalla*/
 
@@ -48,7 +49,7 @@ export default function ClientViewNearbyUI({
           <Text style={styles.title}> Restaurantes Cercanos</Text>
         </View>
         <View style={styles.container}>
-            <RestaurantListNearby restaurants={restaurants}/>
+            <RestaurantListNearby restaurants={restaurants} navigation={navigation}/>
         </View>
       </View>
   )};

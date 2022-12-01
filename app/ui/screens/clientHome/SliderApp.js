@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Slider from '@react-native-community/slider';
 import Theme from '../../styles/Theme';
 const SliderApp = ({sliderValue, setSliderValue}) => {
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.container}>
         {/*Text to show slider value*/}
         <Text style={styles.text}>
@@ -25,7 +25,7 @@ const SliderApp = ({sliderValue, setSliderValue}) => {
           }
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 const width = Dimensions.get("window").width;

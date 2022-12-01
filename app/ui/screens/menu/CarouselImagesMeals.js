@@ -6,7 +6,7 @@ import {
   View,
   Image,
   Dimensions,
-  SafeAreaView,
+  View,
   Animated,
 } from "react-native";
 
@@ -82,7 +82,7 @@ function Backdrop({ scrollX }) {
 export default function CarouselImagesMeals() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar hidden />
       <Backdrop scrollX={scrollX} />
       <Animated.FlatList
@@ -131,7 +131,7 @@ export default function CarouselImagesMeals() {
           );
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

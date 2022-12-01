@@ -1,6 +1,6 @@
 import { Icon } from '@rneui/themed';
 import React, { useState } from "react";
-import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { View, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Image from '../../components/shared/ImageCustom';
 import Theme from "../../styles/Theme";
 import HeaderForMenu from "./HeaderForMenu";
@@ -28,9 +28,10 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 
 const MenuViewOwnerScreenUI = ({ 
   onCreateMenu, 
-  categoryMeals,
+  categoryMeals, 
+  restaurant,
   navigateToEditScreen1,
-  navigateToHome
+  navigateToHome,
 }) => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -69,10 +70,9 @@ const MenuViewOwnerScreenUI = ({
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <SectionList
-        ListHeaderComponent={HeaderForMenu({navigateToEditScreen1,navigateToHome})}
-        sections={result}
+        ListHeaderComponent={() => HeaderForMenu({restaurant,navigateToEditScreen1,navigateToHome}}        sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
         renderSectionHeader={({ section: { category } }) => (
@@ -89,7 +89,7 @@ const MenuViewOwnerScreenUI = ({
         onPress={onCreateMenu}
         size={30}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

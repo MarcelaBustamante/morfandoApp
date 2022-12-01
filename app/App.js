@@ -22,20 +22,15 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { config } from './config/config';
 
-const loadGoogleSignIn = () => {
-  GoogleSignin.configure({
-    webClientId: config.GOOGLE_API_KEY,
-    offlineAccess: true,
-    forceCodeForRefreshToken: true
-  });
-}
+GoogleSignin.configure({
+  webClientId: config.GOOGLE_API_KEY,
+  offlineAccess: true,
+  forceCodeForRefreshToken: true
+});
 
 const App = () => {
-
-  loadGoogleSignIn();
-
   const isDarkMode = useColorScheme() === 'dark';
-  
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
