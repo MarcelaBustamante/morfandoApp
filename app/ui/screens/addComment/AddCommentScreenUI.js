@@ -1,12 +1,16 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { AirbnbRating, Input, Button, Rating } from "react-native-elements";
+import { AirbnbRating, Input, Rating } from "react-native-elements";
 import Theme from "../../styles/Theme";
+import { Button } from '@react-native-material/core';
 
 export function AddCommentScreenUI (){
 
     return(
+        <View>
+            <Button style={styles.circle} title="<"/>
         <View style ={styles.content}>
+            <Text style ={styles.title}>Agregar Comentario</Text>
             <View>
                 <View style= {styles.ratingContent}>
                     <AirbnbRating 
@@ -18,11 +22,12 @@ export function AddCommentScreenUI (){
                     />
                 </View>
                 <View>
-                    <Input placeholder="Título"/>
                     <Input placeholder="Comentario" multiline inputContainerStyle={styles.comment}></Input>
                 </View>
             </View>
             <Button style={styles.button} title="Enviar Comentario" ></Button>
+            <Text style ={styles.title}>Más Comentarios</Text>
+        </View>
         </View>
     );
        
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     ratingContent:{
-        height: 160,
+        height: 50,
         justifyContent: "center",
     },
     comment: {
@@ -46,5 +51,16 @@ const styles = StyleSheet.create({
     button:{
         marginBottom: 20,
         backgroundColor: Theme.colors.PRIMARY
-    }
+    }, circle:{
+        width:39,
+        height:39,
+        borderBottomEndRadius: 20,
+        borderTopEndRadius: 20,
+        margin: 5,
+      },
+      title: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: Theme.colors.SECONDARY
+      },
 })
