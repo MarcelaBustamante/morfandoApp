@@ -6,7 +6,6 @@ import {
   View,
   Image,
   Dimensions,
-  View,
   Animated,
 } from "react-native";
 

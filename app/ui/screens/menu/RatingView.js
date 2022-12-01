@@ -4,7 +4,7 @@ import Theme from "../../styles/Theme";
 import { Rating } from 'react-native-elements';
 import { Icon } from '@rneui/base';
 
-export default function Days({}) {
+export default function RatingView({navigateToComment}) {
     welcomeString = 'Bienvenido a Morfando';
 
     return (
@@ -15,7 +15,7 @@ export default function Days({}) {
                 name= "comment-processing-outline"
                 color= {Theme.colors.PRIMARY}
                 size={18}
-                onPress={() => console.log('hello')} />
+                onPress={navigateToComment} />
            <View style={styles.container}> 
            <Rating 
            imageSize= {30} 
