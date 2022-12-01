@@ -17,8 +17,7 @@ export default function ClientViewNearbyUI({
   navigateToFavourites,
   navigation
 }) {
-  /* MENSAJE PARA FLOR : supuestamente el boton de favs seconecta con FavoriteRestaurants y de ahi con el boton de bak deberia volver a esta pantalla*/
-
+ 
   const clientFirstLetter = () => {
     console.log("CLIENT", client);
     return client?.name?.substring(0, 1) ?? '';
@@ -51,7 +50,7 @@ export default function ClientViewNearbyUI({
       <View style={styles.iconContainer}>
         <Icon name='favorite' style={styles.icon} />
         <Pressable onPress={navigateToFavourites}>
-          <Text style={styles.title}> Mis Favoritos ></Text>
+          <Text style={styles.title}> Mis Favoritos</Text>
         </Pressable>
       </View>
       <View style={styles.iconContainer}>

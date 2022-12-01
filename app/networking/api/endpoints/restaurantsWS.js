@@ -32,3 +32,7 @@ export const getCategorizedMenuItemsAPI = async function (restaurantId) {
   return results.data;
 };
 
+export const deleteRestoAPI = async function (restaurantId){
+  const results = await axios.put(`/restaurants/${restaurantId}/menu/items/categorized`,{"delete": true})
+}
+

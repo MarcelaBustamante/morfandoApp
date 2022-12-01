@@ -44,8 +44,6 @@ const LoginUserScreenUI = ({
             onPress={_signIn}
           />
         </View>
-        {/* <View style={styles.container}/>
-        <Button onPress={navigateToClientRegister} title='atajo para flor'/> */}
       </View>
       <LoadingModal
         text="Iniciando sesión"
