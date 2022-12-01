@@ -26,7 +26,12 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 
-const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
+const MenuViewOwnerScreenUI = ({ 
+  onCreateMenu, 
+  categoryMeals,
+  navigateToEditScreen1,
+  navigateToMenuOwner
+}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -66,7 +71,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals }) => {
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
-        ListHeaderComponent={HeaderForMenu}
+        ListHeaderComponent={HeaderForMenu({navigateToEditScreen1,navigateToMenuOwner})}
         sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
