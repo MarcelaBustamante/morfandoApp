@@ -7,6 +7,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SliderApp from './SliderApp';
 import { IconButton } from 'react-native-paper';
+import { AirbnbRating, Input, Button } from "react-native-elements";
 
 export default function Filter({filters, setFilters}) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -99,7 +100,7 @@ export default function Filter({filters, setFilters}) {
                         data={data}
                         labelField="label"
                         valueField="value"
-                        placeholder="Seleccionar especialidades"
+                        placeholder="Seleccionar especialidad"
                         value={selected}
                         search
                         searchPlaceholder="Buscar..."
@@ -149,28 +150,15 @@ export default function Filter({filters, setFilters}) {
                     }}
                     />
                     </View>
-                    <View style={styles.container2}>
-                    {renderLabelStar()}
-                    <Dropdown
-                    style={[styles.dropdown, isFocusS && { borderColor: Theme.colors.PRIMARY }]}
-                    placeholderStyle={styles.placeholderStyle}
-                    selectedTextStyle={styles.selectedTextStyle}
-                    inputSearchStyle={styles.inputSearchStyle}
-                    iconStyle={styles.iconStyle}
-                    data={dataStar}
-                    maxHeight={300}
-                    labelField="labelS"
-                    valueField="valueS"
-                    placeholder={!isFocusS ? 'Cantidad de estrellas' : '...'}
-                    searchPlaceholder="Buscar..."
-                    value={valueS}
-                    onFocus={() => setIsFocusS(true)}
-                    onBlur={() => setIsFocusS(false)}
-                    onChange={item => {
-                        setValueS(item.valueS);
-                        setIsFocusS(false);
-                    }}
-                    />
+                    <Text style={styles.text}> Cantidad de estrellas: </Text>
+                    <View style= {styles.ratingContent}>
+                      <AirbnbRating 
+                      count={6} 
+                      reviews={["No filtrar", "Muy malo", "Malo", "Normal", "Bueno", "Muy bueno"]}
+                      defaultRating= {0}
+                      size={15}
+                      //onFinishRating={(rating)}
+                      />
                     </View>
                     <SliderApp sliderValue={radius} setSliderValue={setRadius}/>
                     <Pressable
@@ -197,7 +185,7 @@ export default function Filter({filters, setFilters}) {
         </View>
                 )};
                 const width = Dimensions.get("window").width;
-const styles = StyleSheet.create({
+                const styles = StyleSheet.create({
 centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -320,5 +308,14 @@ centeredView: {
       container: { 
         padding: 16 
     },
+    text:{
+      color: Theme.colors.PRIMARY,
+      fontSize: 18,
+      alignSelf: "flex-start",
+      marginLeft: 30,
+    },
+    ratingContent:{
+      justifyContent: "center",
+  },
 });
  
