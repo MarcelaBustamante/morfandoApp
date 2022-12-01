@@ -5,13 +5,13 @@ import Theme from '../../styles/Theme';
 export default function Days({businessHours}) {
 
     const days = [
-        { day: "MONDAY", label: "Lunes", initial: " L " },
-        { day: "TUESDAY", label: "Martes", initial: " M " },
-        { day: "WEDNESDAY", label: "Miércoles", initial: " M " },
-        { day: "THURSDAY", label: "Jueves", initial: " J " },
-        { day: "FRIDAY", label: "Viernes", initial: " V " },
-        { day: "SATURDAY", label: "Sábado", initial: " S " },
-        { day: "SUNDAY", label: "Domingo", initial: " D " },
+        { id: 1, day: "MONDAY", label: "Lunes", initial: " L " },
+        { id: 2, day: "TUESDAY", label: "Martes", initial: " M " },
+        { id: 3, day: "WEDNESDAY", label: "Miércoles", initial: " M " },
+        { id: 4, day: "THURSDAY", label: "Jueves", initial: " J " },
+        { id: 5, day: "FRIDAY", label: "Viernes", initial: " V " },
+        { id: 6, day: "SATURDAY", label: "Sábado", initial: " S " },
+        { id: 7, day: "SUNDAY", label: "Domingo", initial: " D " },
     ];
     const [showModal, setShowModal] = useState(false);
     const [current, setCurrent] = useState(null);

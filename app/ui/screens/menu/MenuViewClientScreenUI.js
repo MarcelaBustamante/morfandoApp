@@ -6,7 +6,7 @@ import HeaderForClientMenu from "./HeaderForClientMenu";
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.extra, textColor]}>vegano: {item.vegan} // celiaco: {item.celiac}</Text>
+    <Text style={[styles.extra, textColor]}>Vegano: {item.vegan} // Celíaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
     <View style={styles.contenedorLista}>
       <View>

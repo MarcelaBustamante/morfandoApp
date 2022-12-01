@@ -8,7 +8,7 @@ import FooterDelete from './FooterDelete';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-    <Text style={[styles.extra, textColor]}>vegano: {item.vegan ? 'Si' : 'No'} // celiaco: {item.tacc ? 'Si' : 'No'}</Text>
+    <Text style={[styles.extra, textColor]}>Vegano: {item.vegan ? 'Si' : 'No'} // Celíaco: {item.tacc ? 'Si' : 'No'}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
     <View style={styles.contenedorLista}>
       <View>

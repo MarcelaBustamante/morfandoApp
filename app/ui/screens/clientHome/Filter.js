@@ -155,7 +155,7 @@ export default function Filter({filters, setFilters}) {
                       <AirbnbRating 
                       count={6} 
                       reviews={["No filtrar", "Muy malo", "Malo", "Normal", "Bueno", "Muy bueno"]}
-                      defaultRating= {0}
+                      defaultRating= {1}
                       size={15}
                       //onFinishRating={(rating)}
                       />

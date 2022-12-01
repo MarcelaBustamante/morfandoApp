@@ -1,12 +1,12 @@
 import React from 'react';
-import AddCommentScreenUI from './AddCommentScreenUI';
+import CommentsViewUI from './CommentsViewUI';
 
-export default function AddCommentScreen({}) {
+export default function CommentsView({}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
     console.log("Hola mundo");
   }
   return (
-          <AddCommentScreenUI/>
+          <CommentsViewUI/>
   )};

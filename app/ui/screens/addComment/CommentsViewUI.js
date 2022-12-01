@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, View, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import { Rating } from 'react-native-elements';
 import AddCommentScreenUI from "./AddCommentScreenUI";
@@ -8,11 +8,11 @@ const DATA = [
     comment: "mucho texto",
     rating: "4"
   },{
-    id: "2",
+    id: 2,
     comment: "mucho texto",
     rating: "3"
    },{
-    id: "2",
+    id: 3,
     comment: "mucho texto",
     rating: "4"
     }
@@ -36,7 +36,7 @@ const Item = ({ item }) => (
   </View>
 );
  
-const CommentsView = () => {
+const CommentsViewUI = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
@@ -60,7 +60,7 @@ const CommentsView = () => {
   </View>
   );
 };
-export default CommentsView;
+export default CommentsViewUI;
 
 
 const styles = StyleSheet.create({
