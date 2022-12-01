@@ -49,31 +49,23 @@ export default function Filter({filters, setFilters}) {
           };
 
         const dataPrice = [
-          { labelP: 'Sin filtro', valueP: null },
-            { labelP: '$', valueP: '1' },
-            { labelP: '$$', valueP: '2' },
-            { labelP: '$$$', valueP: '3' },
-            { labelP: '$$$$', valueP: '4' },
-          ];
-          const dataStar = [
-            { labelS: 'Sin filtro', valueS: null },
-            { labelS: '⭐', valueS: '1' },
-            { labelS: '⭐⭐', valueS: '2' },
-            { labelS: '⭐⭐⭐', valueS: '3' },
-            { labelS: '⭐⭐⭐⭐', valueS: '4' },
-            { labelS: '⭐⭐⭐⭐⭐', valueS: '5' },
+          { id: 1, labelP: 'Sin filtro', valueP: null },
+            { id: 2,labelP: '$', valueP: '1' },
+            { id: 3,labelP: '$$', valueP: '2' },
+            { id: 4,labelP: '$$$', valueP: '3' },
+            { id: 5,labelP: '$$$$', valueP: '4' },
           ];
     const data = [
-      { label: 'Sin filtro', value: null },
-      { label: 'Comida Alemana', value: 'ALEMANA' },
-      { label: 'Comida Italiana', value: 'ARGENTINA' },
-      { label: 'Comida Armenia', value: 'ARMENIA' },
-      { label: 'Comida China', value: 'CHINA' },
-      { label: 'Comida India', value: 'INDIA' },
-      { label: 'Comida Italiana', value: 'ITALIANA' },
-      { label: 'Comida Japonesa', value: 'JAPONESA' },
-      { label: 'Comida Norteamericana', value: 'NORTEAMERICANA' },
-      { label: 'Comida Peruana', value: 'PERUANA' },
+      { id: 6,label: 'Sin filtro', value: null },
+      { id: 7,label: 'Comida Alemana', value: 'ALEMANA' },
+      { id: 8,label: 'Comida Italiana', value: 'ARGENTINA' },
+      { id: 9,label: 'Comida Armenia', value: 'ARMENIA' },
+      { id: 10,label: 'Comida China', value: 'CHINA' },
+      { id: 11,label: 'Comida India', value: 'INDIA' },
+      { id: 12,label: 'Comida Italiana', value: 'ITALIANA' },
+      { id: 13,label: 'Comida Japonesa', value: 'JAPONESA' },
+      { id: 14,label: 'Comida Norteamericana', value: 'NORTEAMERICANA' },
+      { id: 15,label: 'Comida Peruana', value: 'PERUANA' },
     ];
 
     return (
