@@ -66,8 +66,7 @@ const MenuViewOwnerScreenUI = ({ onCreateMenu, categoryMeals, restaurant}) => {
   return (
     <View style={styles.container}>
       <SectionList
-        ListHeaderComponent={HeaderForMenu({restaurant})}
-        sections={result}
+        ListHeaderComponent={() => HeaderForMenu({restaurant})}        sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
         renderSectionHeader={({ section: { category } }) => (

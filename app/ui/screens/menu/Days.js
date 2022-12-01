@@ -30,7 +30,7 @@ export default function Days({businessHours}) {
         return (
             <View style={styles.centeredView}>
                 <Pressable
-                    style={[styles.button, findHours(day.day) ? styles.buttonOpen : styles.buttonClose]}
+                    style={[styles.button, findHours(day.day) ? styles.buttonOpenExist : styles.buttonOpenNotExist]}
                     onPress={() => onPress(day.day, day.label)}
                 >
                     <Text style={styles.textStyle}> {day.initial} </Text>
@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: '#FE4164',
+  buttonOpenExist: {
+    backgroundColor: 'green',
   },
   buttonClose: {
     backgroundColor: Theme.colors.PRIMARY,
@@ -165,4 +165,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 20,
     margin: 5,
   },
+  buttonOpenNotExist: {
+    backgroundColor: Theme.colors.ERROR
+  }
 });
