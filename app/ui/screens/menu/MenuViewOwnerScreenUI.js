@@ -32,6 +32,7 @@ const MenuViewOwnerScreenUI = ({
   restaurant,
   navigateToEditScreen1,
   navigateToHome,
+  navigateToMealDescription,
 }) => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -39,7 +40,7 @@ const MenuViewOwnerScreenUI = ({
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.innerArray)}
+        onPress={navigateToMealDescription}
       />
     );
   };

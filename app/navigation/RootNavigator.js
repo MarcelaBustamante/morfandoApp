@@ -24,6 +24,10 @@ import EditRestaurantScreen1 from '../ui/screens/restaurante/EditRestaurantScree
 import EditRestaurantScreen2 from '../ui/screens/restaurante/EditRestaurantScreen2';
 import FavouriteRestaurants from '../ui/screens/clientHome/FavoriteRestaurants';
 import MenuViewClientScreen from '../ui/screens/menu/MenuViewClientScreen';
+import MealDescriptionScreen from '../ui/screens/menu/MealDescriptionScreen';
+import MealDescriptionScreenClient from '../ui/screens/menu/MealDescriptionScreenClient';
+import CommentsView from '../ui/screens/addComment/CommentsView';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -124,7 +128,18 @@ export default RootNavigator = () => {
           name={NavigatorConstant.CLIENT_STACK.CLIENT_MENU_VIEW}
           component={MenuViewClientScreen}
         />
-
+         <Stack.Screen
+          name={NavigatorConstant.CLIENT_STACK.MEAL_DESCRIPTION_CLIENT}
+          component={MealDescriptionScreenClient}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.CLIENT_STACK.CLIENT_COMMENT}
+          component={CommentsView}
+        />
+        <Stack.Screen
+          name={NavigatorConstant.LANDING_STACK.MEAL_DESCRIPTION}
+          component={MealDescriptionScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
