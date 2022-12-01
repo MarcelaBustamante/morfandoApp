@@ -5,7 +5,7 @@ import { Icon } from '@rneui/themed';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 
-const NavegationBarClientMenu = ({restaurant}) => {
+const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const [estado, setEstado] = useState(false);
 
   const agregarFavoritos = () => {
@@ -14,7 +14,7 @@ const NavegationBarClientMenu = ({restaurant}) => {
   return (
     <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
-        <Button style={styles.circle} title="<"/>
+        <Button style={styles.circle} onPress={navigateToClientNearBy} title="<"/>
         <Text style={styles.name}>{restaurant?.name}</Text> 
       <TouchableOpacity style={styles.button} onPress={() => agregarFavoritos()}>
         <Ionicons

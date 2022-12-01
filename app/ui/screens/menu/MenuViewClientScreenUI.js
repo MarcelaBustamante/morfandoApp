@@ -23,7 +23,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
 );
 
-const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMealDescription, navigateToComment}) => {
+const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMealDescription, navigateToComment, navigateToClientNearBy}) => {
   console.log("Resto", restaurant);
   let DATA = !menuItems ? [] : menuItems.map(item => {
     return {
@@ -62,7 +62,7 @@ const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMea
   return (
     <View style={styles.container}>
      <SectionList  
-      ListHeaderComponent={() => HeaderForClientMenu({restaurant,navigateToComment})}
+      ListHeaderComponent={() => HeaderForClientMenu({restaurant,navigateToComment, navigateToClientNearBy})}
       sections={DATA}
       keyExtractor={(item, index) => item + index}
       renderItem={renderItem}

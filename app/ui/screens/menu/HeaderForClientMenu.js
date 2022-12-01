@@ -6,13 +6,13 @@ import RatingView from "./RatingView";
 import NavegationBarClientMenu from "./NavegationBarClientMenu";
 import Days from './Days';
 
-const HeaderForClientMenu = ({restaurant,navigateToComment}) => {
+const HeaderForClientMenu = ({restaurant,navigateToComment,navigateToClientNearBy}) => {
     if (!restaurant) {
         return <View />
     }
     return(
         <View>
-            <NavegationBarClientMenu  restaurant={restaurant}/>
+            <NavegationBarClientMenu  navigateToClientNearBy={navigateToClientNearBy} restaurant={restaurant}/>
             <CarouselImages images={restaurant.photos}/> 
             <View style={{flexDirection:"row", justifyContent: "space-between"}} >
             <TagsList tags={[restaurant.type]}/> 
