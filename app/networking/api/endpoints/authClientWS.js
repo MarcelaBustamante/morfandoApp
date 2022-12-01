@@ -12,3 +12,8 @@ export const getUserProfile = async function (userId) {
     const result = await axios.get(`/users/${userId}`);
     return result.data;
 }
+
+export const updateUser = async function ({ email, name, lastName, pictures }){
+    const result = await axios.put('/users', { email, name, lastName, profilePicture: pictures });
+    return result.data;
+}
