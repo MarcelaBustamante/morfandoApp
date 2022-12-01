@@ -72,7 +72,7 @@ const MenuViewOwnerScreenUI = ({
   return (
     <View style={styles.container}>
       <SectionList
-        ListHeaderComponent={() => HeaderForMenu({restaurant,navigateToEditScreen1,navigateToHome}}        sections={result}
+        ListHeaderComponent={() => HeaderForMenu({restaurant,navigateToEditScreen1,navigateToHome})}        sections={result}
         keyExtractor={(item, index) => item + index}
         renderItem={renderItem}
         renderSectionHeader={({ section: { category } }) => (
