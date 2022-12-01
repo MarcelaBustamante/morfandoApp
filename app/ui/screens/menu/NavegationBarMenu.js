@@ -5,16 +5,13 @@ import { Icon } from '@rneui/base';
 import Theme from '../../styles/Theme';
 
 
-const NavegationBarMenu = ({}) => {
-    const  getNameRestaurant = () => {
-        return "El almacén"
-      }
+const NavegationBarMenu = ({restaurant}) => {
 
 return(
 <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} title="<"/>
-        <Text style={styles.name}>  {getNameRestaurant()}</Text> 
+        <Text style={styles.name}>  {restaurant.name}</Text> 
         <Icon
         raised
         type= "material-community"
