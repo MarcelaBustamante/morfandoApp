@@ -15,7 +15,7 @@ const UserSetScreenClientUI = ({
     loginHandler, 
     navigateToProfile,
     navigateToChangePassword,
-    navigateToLoginPartner,
+    navigateToLoginClient,
   }) => {
     const [checked, setChecked] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
@@ -73,7 +73,7 @@ const UserSetScreenClientUI = ({
             />
             <Pressable
               style={[styles.buttonClose]}
-              onPress={navigateToLoginPartner} 
+              onPress={navigateToLoginClient} 
             >
               <Text style={styles.textStyle1}>Aceptar</Text>
             </Pressable>

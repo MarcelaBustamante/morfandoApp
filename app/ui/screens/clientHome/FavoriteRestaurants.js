@@ -3,10 +3,11 @@ import RestaurantListNearby from './RestaurantListNearby';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
 
 
-export default function FavoriteRestaurants() {
+export default function FavoriteRestaurants({navigation}) {
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
@@ -18,7 +19,7 @@ export default function FavoriteRestaurants() {
   return (
       <View style={styles.container}> 
         <View style={styles.containerCircle}>
-            <Button style={styles.back} title="<"/>
+            <Button style={styles.back} onPress={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)} title="<"/>
         </View>
             
         <Text style={styles.title}> Mis Favoritos ♥ </Text>

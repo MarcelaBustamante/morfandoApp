@@ -14,7 +14,7 @@ export default function UserSetScreen({navigation}) {
           <UserSetScreenClientUI
             navigateToProfile={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_INFORMATION)}
             navigateToChangePassword={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_CHANGE_PASSWORD)}
-            navigateToLoginPartner={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGIN)}
+            navigateToLoginClient={() => navigation.navigate(NavigatorConstant.NAVIGATOR.LOGINUSER)}
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};
