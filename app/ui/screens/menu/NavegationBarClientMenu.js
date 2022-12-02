@@ -1,22 +1,38 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from '@rneui/themed';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
+import { addUserFavourite, deleteUserFavourite, getUserFavourite } from '../../../networking/api/endpoints/authClientWS';
 
 const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const [estado, setEstado] = useState(false);
+  const {userId} = useSelector(state => state.clientLogin);
 
-  const agregarFavoritos = () => {
-    setEstado(!estado);
+  const getfavourite = async (restaurant) => {
+    return await getUserFavourite (userId,restaurant.id);
+  };
+
+  useEffect (() => {
+    setEstado( getfavourite(restaurant));
+  },[]);
+
+  const cambiarFavoritos = async (restaurant) => {
+    if (estado == true){
+      await deleteUserFavourite(userId,restaurant.id);
+      estado = false;
+    }else{
+      await addUserFavourite (userId,restaurant.id);
+      estado = true;
+    }
   };
   return (
     <View style={styles.container}> 
     <View style={[{flexDirection:"row", justifyContent: "space-between", backgroundColor: 'rgba(52, 52, 52, 0.6)'}]} >
         <Button style={styles.circle} onPress={navigateToClientNearBy} title="<"/>
         <Text style={styles.name}>{restaurant?.name}</Text> 
-      <TouchableOpacity style={styles.button} onPress={() => agregarFavoritos()}>
+      <TouchableOpacity style={styles.button} onPress={cambiarFavoritos}>
         <Ionicons
           raised
           name={estado ? 'heart-dislike' : 'heart'}

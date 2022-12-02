@@ -17,3 +17,18 @@ export const updateUser = async function ({ email, name, lastName, pictures }){
     const result = await axios.put('/users', { email, name, lastName, profilePicture: pictures });
     return result.data;
 }
+
+export const getUserFavourite = async function ({ userId,restaurantId }){
+    const result = await axios.get(`/getfavourite/${userId}/${restaurantId}`);
+    return result.data;
+}
+
+export const addUserFavourite = async function ({ userId,restaurantId }){
+    const result = await axios.post(`/addfavourite/${userId}/${restaurantId}`);
+    return result.data;
+}
+
+export const deleteUserFavourite = async function ({ userId,restaurantId }){
+    const result = await axios.post(`/deletefavourite/${userId}/${restaurantId}`);
+    return result.data;
+}
