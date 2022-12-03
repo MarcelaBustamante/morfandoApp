@@ -17,9 +17,9 @@ const NewRestaurantScreen2UI = ({
   setSelected,
   valuePriece,
   setValuePriece,
+  businessHours,
   checked,
   setChecked,
-  businessHours,
   changeSingleBusinessHour,
   onRestaurantSubmit,
   isLoading
@@ -27,6 +27,8 @@ const NewRestaurantScreen2UI = ({
 
   const [isFocus, setIsFocus] = useState(false); //dropdown menu
   const [value, setValue] = useState(null);
+
+
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
@@ -177,12 +179,15 @@ const NewRestaurantScreen2UI = ({
           }}
         />
       </View>
+      
       <ListItem
         title="Cerrar Temporalmente"
         trailing={
           <Switch value={checked} onValueChange={() => setChecked(!checked)} />
         }
-        onPress={() => setChecked(!checked)}
+        onPress={() => {
+          setChecked(!checked)
+        }}
       />
       <Text style={styles.closeSubTitle}>Si activas esta opción tu restaurante comenzará en modo inactivo</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }} >

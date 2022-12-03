@@ -33,8 +33,8 @@ export default function NewRestaurantScreen2({ navigation, route }) {
   );
   const [selected, setSelected] = useState([]); //dropdown menu tags
   const [valuePriece, setValuePriece] = useState(1);
-  const [checked, setChecked] = useState(true); //cerrar temporalmente
   const { isLoading, status } = useSelector(state => state.restaurant);
+  const [checked, setChecked] = useState(true);
 
   useEffect(() => {
     if (status === 'succeeded') {
@@ -84,7 +84,7 @@ export default function NewRestaurantScreen2({ navigation, route }) {
       "type": selected.label,
       "priceRange": valuePriece,
       "photos": form.imageRest,
-      "active": form.isClosed
+      "active": !checked
     }));
   };
 

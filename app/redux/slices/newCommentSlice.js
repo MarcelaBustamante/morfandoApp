@@ -8,7 +8,7 @@ const initialState = {
     isLoading: false,
   }
   
-  export const addReview = createAsyncThunk('addReview',
+  export const CreateReview = createAsyncThunk('addReview',
   async ({ formValue, restoId }, thunkAPI) => {
     const result = await addReview(formValue, restoId);
     //thunkAPI.dispatch(getReviews);
