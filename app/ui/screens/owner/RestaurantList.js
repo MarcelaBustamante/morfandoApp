@@ -24,10 +24,10 @@ const printAddress = (restaurant) => {
 };
 
 const printStatus = (status) => {
-  if ("OPEN".localeCompare(status) == 0) {
+  if (status == true) {
     return "Abierto";
   }
-  if ("CLOSED".localeCompare(status) == 0) {
+  if (status == false) {
     return "Cerrado Temporalmente";
   }
   return status;
@@ -49,7 +49,7 @@ const RestaurantList = ({ navigateMenuOwner, restaurants }) => {
         <View style={{ paddingEnd: 25, paddingStart: 5 }}>
           <Text style={[styles.general, textColor]}>{printTime(item)}</Text>
           <Text style={[styles.general, textColor]}>{printAddress(item)}</Text>
-          <Text style={[styles.state, textColor]}>{printStatus(item.status)}</Text>
+          <Text style={[styles.state, textColor]}>{printStatus(item.active)}</Text>
         </View>
       </View>
     </TouchableOpacity>
