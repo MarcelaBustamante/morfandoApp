@@ -51,10 +51,10 @@ const CommentsViewUI = ({formik}) => {
   return (
     <View style={styles.container}>
     <FlatList
-      ListHeaderComponent={() =>AddCommentScreenUI({formik})}
+      ListHeaderComponent={AddCommentScreenUI({formik})}
       data={DATA}
       renderItem={renderItem}
-      keyExtractor={(item) => item.comment}
+      keyExtractor={(item) => item.id}
       extraData={selectedId}
     />
   </View>
