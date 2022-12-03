@@ -12,11 +12,12 @@ const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const {userId} = useSelector(state => state.clientLogin);
 
   const getfavourite = async (restaurant) => {
-    return await getUserFavourite (userId,restaurant.id);
+    console.log("hola", userId,restaurant.id)
+    return await getUserFavourite(userId,restaurant.id);
   };
 
   useEffect (() => {
-    setEstado( getfavourite(restaurant));
+    setEstado(getfavourite(restaurant));
   },[]);
 
   const cambiarFavoritos = async (restaurant) => {

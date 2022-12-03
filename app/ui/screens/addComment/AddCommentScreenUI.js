@@ -1,10 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { AirbnbRating, Input, Rating } from "react-native-elements";
 import Theme from "../../styles/Theme";
 import { Button } from '@react-native-material/core';
 
-export function AddCommentScreenUI ({formik}){
+export function AddCommentScreenUI ({formik, handleNewReview}){
+    const [comment, setComment] = useState("");
+    const [rating, setReating] = useState(0);
+    
+    const handleSubmition = () => {
+        formik.handleSubmit();
+        handleNewReview({"comment": comment, "rating": rating})
+    }
 
     return(
         <View>
@@ -19,20 +26,26 @@ export function AddCommentScreenUI ({formik}){
                     defaultRating= {0}
                     size={15}
                     //onFinishRating={(rating)}
-                    onFinishRating={(rating) => { formik.setFieldValue('rating', rating) }}
-                    errorMessage={formik.errors.name}
+                    onFinishRating={(rating) => { 
+                        formik.setFieldValue('rating', rating); 
+                        setReating(rating)
+                    }}
+                    errorMessage={formik.errors.rating}
                     />
                 </View>
                 <View>
-                    <Input placeholder="Comentario" 
-                    multiline 
+                    <Input placeholder="Comentario"  
                     inputContainerStyle={styles.comment} 
-                    onChangeText={(text) => { formik.setFieldValue('comment', text) }}
-                    errorMessage={formik.errors.name}>
-                    </Input>
+                    onChangeText={(text) => { 
+                        formik.setFieldValue('comment', text);
+                        setComment(text)
+                        console.log("mi texto", text)
+                    }}
+                    errorMessage={formik.errors.comment}
+                    />
                 </View>
             </View>
-            <Button style={styles.button} onPress={formik.handleSubmit} title="Enviar Comentario" ></Button>
+            <Button style={styles.button} onPress={handleSubmition} title="Enviar Comentario" ></Button>
             <Text style ={styles.title}>Más Comentarios</Text>
         </View>
         </View>

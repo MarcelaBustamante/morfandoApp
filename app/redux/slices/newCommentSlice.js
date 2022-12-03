@@ -11,13 +11,15 @@ const initialState = {
   export const CreateReview = createAsyncThunk('addReview',
   async ({ formValue, restoId }, thunkAPI) => {
     const result = await addReview(formValue, restoId);
-    //thunkAPI.dispatch(getReviews);
+    //thunkAPI.dispatch(getReview(restoId));
     return result
     }
   );
 
+
+
   export const newCommentSlice = createSlice({
-    name: 'addReview',
+    name: 'Review',
     initialState,
     extraReducers: (builder) => {
       builder.addCase(addReview.pending, (state, action) => {
@@ -37,6 +39,7 @@ const initialState = {
           state.isLoading = false;
           console.log(action);
         })
+        
     }
   })
   

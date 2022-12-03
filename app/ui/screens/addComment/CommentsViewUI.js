@@ -3,6 +3,10 @@ import { FlatList, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, V
 import Theme from "../../styles/Theme";
 import { Rating } from 'react-native-elements';
 import AddCommentScreenUI from "./AddCommentScreenUI";
+import { useEffect } from "react";
+import { getReviews } from "../../../networking/api/endpoints/reviewsWS";
+import { prefix } from "@fortawesome/free-regular-svg-icons";
+
 const DATA = [
   {id: 1,
     comment: "mucho texto",
@@ -36,8 +40,19 @@ const Item = ({ item }) => (
   </View>
 );
  
-const CommentsViewUI = ({formik}) => {
+const CommentsViewUI = ({formik,restaurantId}) => {
   const [selectedId, setSelectedId] = useState(null);
+  const [reviews, setReviews] = useState([]);
+
+  const getAllReviews = async () => {
+    const reviews = await getReviews({restaurantId});
+    console.log("todas las reviews: ", reviews)
+    setReviews(reviews.items);
+  }
+
+  useEffect(() =>{
+      getAllReviews();
+  },[]) 
 
   const renderItem = ({ item }) => {
    return (
@@ -48,11 +63,17 @@ const CommentsViewUI = ({formik}) => {
     );
   };
 
+  const handleNewReview = (review) => {
+    console.log("review", review)
+    setReviews(pre => pre.concat(review))
+  }
+
+  console.log("soy el hook: ", reviews)
   return (
     <View style={styles.container}>
     <FlatList
-      ListHeaderComponent={AddCommentScreenUI({formik})}
-      data={DATA}
+      ListHeaderComponent={AddCommentScreenUI({formik,handleNewReview})}
+      data={reviews}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
       extraData={selectedId}
