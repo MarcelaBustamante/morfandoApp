@@ -36,3 +36,13 @@ export const deleteRestoAPI = async function (restaurantId){
   const results = await axios.put(`/restaurants/${restaurantId}/menu/items/categorized`,{"delete": true})
 }
 
+export const addComment = async function (restaurantId){
+  const results = await axios.post(`/restaurants/${restaurantId}/reviews`);
+}
+
+export const getAllComments = async function (restaurantId){
+  const results = await axios.get(`/restaurants/${restaurantId}/reviews`);
+  return results.data;
+}
+
+
