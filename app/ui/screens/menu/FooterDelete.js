@@ -4,7 +4,9 @@ import { View, Text, StyleSheet, Alert, Modal, Pressable, TextInput } from 'reac
 import { Icon } from '@rneui/base';
 import Theme from '../../styles/Theme';
 
-const FooterDelete = ({}) => {
+const FooterDelete = ({
+  handleDelete
+}) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -34,17 +36,11 @@ return(
               </View>
             </Pressable>
             <Text style={styles.modalText}>¿Está seguro de eliminar este restaurante?</Text>
-            <TextInput
-              style={styles.input2}
-              placeholder='Contraseña actual'
-              onChange={console.log("actualPassword")}
-              placeholderTextColor={Theme.colors.ERROR}
-              secureTextEntry= {true}
-            />
             <Pressable
               style={[styles.buttonClose]}
+              onPress={handleDelete}
             >
-              <Text style={styles.textStyle1}>Aceptar</Text>
+              <Text style={styles.textStyle1}>Si</Text>
             </Pressable>
           </View>
         </View>

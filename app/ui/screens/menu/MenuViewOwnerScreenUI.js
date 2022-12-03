@@ -33,6 +33,7 @@ const MenuViewOwnerScreenUI = ({
   navigateToEditScreen1,
   navigateToHome,
   navigateToMealDescription,
+  handleDelete
 }) => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -79,7 +80,7 @@ const MenuViewOwnerScreenUI = ({
         renderSectionHeader={({ section: { category } }) => (
           <Text style={styles.header}>{category}</Text>
         )}
-        ListFooterComponent={FooterDelete}
+        ListFooterComponent={FooterDelete({handleDelete})}
       />
       <Icon
         reverse

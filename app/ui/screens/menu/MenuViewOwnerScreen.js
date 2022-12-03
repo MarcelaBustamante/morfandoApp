@@ -3,7 +3,8 @@ import MenuViewOwnerScreenUI from './MenuViewOwnerScreenUI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMeal, newRestaurantsSlice } from '../../../redux/slices/newRestaurantsSlice';
+import { getMeal, newRestaurantsSlice,deleteRestaurant } from '../../../redux/slices/newRestaurantsSlice';
+
 
 export default function MenuViewOwnerScreen({ navigation, route }) {
   welcomeString = 'Bienvenido a Morfando';
@@ -23,6 +24,12 @@ export default function MenuViewOwnerScreen({ navigation, route }) {
       dispatch(getMeal(restaurant.id));
     }
   })
+
+  const handleDelete= async ()  => {
+    dispatch(deleteRestaurant(restaurant.id))
+    navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT);
+  }
+
   return (
     <MenuViewOwnerScreenUI
       restaurant={restaurant}
@@ -32,6 +39,7 @@ export default function MenuViewOwnerScreen({ navigation, route }) {
       navigateToEditScreen1={() => navigation.navigate(NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_1)}
       navigateToMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS,{ restaurant })}
       navigateToMealDescription={() => navigation.navigate(NavigatorConstant.LANDING_STACK.MEAL_DESCRIPTION)}
+      handleDelete={handleDelete}
     />
   )
 };
