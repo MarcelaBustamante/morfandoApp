@@ -58,7 +58,7 @@ export default function Filter({filters, setFilters}) {
     const data = [
       { id: 6,label: 'Sin filtro', value: null },
       { id: 7,label: 'Comida Alemana', value: 'ALEMANA' },
-      { id: 8,label: 'Comida Italiana', value: 'ARGENTINA' },
+      { id: 8,label: 'Comida Argentina', value: 'ARGENTINA' },
       { id: 9,label: 'Comida Armenia', value: 'ARMENIA' },
       { id: 10,label: 'Comida China', value: 'CHINA' },
       { id: 11,label: 'Comida India', value: 'INDIA' },
