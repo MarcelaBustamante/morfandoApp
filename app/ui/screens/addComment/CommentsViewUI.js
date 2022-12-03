@@ -7,36 +7,18 @@ import { useEffect } from "react";
 import { getReviews } from "../../../networking/api/endpoints/reviewsWS";
 import { prefix } from "@fortawesome/free-regular-svg-icons";
 
-const DATA = [
-  {id: 1,
-    comment: "mucho texto",
-    rating: "4"
-  },{
-    id: 2,
-    comment: "mucho texto",
-    rating: "3"
-   },{
-    id: 3,
-    comment: "mucho texto",
-    rating: "4"
-    }
-];
-
-const loginHandler = () => {
-    console.log("Hola mundo");
-  }
 
 const Item = ({ item }) => (
   <View style={ styles.containerBorder}>
-    <Text style= {styles.title}> Una persona anónima</Text>
-     <Text style={[styles.general]}>{item.comment}</Text>
-     <Rating 
+    <Text style= {styles.title}> Anónimo</Text>
+    <Rating 
            imageSize= {30} 
            readonly 
            fractions="{1}" 
            startingValue= {item.rating}
            style={styles.ratingContainer}
            /> 
+     <Text style={[styles.general]}>{item.comment}</Text>
   </View>
 );
  
@@ -90,9 +72,9 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   title: {
-    fontSize: 25,
+    fontSize: 12,
     fontWeight: 'bold',
-    color: Theme.colors.PRIMARY
+    color: "#808080"
   },
   state: {
     color: Theme.colors.ERROR,
@@ -118,7 +100,7 @@ const styles = StyleSheet.create({
       elevation: 2,
   },
   ratingContainer:{
-    alignSelf: "flex-end"
+    alignSelf: "flex-start"
   }
 });
 
