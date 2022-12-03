@@ -5,6 +5,7 @@ import { Icon } from '@rneui/themed';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { addUserFavourite, deleteUserFavourite, getUserFavourite } from '../../../networking/api/endpoints/authClientWS';
+import { useSelector } from 'react-redux';
 
 const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const [estado, setEstado] = useState(false);

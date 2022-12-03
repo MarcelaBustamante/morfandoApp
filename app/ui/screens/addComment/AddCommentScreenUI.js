@@ -4,7 +4,7 @@ import { AirbnbRating, Input, Rating } from "react-native-elements";
 import Theme from "../../styles/Theme";
 import { Button } from '@react-native-material/core';
 
-export function AddCommentScreenUI (){
+export function AddCommentScreenUI ({formik}){
 
     return(
         <View>
@@ -19,13 +19,20 @@ export function AddCommentScreenUI (){
                     defaultRating= {0}
                     size={15}
                     //onFinishRating={(rating)}
+                    onFinishRating={(rating) => { formik.setFieldValue('rating', rating) }}
+                    errorMessage={formik.errors.name}
                     />
                 </View>
                 <View>
-                    <Input placeholder="Comentario" multiline inputContainerStyle={styles.comment}></Input>
+                    <Input placeholder="Comentario" 
+                    multiline 
+                    inputContainerStyle={styles.comment} 
+                    onChangeText={(text) => { formik.setFieldValue('comment', text) }}
+                    errorMessage={formik.errors.name}>
+                    </Input>
                 </View>
             </View>
-            <Button style={styles.button} title="Enviar Comentario" ></Button>
+            <Button style={styles.button} onPress={formik.handleSubmit} title="Enviar Comentario" ></Button>
             <Text style ={styles.title}>Más Comentarios</Text>
         </View>
         </View>
