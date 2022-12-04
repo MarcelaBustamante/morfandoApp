@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, use } from 'react';
 import RestaurantListNearby from './RestaurantListNearby';
 import { Button } from '@react-native-material/core';
 import Theme from '../../styles/Theme';
 import { View, Text, StyleSheet } from 'react-native';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
+import {useDispatch, useSelector} from 'react-redux';
+import {clientProfile} from '../../../redux/slices/clientSlice';
+
 
 export default function FavoriteRestaurants({navigation, route}) {
-  const {restaurants} = route.params;
+  const {restaurants, userId} = route.params;
+  const {user} = useSelector(state => state.client);
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    console.log("llamada");
+    dispatch(clientProfile({userId}));
+  },[userId]);
+
   return (
       <View style={styles.container}> 
         <View style={styles.containerCircle}>
@@ -17,7 +28,7 @@ export default function FavoriteRestaurants({navigation, route}) {
         <View>
         </View>
         <View style={styles.container}>
-            <RestaurantListNearby restaurants={restaurants} navigation={navigation}/>
+            <RestaurantListNearby restaurants={user?.favourites} navigation={navigation}/>
         </View>
       </View>
   )};
