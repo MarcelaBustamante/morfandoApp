@@ -5,7 +5,7 @@ import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal"
 import HeaderForClientMenu from "./HeaderForClientMenu";
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  <View onPress={onPress} style={[styles.item, backgroundColor]}>
     <Text style={[styles.extra, textColor]}>Vegano: {item.vegan} // Celíaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
     <View style={styles.contenedorLista}>
@@ -20,7 +20,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
       <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
     </View>
     </View>  
-    </TouchableOpacity>
+    </View>
 );
 
 const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToComment, navigateToClientNearBy}) => {
