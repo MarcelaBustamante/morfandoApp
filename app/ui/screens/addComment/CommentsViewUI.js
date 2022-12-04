@@ -22,7 +22,7 @@ const Item = ({ item }) => (
   </View>
 );
  
-const CommentsViewUI = ({formik,restaurantId}) => {
+const CommentsViewUI = ({formik,restaurantId,navigateToMenuViewClient}) => {
   const [selectedId, setSelectedId] = useState(null);
   const [reviews, setReviews] = useState([]);
 
@@ -54,7 +54,7 @@ const CommentsViewUI = ({formik,restaurantId}) => {
   return (
     <View style={styles.container}>
     <FlatList
-      ListHeaderComponent={AddCommentScreenUI({formik,handleNewReview})}
+      ListHeaderComponent={AddCommentScreenUI({formik,handleNewReview,navigateToMenuViewClient})}
       data={reviews}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}

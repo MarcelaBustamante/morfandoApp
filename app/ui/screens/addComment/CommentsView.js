@@ -5,8 +5,9 @@ import { initialValues, validationSchemma } from './CommentsView.data';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReview } from '../../../redux/slices/newCommentSlice';
 import { addReview } from '../../../networking/api/endpoints/reviewsWS';
+import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function CommentsView({route}) {
+export default function CommentsView({navigation,route}) {
   welcomeString = 'Bienvenido a Morfando';
   const {userId} = useSelector(state => state.clientLogin);
   const {restaurant} = route.params;
@@ -32,5 +33,6 @@ export default function CommentsView({route}) {
           <CommentsViewUI
             restaurantId={restaurant.id}
             formik = {formik}
+            navigateToMenuViewClient = {()=>navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_MENU_VIEW,{restaurant})}
           />
   )};

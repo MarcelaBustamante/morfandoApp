@@ -23,7 +23,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
 );
 
-const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMealDescription, navigateToComment, navigateToClientNearBy}) => {
+const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToComment, navigateToClientNearBy}) => {
   console.log("Resto", restaurant);
   let DATA = !menuItems ? [] : menuItems.map(item => {
     return {
@@ -47,7 +47,7 @@ const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMea
     return (
         <Item
         item={item}
-        onPress={navigateToMealDescription}
+
       />
     );
   };
