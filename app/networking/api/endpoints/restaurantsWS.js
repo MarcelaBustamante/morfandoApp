@@ -32,6 +32,11 @@ export const getCategorizedMenuItemsAPI = async function (restaurantId) {
   return results.data;
 };
 
+export const getRestoAPI = async function (restaurantId) {
+  const results = await axios.get(`/restaurants/${restaurantId}`);
+  return results.data;
+}
+
 export const deleteRestoAPI = async function (restaurantId){
   const results = await axios.delete(`/restaurants/${restaurantId}`);
   return results.data;

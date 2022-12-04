@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
 import { Button  } from "@react-native-material/core";
+import { Formik } from 'formik';
+import FileUploadButton from '../../components/shared/FileUploadButton';
+import { Input } from '@rneui/themed';
+import { MapForm } from '../../components/MapsForm/MapsForm';
+import { LoadingModal } from '../../components/shared/LoadingModal/LoadingModal';
+import Avatar from '../../components/shared/AvatarCustom';
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import { filter } from 'lodash';
 
 
-const dataCountry = [
-  { label: 'Argetina', value: '1' },
-];
-const dataProvince = [
-  { label: 'Buenos Aires', value: '2' },
-  { label: 'Mendoza', value: '3' },
-  { label: 'Santa Fé', value: '4' },
-  { label: 'San Juan', value: '5' },
-  { label: 'Santiago del Estero', value: '6' },
-];
-const dataLocation = [
-  { label: 'Quilmes', value: '7' },
-  { label: 'Florencio Varela', value: '8' },
-  { label: 'San Isidro', value: '9' },
-  { label: 'Capital Federal', value: '10' },
-  { label: 'Lanús', value: '11' },
-];
-const dataNeighborhood = [
-  { label: 'Barrio de la localidad seleccionada', value: '12' },
-];
 
 const EditRestaurantScreen1UI = ({
   primText = 'No vino ningún texto',
@@ -32,13 +20,25 @@ const EditRestaurantScreen1UI = ({
   loginHandler,
   navigateToMenuOwner,
   navigateToEditScreen2,
+  dataCountry,
+  dataNeighborhood,
+  dataLocation,
+  dataProvince,
+  formik,
+  restaurant
 }) => {
+
   const [valueCoutry, setValueCoutry] = useState(null);
   const [valueLocation, setValueLocation] = useState(null);
   const [valueProvince, setValueProvince] = useState(null);
   const [valueNeighborhood, setValueNeighborhood] = useState(null);
+  const [pictures, setPictures] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
+  const [showMap, setShowMap] = useState(false);
 
   const [isFocus, setIsFocus] = useState(false);
+
+  console.log(restaurant)
 
 
   const renderLabelCountry = () => {
@@ -82,135 +82,112 @@ const EditRestaurantScreen1UI = ({
     return null;
   };
 
+  const onPhotoUploaded = (fileKey) => {
+    setIsLoading(false);
+    setPictures([...pictures, fileKey]);
+    formik.setFieldValue("imageRest", pictures);
+  };
+
+  const onPhotoStartUpload = () => {
+    setIsLoading(true);
+  }
+
+  const onPhotoError = () => {
+    setIsLoading(false);
+    Toast("Hubo un error cargando la imagen")
+  }
+
+  const onOpenCloseMap = () => setShowMap((prevState)=>!prevState);
+
+  const removeImagen = (img)=> {
+    Alert.alert(
+      "Eliminar imagen",
+      "Estas seguro de eliminar esta imagen?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",  
+        },
+        {
+          text: "Eliminar",
+          onPress: () => {
+            const result = filter(formik.values.imageRest, (image)=> image !== img);
+            formik.setFieldValue("imageRest",result);
+            setPictures(result);
+          }
+        }
+      ]
+    );
+  }
+
   return (
+    <>
     <View style={styles.container1}>
-        <Button style={styles.circle} onPress={navigateToMenuOwner} title="<"/>
-          <Text style={styles.title}>Editar Restaurante</Text>
-          <Text style={styles.subTitle}>Datos principales</Text>
-          <View style={{alignItems: "center"}}>
-            <TextInput
-            style={styles.input}
-            placeholder='Nombre'
-            onChange={console.log("name")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            />
-            <TextInput
-            style={styles.input}
-            placeholder='Calle'
-            onChange={console.log("street")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            />
-    <View style={styles.container2}>
-      {renderLabelCountry()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataCountry}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'País' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueCoutry}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueCoutry(item.value);
-          setIsFocus(false);
-        }}
-      />
+      <Button style={styles.circle} onPress={null} title="<" />
+      <Text style={styles.title}>Editar Restaurante</Text>
+      <Text style={styles.subTitle}>Datos principales</Text>
+      <View style={{ alignItems: "center"}}>
+          <TextInput
+          placeholder='Nombre'
+          value={restaurant.name}
+          onChangeText={(text) => { formik.setFieldValue('name', text) }}
+          errorMessage={formik.errors.name}
+          />
+        <Input
+          rightIcon={{
+            type: "material-community",
+            name: "map-marker-radius-outline",
+            color: getColorIconMap(formik),
+            onPress: onOpenCloseMap
+          }}
+          value={restaurant.address.street}
+          placeholder='Calle'
+          onChangeText={(text) => { formik.setFieldValue('street', text) }}
+          errorMessage={formik.errors.street}
+          />
+          <Input
+          placeholder='Número'
+          onChangeText={(text) => { formik.setFieldValue('number', text) }}
+          errorMessage={formik.errors.number}
+          value={restaurant.address.number}
+          />
+        <FileUploadButton 
+          title={"+ Agregar Fotos"}
+          onSuccess={onPhotoUploaded}
+          onStartUpload={onPhotoStartUpload}
+          onError={onPhotoError} 
+        />
+        <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
+        {pictures.map(p => {
+            return (
+              <Avatar
+                key={p}
+                uri={p}
+                styles={styles.imageStyle}
+                onPress={()=>removeImagen(p)}
+              />
+            )
+          })}
+        <Text style={styles.error}>
+          {formik.errors.imageRest}
+        </Text>
+        </ScrollView>
+        <LoadingModal show={isLoading} text='Subiendo imagen'/>
+        <Button style={styles.button2} onPress={formik.handleSubmit} title="Continuar >" color={Theme.colors.PRIMARY} />
+      </View>
     </View>
-    <View style={styles.container2}>
-      {renderLabelProvince()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataProvince}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Provincia' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueProvince}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueProvince(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <View style={styles.container2}>
-      {renderLabelLocation()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataLocation}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Localidad' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueLocation}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueLocation(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <View style={styles.container2}>
-      {renderLabelNeighborhood()}
-      <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: Theme.colors.PRIMARY }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        data={dataNeighborhood}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={!isFocus ? 'Barrio' : '...'}
-        searchPlaceholder="Buscar..."
-        value={valueNeighborhood}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        onChange={item => {
-          setValueNeighborhood(item.value);
-          setIsFocus(false);
-        }}
-      />
-    </View>
-    <TextInput
-            style={styles.input}
-            placeholder='Número'
-            onChange={console.log("number")}
-            placeholderTextColor={Theme.colors.PRIMARY}
-            keyboardType='numeric'
-            />
-            <Button style={styles.button1} onPress={() => loginHandler()} title="+ Agregar Fotos" color={Theme.colors.SECONDARY}/>
-             <Button style={styles.button2} onPress={navigateToEditScreen2} title="Continuar >" color={Theme.colors.PRIMARY}/>
-          </View> 
-       </View>
+    <MapForm show={showMap} close={onOpenCloseMap} formik={formik}/>
+    </>
   );
 };
 
 export default EditRestaurantScreen1UI;
+
+const getColorIconMap = (formik) =>{
+  if(formik.errors.location) return Theme.colors.ERROR;
+  if(formik.values.location) return Theme.colors.PRIMARY;
+  return 'c2c2c2';
+}
 
 const styles = StyleSheet.create({
   container1:{
