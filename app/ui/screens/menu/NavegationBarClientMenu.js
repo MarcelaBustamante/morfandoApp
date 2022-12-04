@@ -12,11 +12,6 @@ const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const {userId} = useSelector(state => state.clientLogin);
   const {user} = useSelector(state => state.client);
 
-  const getfavourite = async (restaurant) => {
-    console.log("hola", userId,restaurant.id)
-    return await getUserFavourite(userId,restaurant.id);
-  };
-
   useEffect (() => {
     const result = user.favourites.filter(r => r.id === restaurant.id)
     console.log("resultado ", result)
