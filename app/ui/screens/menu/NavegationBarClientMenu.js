@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   const [estado, setEstado] = useState(false);
   const {userId} = useSelector(state => state.clientLogin);
+  const {user} = useSelector(state => state.client);
 
   const getfavourite = async (restaurant) => {
     console.log("hola", userId,restaurant.id)
@@ -17,16 +18,17 @@ const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
   };
 
   useEffect (() => {
-    setEstado(getfavourite(restaurant));
+    const result = user.favourites.filter(r => r.id === restaurant.id)
+    console.log("resultado ", result)
   },[]);
 
-  const cambiarFavoritos = async (restaurant) => {
+  const cambiarFavoritos = async () => {
     if (estado == true){
       await deleteUserFavourite(userId,restaurant.id);
-      estado = false;
+      setEstado( false);
     }else{
       await addUserFavourite (userId,restaurant.id);
-      estado = true;
+      setEstado(true);
     }
   };
   return (

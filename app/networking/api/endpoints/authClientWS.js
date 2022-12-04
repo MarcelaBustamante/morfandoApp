@@ -25,11 +25,11 @@ export const getUserFavourite = async function ( userId,restaurantId){
 }
 
 export const addUserFavourite = async function (userId,restaurantId){
-    const result = await axios.post(`/addfavourite/${userId}/${restaurantId}`);
+    const result = await axios.post(`/users/addfavourite/${userId}/${restaurantId}`);
     return result.data;
 }
 
 export const deleteUserFavourite = async function ( userId,restaurantId ){
-    const result = await axios.post(`/deletefavourite/${userId}/${restaurantId}`);
+    const result = await axios.post(`/users/deletefavourite/${userId}/${restaurantId}`);
     return result.data;
 }
