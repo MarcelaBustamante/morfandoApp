@@ -38,7 +38,6 @@ export default function MenuViewOwnerScreen({ navigation, route }) {
       onCreateMenu={() => navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.NEW_MEAL, { restaurant })}
       navigateToEditScreen1={() => navigation.navigate(NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_1)}
       navigateToMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS,{ restaurant })}
-      navigateToMealDescription={() => navigation.navigate(NavigatorConstant.LANDING_STACK.MEAL_DESCRIPTION)}
       handleDelete={handleDelete}
     />
   )
