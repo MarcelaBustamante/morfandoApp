@@ -14,13 +14,16 @@ const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
 
   useEffect (() => {
     const result = user.favourites.filter(r => r.id === restaurant.id)
+    if(result.length != 0){
+      setEstado(true)
+    }
     console.log("resultado ", result)
   },[]);
 
   const cambiarFavoritos = async () => {
     if (estado == true){
       await deleteUserFavourite(userId,restaurant.id);
-      setEstado( false);
+      setEstado(false);
     }else{
       await addUserFavourite (userId,restaurant.id);
       setEstado(true);

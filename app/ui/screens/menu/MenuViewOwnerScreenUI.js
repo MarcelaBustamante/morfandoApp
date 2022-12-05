@@ -7,7 +7,7 @@ import HeaderForMenu from "./HeaderForMenu";
 import FooterDelete from './FooterDelete';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  <View onPress={onPress} style={[styles.item, backgroundColor]}>
     <Text style={[styles.extra, textColor]}>Vegano: {item.vegan ? 'Si' : 'No'} // Celíaco: {item.tacc ? 'Si' : 'No'}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.name}</Text>
     <View style={styles.contenedorLista}>
@@ -22,7 +22,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
         <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
       </View>
     </View>
-  </TouchableOpacity>
+  </View>
 );
 
 
@@ -32,7 +32,6 @@ const MenuViewOwnerScreenUI = ({
   restaurant,
   navigateToEditScreen1,
   navigateToHome,
-  navigateToMealDescription,
   handleDelete
 }) => {
   const [selectedId, setSelectedId] = useState(null);
@@ -41,7 +40,6 @@ const MenuViewOwnerScreenUI = ({
     return (
       <Item
         item={item}
-        onPress={navigateToMealDescription}
       />
     );
   };

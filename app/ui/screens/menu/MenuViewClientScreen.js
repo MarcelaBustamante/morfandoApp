@@ -20,8 +20,7 @@ export default function MenuViewOwnerScreen({navigation, route}) {
 
   return (
       <MenuViewClientScreenUI restaurant={restaurant} menuItems={menuItems} isLoading={isLoading}
-      navigateToMealDescription={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.MEAL_DESCRIPTION_CLIENT)}
       navigateToComment={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_COMMENT, {restaurant})}
-      navigateToClientNearBy={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY)}
+      navigateToClientNearBy={() => navigation.navigate(NavigatorConstant.CLIENT_STACK.CLIENT_NEAR_BY,{restaurant})}
       /> 
   )};
