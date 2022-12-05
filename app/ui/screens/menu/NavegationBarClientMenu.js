@@ -37,7 +37,7 @@ const NavegationBarClientMenu = ({restaurant,navigateToClientNearBy}) => {
       <TouchableOpacity style={styles.button} onPress={cambiarFavoritos}>
         <Ionicons
           raised
-          name={estado ? 'heart-dislike' : 'heart'}
+          name={estado ? 'heart' : 'heart-dislike'}
           size={25}
           color="#ff6347"
         />
