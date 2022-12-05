@@ -25,6 +25,7 @@ export const deleteRestaurant = createAsyncThunk(
   'partner/restaurant',
   async (restoId, thunkAPI) => {
     const result = await deleteRestoAPI(restoId);
+    thunkAPI.dispatch(getListRestaurants());
     return result
   }
 )
