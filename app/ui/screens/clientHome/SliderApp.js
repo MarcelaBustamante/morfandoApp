@@ -8,13 +8,13 @@ const SliderApp = ({sliderValue, setSliderValue}) => {
       <View style={styles.container}>
         {/*Text to show slider value*/}
         <Text style={styles.text}>
-           Rango de busqueda: {sliderValue}
+           Rango de busqueda: {sliderValue} km
         </Text>
  
         {/*Slider with max, min, step and initial value*/}
         <Slider
 
-          maximumValue={100}
+          maximumValue={50}
           minimumValue={0}
           minimumTrackTintColor= {Theme.colors.PRIMARY}
           maximumTrackTintColor= {Theme.colors.SECONDARY}
