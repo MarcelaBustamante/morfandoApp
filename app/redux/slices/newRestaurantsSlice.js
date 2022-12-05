@@ -29,6 +29,12 @@ export const deleteRestaurant = createAsyncThunk(
   }
 ) 
 
+export const updateRestaurant = createAsyncThunk(
+  'partner/restaurant',async (form) =>{
+    return await updateRestaurant(form);
+  }
+)
+
 export const createMeal = createAsyncThunk('partner/createMenu',
   async ({ formValue, restoId }, thunkAPI) => {
     const result = await newItemAPI(formValue, restoId);

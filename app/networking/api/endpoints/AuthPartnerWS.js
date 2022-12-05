@@ -47,6 +47,18 @@ export const newRestaurantAPI = async function(form){
         return Promise.reject(error);
     }
 }
+export const updateRestaurantAPI = async function(form, restoId){
+    try {
+        const result = await axios.put(`restaurants/${restoId}`, form).catch(err => {
+            console.log("Editar restaurante error", err);
+            return Promise.reject(err);
+        });
+        console.log("Editar restaurante ok", result);
+        return result.data;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
 export const newItemAPI = async function(form, restoId){
     try {
         console.log(form);

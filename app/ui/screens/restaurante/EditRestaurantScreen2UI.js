@@ -94,7 +94,7 @@ import React, { useState } from 'react';
     const [timeOpenD, setTimeOpenD] = useState(new Date(Date.now()));
     const [timeCloseD, setTimeCloseD] = useState(new Date(Date.now()));
      
-    const renderItem = (item: any) => {
+    const renderItem = (item) => {
       return (
         <View style={styles.item}>
           <Text style={styles.selectedTextStyle}>{item.label}</Text>
