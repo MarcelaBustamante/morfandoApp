@@ -4,7 +4,7 @@ import { AirbnbRating, Input, Rating } from "react-native-elements";
 import Theme from "../../styles/Theme";
 import { Button } from '@react-native-material/core';
 
-export function AddCommentScreenUI ({formik, handleNewReview}){
+export function AddCommentScreenUI ({formik, handleNewReview,navigateToMenuViewClient}){
     const [comment, setComment] = useState("");
     const [rating, setReating] = useState(0);
     
@@ -15,7 +15,7 @@ export function AddCommentScreenUI ({formik, handleNewReview}){
 
     return(
         <View>
-            <Button style={styles.circle} title="<"/>
+            <Button style={styles.circle} onPress={navigateToMenuViewClient} title="<"/>
         <View style ={styles.content}>
             <Text style ={styles.title}>Agregar Comentario</Text>
             <View>

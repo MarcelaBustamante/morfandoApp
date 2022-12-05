@@ -6,7 +6,7 @@ import HeaderForClientMenu from "./HeaderForClientMenu";
 import Image from '../../components/shared/ImageCustom';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+  <View onPress={onPress} style={[styles.item, backgroundColor]}>
     <Text style={[styles.extra, textColor]}>Vegano: {item.vegan} // Celíaco: {item.celiac}</Text>
     <Text style={[styles.title, styles.general, textColor]}>{item.titleMenu}</Text>
     <View style={styles.contenedorLista}>
@@ -21,10 +21,10 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
       <Text style={[styles.price, styles.general, textColor]}>${item.price}</Text>
     </View>
     </View>  
-    </TouchableOpacity>
+    </View>
 );
 
-const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMealDescription, navigateToComment, navigateToClientNearBy}) => {
+const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToComment, navigateToClientNearBy}) => {
   console.log("Resto", restaurant);
   let DATA = !menuItems ? [] : menuItems.map(item => {
     return {
@@ -48,7 +48,7 @@ const MenuViewClientScreenUI = ({restaurant, menuItems, isLoading, navigateToMea
     return (
         <Item
         item={item}
-        onPress={navigateToMealDescription}
+
       />
     );
   };
