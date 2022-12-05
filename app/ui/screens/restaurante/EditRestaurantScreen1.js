@@ -3,7 +3,8 @@ import EditRestaurantScreen1UI from './EditRestaurantScreen1UI';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import NavigatorConstant from '../../../navigation/NavigatorConstant';
 
-export default function EditRestaurantScreen1({navigation}) {
+export default function EditRestaurantScreen1({navigation, route}) {
+  const { restaurant } = route.params;
   welcomeString = 'Bienvenido a Morfando';
 
   const loginHandler = () => {
