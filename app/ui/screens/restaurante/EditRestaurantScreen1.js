@@ -77,17 +77,17 @@ export default function EditRestaurantScreen1({navigation, route}) {
           toTime: moment(day.toTime).format('HH:mm:ss')
         }
       });
-    dispatch(updateRestaurant({
+    const valores = {
       "address": {
-        "latitude": restaurant.latitude,
-        "longitude": restaurant.longitude,
+        "latitude": restaurant.address.latitude,
+        "longitude": restaurant.address.longitude,
         "street": street,
         "number": number,
-        "neighborhood": restaurant.neighborhood,
-        "city": restaurant.province,
-        "province": restaurant.province,
-        "latitudeDelta": restaurant.latitudeDelta,
-        "longitudeDelta": restaurant.longitudeDelta
+        "neighborhood": restaurant.address.neighborhood,
+        "city": restaurant.address.province,
+        "province": restaurant.address.province,
+        "latitudeDelta": restaurant.address.latitudeDelta,
+        "longitudeDelta": restaurant.address.longitudeDelta
       },
       "businessHours": hours,
       "name": name,
@@ -95,7 +95,10 @@ export default function EditRestaurantScreen1({navigation, route}) {
       "priceRange": valuePriece,
       "photos": restaurant.photos,
       "active": !checked
-    }, restaurant.id));
+    }
+    console.log("soy el resto a modificar",restaurant)
+    console.log("soy el nuevo resto ", valores)
+    dispatch(updateRestaurant({ valores, restoId: restaurant.id}));
   };
 
 
