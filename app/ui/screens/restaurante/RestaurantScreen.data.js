@@ -25,6 +25,6 @@ export function validationSchemma(){
         province: Yup.string().required("Campo provincia es obligatorio"),
         neighborhood: Yup.string().required("Campo localidad es requerido"),
         location: Yup.object().required("La locacion es requerida, agreguela desde el icono"),
-        imageRest: Yup.array().min(0, "Se requiere una imagen como mínimo").required("La imagen es requerida")
+        imageRest: Yup.array().min(1, "Se requiere una imagen como mínimo").required("La imagen es requerida")
     })
 }

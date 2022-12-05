@@ -14,7 +14,6 @@ export default function FavoriteRestaurants({navigation, route}) {
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
-    console.log("llamada");
     dispatch(clientProfile({userId}));
   },[userId]);
 

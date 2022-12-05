@@ -28,7 +28,7 @@ const dataNeighborhood = [
     validationSchema: validationSchemma(),
     validateOnChange: false,
     onSubmit: async (formValue) =>{
-      console.log(formValue);
+      console.log("Form nuevo resto",formValue);
       navigation.navigate(NavigatorConstant.NEW_RESTAURANT_STACK.SCREEN_2,{form: formValue});
     }
   });

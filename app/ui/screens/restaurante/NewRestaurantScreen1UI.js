@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Theme from '../../styles/Theme';
@@ -28,6 +28,10 @@ const NewRestaurantScreen1UI = ({
   const [pictures, setPictures] = useState([]);
   const [showMap, setShowMap] = useState(false);
   const [isLoading,setIsLoading] = useState(false);
+
+  useEffect(() => {
+    formik.setFieldValue("imageRest", pictures);
+  }, [pictures]);
 
   const renderLabelCountry = () => {
     if (valueCoutry || isFocus) {
@@ -73,7 +77,6 @@ const NewRestaurantScreen1UI = ({
   const onPhotoUploaded = (fileKey) => {
     setIsLoading(false);
     setPictures([...pictures, fileKey]);
-    formik.setFieldValue("imageRest", pictures);
   };
 
   const onPhotoStartUpload = () => {
