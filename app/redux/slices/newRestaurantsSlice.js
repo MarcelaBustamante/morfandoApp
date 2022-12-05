@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { newRestaurantAPI, newItemAPI, getListItemAPI } from '../../networking/api/endpoints/AuthPartnerWS'
 import { getListRestaurants } from './restaurantsSlice';
-import { deleteRestoAPI } from '../../networking/api/endpoints/restaurantsWS';
+import { deleteRestoAPI, getRestoAPI, updateRestoAPI } from '../../networking/api/endpoints/restaurantsWS';
 
 const initialState = {
   restaurants: null,
@@ -25,13 +25,16 @@ export const deleteRestaurant = createAsyncThunk(
   'partner/restaurant',
   async (restoId, thunkAPI) => {
     const result = await deleteRestoAPI(restoId);
+    thunkAPI.dispatch(getListRestaurants());
     return result
   }
 ) 
 
 export const updateRestaurant = createAsyncThunk(
-  'partner/restaurant',async (form) =>{
-    return await updateRestaurant(form);
+  'partner/restaurant',async ({form, restoId}, thunkAPI) =>{
+    const result = await updateRestoAPI(form, restoId);
+    thunkAPI.dispatch(getRestoAPI(restoId));
+    return result
   }
 )
 

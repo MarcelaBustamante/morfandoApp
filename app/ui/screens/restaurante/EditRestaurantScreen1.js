@@ -79,16 +79,23 @@ export default function EditRestaurantScreen1({navigation, route}) {
       });
     dispatch(updateRestaurant({
       "address": {
+        "latitude": restaurant.latitude,
+        "longitude": restaurant.longitude,
         "street": street,
         "number": number,
+        "neighborhood": restaurant.neighborhood,
+        "city": restaurant.province,
+        "province": restaurant.province,
+        "latitudeDelta": restaurant.latitudeDelta,
+        "longitudeDelta": restaurant.longitudeDelta
       },
       "businessHours": hours,
       "name": name,
-      "type": selected.label,
+      "type": restaurant.type,
       "priceRange": valuePriece,
-      "photos": pictures,
+      "photos": restaurant.photos,
       "active": !checked
-    }));
+    }, restaurant.id));
   };
 
 

@@ -104,7 +104,7 @@ export default function FavoriteRestaurants({navigation, route}) {
     },
     containerCircle: {
       flexDirection: 'row',
-      justifyContent: 'flex-end'
+      justifyContent: 'flex-start'
     },
     seeMore:{
       margin: 10,
