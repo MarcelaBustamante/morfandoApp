@@ -14,7 +14,7 @@ export default function EditRestaurantScreen1({navigation, route}) {
     <KeyboardAwareScrollView>
           <EditRestaurantScreen1UI
             navigateToMenuOwner={() => navigation.navigate(NavigatorConstant.LANDING_STACK.RESTAURANT_DETAILS, {restaurant})}
-            navigateToEditScreen2={() => navigation.navigate(NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_2)}
+            navigateToEditScreen2={() => navigation.navigate(NavigatorConstant.EDIT_RESTAURANT_STACK.EDIT_SCREEN_2,{restaurant})}
             loginHandler={loginHandler}/> 
     </KeyboardAwareScrollView>
   )};
