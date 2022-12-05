@@ -27,7 +27,7 @@ const HomeRestoUI = ({
         <View style={styles.containerCirculo}>
           <Button style={styles.circle} onClick={this.switchColor} onPress={navigateToProfile} title={getInicialOwner()} />
         </View>
-        <Text style={styles.welcomeOwner}>Hola, {getNombreOwner()}</Text>
+        <Text style={styles.welcomeOwner}>Bienvenido a Morfando</Text>
         <View style={styles.container1}>
           <Button style={styles.button} onClick={this.switchColor} onPress={navigateToNewResto} title="Nuevo Restaurante" />
           <Text style={styles.title}> Mis restaurantes </Text>
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   welcomeOwner: {
-      fontSize: 35,
+      fontSize: 32,
       marginTop: 5,
       color: Theme.colors.SECONDARY,
       fontWeight: "bold",
-      marginLeft: 15,
+      alignSelf: "center"
   },
   title: {
       fontSize: 30,
