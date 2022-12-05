@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { SectionList, StatusBar, StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
+import { SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Theme from "../../styles/Theme";
 import { LoadingModal } from "../../components/shared/LoadingModal/LoadingModal";
 import HeaderForClientMenu from "./HeaderForClientMenu";
+import Image from '../../components/shared/ImageCustom';
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
@@ -11,8 +12,8 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <View style={styles.contenedorLista}>
       <View>
         <Image
-          style={styles.imagenLista}
-          source={{ uri: item.image }}
+          styles={styles.imagenLista}
+          uri={item.image}
         />
       </View> 
     <View  style={{paddingEnd: 30, paddingStart: 5}}>
